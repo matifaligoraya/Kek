@@ -1,4 +1,9 @@
 <?php
+/*
+    KEK
+    THEME SETUP & CUSTOMIZE OPTIONS BELOW
+*/
+
 function kek_theme_setup() {    
     add_theme_support('custom-logo', array(
         'height'      => 100, 
@@ -9,7 +14,8 @@ function kek_theme_setup() {
     
     register_nav_menus(array(
         'main-menu' => __('Main Menu', 'kek'),
-    ));
+        'footer-menu' => __('Footer Menu', 'kek'),
+    ));    
 }
 add_action('after_setup_theme', 'kek_theme_setup');
 
@@ -21,6 +27,139 @@ function kek_scripts() {
     wp_enqueue_style('custom', get_template_directory_uri() . '/assets/css/custom.css');    
 }
 add_action('wp_enqueue_scripts', 'kek_scripts');
+
+function kek_customize_register($wp_customize) {
+    // Footer Settings
+    $wp_customize->add_section('footer_settings', array(
+        'title' => __('Footer Settings', 'kek'),
+        'priority' => 30,
+    ));
+
+    // Footer Background Image
+    $wp_customize->add_setting('kek_footer_bg_image', array(
+        'default' => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'kek_footer_bg_image', array(
+        'label' => __('Footer Background Image', 'kek'),
+        'section' => 'footer_settings',
+        'settings' => 'kek_footer_bg_image',
+    )));
+
+    // Footer main logo image
+    $wp_customize->add_setting('kek_footer_image', array(
+        'default' => '',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+
+    $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'kek_footer_image', array(
+        'label' => __('Footer Image', 'kek'),
+        'section' => 'footer_settings',
+        'settings' => 'kek_footer_image',
+    )));
+
+    // Footer highlight HTML (Text)    
+    $wp_customize->add_setting('kek_footer_highlight', array(
+        'default' => '',
+        'sanitize_callback' => 'wp_kses_post', // Allows some HTML tags
+    ));
+
+    $wp_customize->add_control(new WP_Customize_HTML_Control($wp_customize, 'kek_footer_highlight', array(
+        'label' => __('Footer Highlight (HTML)', 'kek'),
+        'section' => 'footer_settings',
+        'settings' => 'kek_footer_highlight',
+    )));
+
+    // Downloads Counter
+    $wp_customize->add_setting('kek_footer_downloads', array(
+        'default' => '15065421',
+        'sanitize_callback' => 'absint',
+    ));
+
+    $wp_customize->add_control('kek_footer_downloads', array(
+        'label' => __('Total Downloads', 'kek'),
+        'section' => 'footer_settings',
+        'settings' => 'kek_footer_downloads',
+        'type' => 'number',
+    ));
+
+    // Clients Counter
+    $wp_customize->add_setting('kek_footer_clients', array(
+        'default' => '18465',
+        'sanitize_callback' => 'absint',
+    ));
+
+    $wp_customize->add_control('kek_footer_clients', array(
+        'label' => __('Total Clients', 'kek'),
+        'section' => 'footer_settings',
+        'settings' => 'kek_footer_clients',
+        'type' => 'number',
+    ));
+
+    // Enable/Disable Payment Gateways
+    $wp_customize->add_section('payment_gateways', array(
+        'title' => __('Enable/Disable Payments', 'kek'),
+        'priority' => 30,
+    ));
+    
+    $wp_customize->add_setting('kek_visa_enabled', array(
+        'default' => false,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+
+    $wp_customize->add_control('kek_visa_enabled', array(
+        'label' => __('VISA', 'kek'),
+        'section' => 'payment_gateways',
+        'settings' => 'kek_visa_enabled',
+        'type' => 'checkbox',
+    ));
+
+    $wp_customize->add_setting('kek_master_enabled', array(
+        'default' => false,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+
+    $wp_customize->add_control('kek_master_enabled', array(
+        'label' => __('Master', 'kek'),
+        'section' => 'payment_gateways',
+        'settings' => 'kek_master_enabled',
+        'type' => 'checkbox',
+    ));
+
+    $wp_customize->add_setting('kek_american_express_enabled', array(
+        'default' => false,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+
+    $wp_customize->add_control('kek_american_express_enabled', array(
+        'label' => __('American Express', 'kek'),
+        'section' => 'payment_gateways',
+        'settings' => 'kek_american_express_enabled',
+        'type' => 'checkbox',
+    ));
+
+    $wp_customize->add_setting('kek_stripe_enabled', array(
+        'default' => false,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+
+    $wp_customize->add_control('kek_stripe_enabled', array(
+        'label' => __('Stripe', 'kek'),
+        'section' => 'payment_gateways',
+        'settings' => 'kek_stripe_enabled',
+        'type' => 'checkbox',
+    ));
+}
+
+add_action('customize_register', 'kek_customize_register');
+
+/*
+    KEK
+    THEME SETTINGS BELOW e.g
+        COLORS
+        SOCIAL ICONS
+*/
 
 function kek_add_admin_menu() {
     add_menu_page(
@@ -145,8 +284,7 @@ function kek_admin_enqueue_scripts($hook_suffix) {
     if ('toplevel_page_kek-settings' !== $hook_suffix) {
         return;
     }
-
-    // Enqueue the color picker script and styles
+    
     wp_enqueue_style('wp-color-picker');
     wp_enqueue_script('kek-admin-js', get_template_directory_uri() . '/assets/js/admin/admin.js', array('wp-color-picker'), false, true);
 }
@@ -186,7 +324,12 @@ function kek_admin_styles() {
 }
 add_action('admin_head', 'kek_admin_styles');
 
-// CUSTOM WALKER CLASS FOR MENU
+/* 
+    KEK
+        CUSTOM CLASSES & CONTROLS BELOW
+*/
+
+// CUSTOM WALKER FOR HEADER MENU
 
 class Custom_Walker_Nav_Menu extends Walker_Nav_Menu {
     function start_lvl( &$output, $depth = 0, $args = null ) {
@@ -250,5 +393,22 @@ class Custom_Walker_Nav_Menu extends Walker_Nav_Menu {
 
     function end_el( &$output, $item, $depth = 0, $args = null ) {
         $output .= "</li>\n";
+    }
+}
+
+// CUSTOMIZE HTML CONTROL IN APPEARANCE -> CUSTOMIZE
+
+if (class_exists('WP_Customize_Control')) {
+    class WP_Customize_HTML_Control extends WP_Customize_Control {
+        public $type = 'html';
+
+        public function render_content() {
+            ?>
+            <label>
+                <span class="customize-control-title"><?php echo esc_html($this->label); ?></span>
+                <textarea style="width:100%;" rows="5" <?php $this->link(); ?>><?php echo esc_textarea($this->value()); ?></textarea>
+            </label>
+            <?php
+        }
     }
 }
