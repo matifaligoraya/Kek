@@ -14,6 +14,7 @@ function kek_theme_setup() {
     
     register_nav_menus(array(
         'main-menu' => __('Main Menu', 'kek'),
+        'top-left-menu' => __('Top Left Menu', 'kek'),
         'footer-menu' => __('Footer Menu', 'kek'),
     ));    
 }
@@ -153,6 +154,14 @@ function kek_customize_register($wp_customize) {
 }
 
 add_action('customize_register', 'kek_customize_register');
+
+function add_additional_class_on_li($classes, $item, $args) {
+    if(isset($args->add_li_class)) {
+        $classes[] = $args->add_li_class;
+    }
+    return $classes;
+}
+add_filter('nav_menu_css_class', 'add_additional_class_on_li', 1, 3);
 
 /*
     KEK
@@ -334,40 +343,39 @@ add_action('admin_head', 'kek_admin_styles');
 class Custom_Walker_Nav_Menu extends Walker_Nav_Menu {
     function start_lvl( &$output, $depth = 0, $args = null ) {
         $indent = str_repeat("\t", $depth);
-        $output .= "\n$indent<div class=\"mega-menu-content mega-menu-style-2 px-0\"><div class=\"container\"><div class=\"row\">\n";
+        $classes = array('sub-menu-container'); // Class for <ul>
+        $class_names = join(' ', apply_filters('nav_menu_submenu_css_class', $classes, $args, $depth));
+        $class_names = $class_names ? ' class="' . esc_attr($class_names) . '"' : '';
+
+        $output .= "\n$indent<ul$class_names>\n";
     }
 
     function end_lvl( &$output, $depth = 0, $args = null ) {
         $indent = str_repeat("\t", $depth);
-        $output .= "$indent</div></div></div>\n";
+        $output .= "$indent</ul>\n";
     }
 
     function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
         $indent = ($depth) ? str_repeat("\t", $depth) : '';
-
-        $classes = empty( $item->classes ) ? array() : (array) $item->classes;
+        $classes = empty($item->classes) ? array() : (array) $item->classes;
         $classes[] = 'menu-item';
         if (in_array('current-menu-item', $classes)) {
             $classes[] = 'current';
         }
 
-        if ( $args->walker->has_children ) {
-            $classes[] = 'mega-menu sub-menu';
-        }
-
-        $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args));
+        $class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args, $depth));
         $class_names = $class_names ? ' class="' . esc_attr($class_names) . '"' : '';
 
-        $id = apply_filters('nav_menu_item_id', 'menu-item-'. $item->ID, $item, $args);
+        $id = apply_filters('nav_menu_item_id', 'menu-item-' . $item->ID, $item, $args);
         $id = $id ? ' id="' . esc_attr($id) . '"' : '';
 
         $output .= $indent . '<li' . $id . $class_names .'>';
 
         $atts = array();
-        $atts['title']  = ! empty( $item->attr_title ) ? $item->attr_title : '';
-        $atts['target'] = ! empty( $item->target )     ? $item->target     : '';
-        $atts['rel']    = ! empty( $item->xfn )        ? $item->xfn        : '';
-        $atts['href']   = ! empty( $item->url )        ? $item->url        : '';
+        $atts['title']  = ! empty($item->attr_title) ? $item->attr_title : '';
+        $atts['target'] = ! empty($item->target)     ? $item->target     : '';
+        $atts['rel']    = ! empty($item->xfn)        ? $item->xfn        : '';
+        $atts['href']   = ! empty($item->url)        ? $item->url        : '';
 
         $atts = apply_filters('nav_menu_link_attributes', $atts, $item, $args);
 
@@ -380,9 +388,9 @@ class Custom_Walker_Nav_Menu extends Walker_Nav_Menu {
         }
 
         $item_output = $args->before;
-        $item_output .= '<a'. $attributes .' class="menu-link"><div>';
+        $item_output .= '<a' . $attributes . ' class="menu-link"><div>';
         $item_output .= $args->link_before . apply_filters('the_title', $item->title, $item->ID) . $args->link_after;
-        if ( $args->walker->has_children ) {
+        if ($args->walker->has_children) {
             $item_output .= '<i class="sub-menu-indicator fa-solid fa-caret-down"></i>';
         }
         $item_output .= '</div></a>';

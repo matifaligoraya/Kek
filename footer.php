@@ -5,8 +5,7 @@
         $visa_enabled = get_theme_mod('kek_visa_enabled', false);
         $master_enabled = get_theme_mod('kek_master_enabled', false);
         $american_express_enabled = get_theme_mod('kek_american_express_enabled', false);
-        $stripe_enabled = get_theme_mod('kek_stripe_enabled', false);
-        $checkout_enabled = get_theme_mod('kek_checkout_enabled', false);
+        $stripe_enabled = get_theme_mod('kek_stripe_enabled', false);        
     ?>
 
     <footer id="footer" style="background: url('<?php echo esc_url(get_theme_mod('kek_footer_bg_image', get_template_directory_uri() . '/images/footer-bg.jpg')); ?>') repeat; background-size: cover;">

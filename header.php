@@ -20,11 +20,15 @@
                     <div class="col-12 col-md-auto">
 
                         <div class="top-links">
-                            <ul class="top-links-container">
-                                <li class="top-links-item"><a href="demo-seo.html">Home</a></li>
-                                <li class="top-links-item"><a href="demo-seo-faqs.html">FAQs</a></li>
-                                <li class="top-links-item"><a href="demo-seo-contact.html">Contact</a></li>                                
-                            </ul>
+                            <?php
+                                wp_nav_menu(array(
+                                    'menu_class' => 'top-links-container',
+                                    'theme_location' => 'top-left-menu',
+                                    'container' => true,                                    
+                                    'fallback_cb' => false,
+                                    'add_li_class'  => 'top-links-item'
+                                ));
+                            ?>
                         </div>
                     </div>
                     <div class="col-12 col-md-auto dark" data-bs-theme="dark">
@@ -51,7 +55,6 @@
                             <?php get_template_part('inc/templates/logo'); ?>
                         </div>
                         <div class="header-misc">
-
                             <div id="top-search" class="header-misc-icon">
                                 <a href="#" id="top-search-trigger"><i class="uil uil-search"></i><i class="bi-x-lg"></i></a>
                             </div>
