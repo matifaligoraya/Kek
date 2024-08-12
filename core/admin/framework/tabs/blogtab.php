@@ -1,5 +1,5 @@
 <?php
-require_once kek_DIR . 'core/admin/freamwork/basetab.php'; // If SublimeBaseTab is in the same directory
+require_once kek_DIR . 'core/admin/framework/basetab.php'; // If SublimeBaseTab is in the same directory
 add_action('admin_enqueue_scripts', 'wp_enqueue_color_picker');
 function wp_enqueue_color_picker($hook_suffix) {
     wp_enqueue_style('wp-color-picker');

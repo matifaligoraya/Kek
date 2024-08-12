@@ -460,101 +460,11 @@ add_filter('nav_menu_css_class', 'add_additional_class_on_li', 1, 3);
         SOCIAL ICONS
 */
 
-function kek_add_admin_menu() {
-    add_menu_page(
-        __('KEK - Theme Settings', 'kek'),
-        __('KEK - Theme Settings', 'kek'),
-        'manage_options',
-        'kek-settings',
-        'kek_settings_page_html',
-        get_template_directory_uri() . '/assets/images/theme-settings-menu-icon.png',
-        2
-    );
-}
-add_action('admin_menu', 'kek_add_admin_menu');
-
-function kek_settings_init() {
-    register_setting('kek_options', 'kek_options');
-
-    add_settings_section(
-        'kek_section_colors',
-        __('Color Settings', 'kek'),
-        'kek_section_colors_callback',
-        'kek-settings'
-    );
-
-    add_settings_field(
-        'kek_setting_color',
-        __('Main Color', 'kek'),
-        'kek_setting_color_render',
-        'kek-settings',
-        'kek_section_colors'
-    );
-}
-add_action('admin_init', 'kek_settings_init');
-
-function kek_section_colors_callback() {
-    echo '<p>' . __('Manage kek colors here and make it yours ;)', 'kek') . '</p>';
-}
-
-function kek_setting_color_render() {
-    $options = get_option('kek_options');
-    ?>
-    <input type='text' class='kek-color-field' name='kek_options[kek_setting_color]' value='<?php echo esc_attr($options['kek_setting_color'] ?? '#1db954'); ?>'>
-    <?php
-}
-
-function kek_setting_color_rgb_render() {
-    $options = get_option('kek_options');
-    ?>
-    <input type='text' name='kek_options[kek_setting_color_rgb]' value='<?php echo esc_attr($options['kek_setting_color_rgb'] ?? '29, 185, 84'); ?>'>
-    <?php
-}
-
-function kek_settings_page_html() {
-    if (!current_user_can('manage_options')) {
-        return;
-    }
-
-    if (isset($_GET['settings-updated'])) {
-        add_settings_error('kek_messages', 'kek_message', __('Settings Saved', 'kek'), 'updated');
-    }
-
-    settings_errors('kek_messages');
-    ?>
-    <div class="wrap">
-        <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
-        <h2 class="nav-tab-wrapper">
-            <a href="#kek-color-settings" class="nav-tab nav-tab-active">Colors</a>
-            <a href="#kek-other-settings" class="nav-tab">Others</a>            
-        </h2>
-        <form action="options.php" method="post">
-            <?php
-            settings_fields('kek_options');
-            ?>
-            <div id="kek-color-settings" class="tab-content">
-                <?php
-                    do_settings_sections('kek-settings');
-                ?>
-            </div>
-            <div id="kek-other-settings" class="tab-content" style="display:none;">
-                <!-- Content for other settings -->
-                <p>Other settings content goes here.</p>
-            </div>
-            <?php
-            submit_button(__('Save Settings', 'kek'));
-            ?>
-        </form>
-    </div>
-    <?php
-}
-
-function kek_customize_css() {
-    $options = get_option('kek_options');
-    $color = esc_attr($options['kek_setting_color'] ?? '#1db954');    
-    
-    // Extract RGB from hex if not set
-    $rgb = isset($options['kek_setting_color_rgb']) ? esc_attr($options['kek_setting_color_rgb']) : hex_to_rgb($color);
+function kek_customize_css() {    
+    $options = get_option('kek_options');    
+    $color = esc_attr($options['main_color'] ?? '#1db954');    
+        
+    $rgb = isset($options['main_color_rgb']) ? esc_attr($options['main_color_rgb']) : hex_to_rgb($color);
     
     ?>
     <style type="text/css">
@@ -579,10 +489,11 @@ function hex_to_rgb($hex) {
     return implode(', ', array_map(function($c) { return hexdec($c); }, array($r, $g, $b)));
 }
 
-function kek_admin_enqueue_scripts($hook_suffix) {
-    if ('toplevel_page_kek-settings' !== $hook_suffix) {
-        return;
-    }
+function kek_admin_enqueue_scripts() {    
+    // print_r("THIS IS THE CONDITION: " . 'kek_page_theme-setting' !== $hook_suffix);
+    // if ('kek_page_theme-setting' !== $hook_suffix) {
+    //     return;
+    // }    
     
     wp_enqueue_style('wp-color-picker');
     wp_enqueue_script('kek-admin-js', get_template_directory_uri() . '/assets/js/admin/admin.js', array('wp-color-picker'), false, true);

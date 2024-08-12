@@ -1,5 +1,5 @@
 <?php
-require_once kek_DIR . 'core/admin/freamwork/basetab.php';
+require_once kek_DIR . 'core/admin/framework/basetab.php';
 
 class SublimeHeaderTab extends SublimeBaseTab {
     

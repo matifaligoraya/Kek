@@ -7,7 +7,7 @@
  * @link     https://bitandbytelab.com/
  *
  */
-require_once kek_DIR . 'core/admin/freamwork/tabs.php'; // If SublimeBaseTab is in the same directory
+require_once kek_DIR . 'core/admin/framework/tabs.php'; // If SublimeBaseTab is in the same directory
 
 
 final class kek_Settings_Page

@@ -1,5 +1,5 @@
 <?php
-require_once kek_DIR . 'core/admin/freamwork/basetab.php'; // If SublimeBaseTab is in the same directory
+require_once kek_DIR . 'core/admin/framework/basetab.php'; // If SublimeBaseTab is in the same directory
 class SublimeFooterTab extends SublimeBaseTab {
 
     public function getTitle() {
