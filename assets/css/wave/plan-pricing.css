@@ -1,0 +1,816 @@
+@charset "utf-8";
+/* Plans & Pricing CSS Document */
+
+
+
+.plans-container{
+	width: 1170px;
+    margin-right: auto;
+    margin-left: auto;
+
+}
+.plansliststyle2 .section-heading {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 36px;
+    text-align:center !important;
+    color: #011E57;
+	/* font-family: poppins; */
+}
+.plansliststyle2 .section-p {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 36px;
+    text-align: center;
+    color: #011E57;
+		/* font-family: poppins; */
+}
+.pricing-plan.col-lg-3.col-md-6.col-sm-12.most-popular.d-flex {
+  padding-top: 0px !important;
+}
+.pricing-plan {
+  padding-top: 42px;
+}
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+.pricing-plans-list {margin-top: 30px;}
+.plan_tagline p {
+  color: #fff !important;
+  /* font-family: poppins; */
+}
+.pricing-plans-list.row .pricing-plan {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
+.plansliststyle2 .pricing-plan {
+    display: flex;
+    align-items: stretch;
+}
+.d-flex {
+    display: flex !important;
+}
+@media (min-width: 992px) {
+    .col-lg-3 {
+        flex: 0 0 25%;
+        max-width: 25%;
+    }
+}
+.plansliststyle2 h2 {
+    margin:2rem 0 -0.125rem;
+}
+.plansliststyle2 {
+    padding: 35px 0px !important;
+}
+.plansliststyle2 .plan-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 97% !important;
+    background: rgb(21, 64, 144);
+    background: linear-gradient(90deg, rgba(21, 64, 144, 1) 0%, rgba(1, 30, 87, 1) 100%);
+}
+.plansliststyle2 .plan-header {
+    background-color: #295FC3;
+}
+.plansliststyle2 .plan-header h3 {
+    text-align: center;
+    padding: 10px;
+    color: #fff;
+    font-size: 15px;
+    line-height: 22.5px;
+    margin: 0;
+	font-weight: 400;
+	/* font-family: poppins; */
+}
+.plansliststyle2 .plan-body {
+    padding: 20px 20px;
+    border-bottom: solid 5px #fff;
+}
+.plansliststyle2 .plan-body .title h4 {
+    font-size: 23px;
+    font-weight: 400;
+    line-height: 34.5px;
+    text-align: left;
+    color: #fff;
+	/* font-family: poppins; */
+}
+.plan_tagline {
+    min-height: 35px;
+    font-size: 14px;
+}
+.plan_tagline p {
+    color: #fff;
+}
+.plansliststyle2 .plan-features {
+    list-style: none;
+    padding: 0;
+    min-height: 180px;
+}
+.plansliststyle2 .plan-features li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+	/* font-family: poppins; */
+}
+.plansliststyle2 .plan-price {
+    text-align: center;
+}
+.plansliststyle2 .plan-price .price {
+    color: #fff;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 45px;
+    text-align: left;
+}
+.plansliststyle2 .plan-price .billing-period {
+    color: #fff;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+    text-align: left;
+}
+.plansliststyle2 .plan-action a {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 22.5px;
+    color: #143E8D;
+    border: 1px solid #03225D;
+    background-color: #fff;
+    border-radius: 0px;
+    text-align: center;
+	text-decoration: none;
+}
+.plansliststyle2 .plan-action a:hover{
+	background-color:#D6E9FF;
+	border: 1px solid #0D1729
+	color:#143E8D;
+}
+.btn-block {
+    display: block;
+}
+.btn-lg {
+    padding: .5rem 1rem;
+}
+@media (max-width: 768px) {
+	.plans-container {
+  width: 100% !important;
+	}
+.plansliststyle2 .pricing-plan {
+  display: block !important;
+  margin: 0px 10px;
+  width: 100%;
+}
+.pricing-plans-list.row{
+	width: 100%;
+  margin: auto;
+}
+.plansliststyle2 .plan-action a{
+	text-decoration: none;
+}	
+.pricing-plan.col-lg-3.col-md-6.col-sm-12.most-popular.d-flex {
+  padding-top: 20px !important;
+}
+.plansliststyle2 .plan-inner{
+	width: 100% !important;
+}
+	
+}
+@media only screen and (min-width: 768px) and (max-width: 800px) { 
+.plans-container {
+  width: 720px !important;
+}
+.pricing-plan.col-lg-3.col-md-6.col-sm-12.d-flex {
+  width: 50%;
+}
+}
+@media only screen and (min-width: 801px) and (max-width: 991px) { 
+.plans-container {
+  width: 800px;
+  .pricing-plan.col-lg-3.col-md-6.col-sm-12.d-flex {
+  width: 50%;
+}
+}
+
+
+/* Instrument and Clients CSS Document */
+
+.instruments-home {
+	position:relative;
+	overflow:hidden;
+	background: #011E57 !important;
+	padding:4.0625rem 0;
+	color:#fff;
+	font-size:1rem;
+	line-height:1.625rem
+}
+@media (max-width:575.98px) {
+.instruments-home {
+padding:3rem 0
+}
+}
+/*<!--.Instrment-inner{
+	position: relative;
+  width: auto;
+  height: 100%;
+  padding: 0 11.25rem;
+  color: #fff !important;
+  z-index: 6;
+}-->*/
+.instrument-text p{
+	/* font-family: poppins; */
+font-size: 16px;
+font-weight: 400;
+line-height: 24px;
+text-align: left;
+color:#fff;
+padding-bottom: 20px;
+}
+.instrument-text h2{
+/* font-family: poppins; */
+font-size: 24px;
+font-weight: 400;
+line-height: 36px;
+text-align: left;
+}
+.instrument-row{
+display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+  height: 337px;
+  gap: 0px;
+  border-radius: 10px;
+  border: 1px solid #21234E;
+  background: #FFFFFF;
+}
+.col-md-4 {
+  width: 30%;
+  padding-top: 25px;
+  padding-left: 35px;
+}
+.instrument-sec{
+	display:flex;
+	padding: 10px 0px;
+}
+.border-right {
+  border-right: 1px solid #dee2e6 !important;
+  height: 271px;
+}
+.heading-img{
+	width: 27px;
+height: 27px;
+}
+.instru-text h2{
+	/* font-family: poppins; */
+font-size: 18px;
+font-weight: 700;
+line-height: 27px;
+text-align: left;
+color: #082C70;
+}
+.forex-img{
+	width:25px;
+	height:24px;
+	padding-right: 15px;
+	display: block ruby;
+}
+.indices-img{
+	width:25px;
+	height:24px;
+	padding-right: 15px;
+	display: block ruby;
+}
+.commodities-img{
+	width:22px;
+	height:16.48px;
+	padding-right: 15px;
+	display: block ruby;
+}
+.crypto-img{
+	width:20px;
+	height:25px;
+	padding-right: 15px;
+	display: block ruby;
+}
+.etf-img{
+	width:25px;
+	height:19px;
+	padding-right: 15px;
+	display: block ruby;
+}
+.stock-img{
+	width:25px;
+	height:22px;
+	padding-right: 15px;
+	display: block ruby;
+}
+.instru-text{
+	/* font-family: poppins; */
+font-size: 12px;
+font-weight: 400;
+line-height: 18px;
+text-align: left;
+color: #000000;
+}
+@media (max-width: 768px) {
+.container{width: 100% !important;
+  margin: 10px !important;
+  }
+	.row.mb-4 {
+  padding: 0px 20px;
+}
+.row {
+  display: block;
+  margin-right: 0px;
+}
+.border-right {
+  border-right: transparent !important;
+  height: auto;
+}
+.col-md-4 {
+  display: block;
+  margin: auto;
+  padding: 20px;
+  width: auto;
+}
+.instrument-row {
+  display: block;
+  border-radius: 10px;
+  border: 1px solid #21234e;
+  background: #fff;
+  margin: 0;
+  width: 93%;
+  height: auto;
+}
+.instrument-sec {
+  display: flex;
+  padding: 5px 0;
+}
+
+}
+
+@media only screen and (min-width: 768px) and (max-width: 800px) { 
+.instrument-row .col-md-4 {
+  width: 30% !important;
+  padding-top: 15px !important;
+  padding-left: 10px !important;
+}
+.instrument-sec {
+  display: flex;
+  padding: 2px 0 !important;
+}
+}
+@media only screen and (min-width: 801px) and (max-width: 991px) { 
+.instrument-row .col-md-4 {
+  width: 31% ;
+  padding-top: 15px ;
+  padding-left: 15px;
+}
+.instrument-sec {
+  display: flex;
+  padding: 5px 0;
+}
+}
+<!--Client CSS-->
+.client-inner{
+	position: relative;
+  width: auto;
+  height: 100%;
+  padding: 0 11.25rem;
+  color: #fff !important;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: center;
+}
+.client-inner {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: center;
+}
+.client-inner h3{
+	padding-right: 20px;
+}
+.client-home{
+	padding:5%;
+}
+.client-home .ls-is-cached.lazyloaded {
+  display: none;
+}
+.market-pic{
+	width: 123px;
+height: 34px;
+padding-right: 20px;
+}
+.bloom-pic{
+	width: 148px;
+height: 28px;
+padding-right: 20px;
+}
+.yahoo-pic{
+	width: 79px;
+height: 29px;
+padding-right: 20px;
+}
+.fx-pic{
+	width: 103px;
+height: 28px;
+padding-right: 20px;
+}
+.invest-pic{
+	width: 153px;
+height:26px;
+padding-right: 20px;
+}
+@media (max-width: 768px) {
+.market-pic{
+margin: auto;
+padding-right: 0px;
+padding-top: 20px;
+}
+.bloom-pic{
+margin: auto;
+padding-right: 0px;
+padding-top: 20px;
+}
+.yahoo-pic{
+margin: auto;
+padding-right: 0px;
+padding-top: 20px;
+}
+.fx-pic{
+margin: auto;
+padding-right: 0px;
+padding-top: 20px;
+}
+.invest-pic{
+margin: auto;
+padding-right: 0px;
+padding-top: 20px;
+}	
+.client-inner h3 {
+  padding-right: 0px;
+}
+.client-inner {
+  display: block;
+  text-align: center;
+}
+}
+
+
+<!--Hero CSS--->
+
+.banner {
+/*    background:#070a3a;*/
+    overflow: hidden;
+    transition: all .5s ease;
+}
+
+.banner-text {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    color: #FFF;
+    z-index: 6;
+    display: inline-block;
+}
+.banner-text-top {
+    width: 48%;
+    padding: 6.25rem 0 6.25rem;
+	display:inline-block !important;
+	z-index:10;
+	position:relative;
+
+}
+.banner-text .ttl, .banner-text h1 {
+    display: block;
+    /* font-family: poppins; */
+  font-size: 32px;
+  font-weight: 700 !important;
+  line-height: 48px;
+  text-align: left;
+}
+.banner-text-top h1 {
+    font-weight: 400;
+}
+.banner-text .txt {
+    display: block;
+	display: block;
+  font-size: 18px !important;
+  line-height: 27px;
+  letter-spacing: .0625rem;
+  margin: 0 0 2.1875rem;
+  font-weight: 400;
+}
+.banner-text p {
+    margin: 0;
+}
+
+.banner-text {
+	color:#fff;
+}
+.trial-btn {
+    display: flex;
+    align-items: center;
+    gap: 1.875rem;
+    font-size: .9375rem;
+    line-height: 1.125rem;
+    color: #9c9db1;
+    letter-spacing: 0;
+}
+.btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+}
+.fa-angle-right:before {
+    content: "\f105";
+}
+.fa-trophy:before {
+    content: "\f091";
+}
+
+.trial-btn .btn {
+    display: flex;
+    gap: 20px;
+}
+.trial a.btn {
+  height: 52px !important;
+  display: flex;
+  align-items: center;
+  width: 234px !important;
+  color: #fff;
+  border-radius: 10px;
+  text-align: center;
+  justify-content: center;
+}
+.trial-btn a:last-child {
+  height: 52px !important;
+  display: flex;
+  align-items: center;
+  width: 196px !important;
+  color: #fff;
+  border-radius: 10px;
+  text-align: center;
+  justify-content: center;
+  border: 1px solid #FFFFFF
+}
+/*.btn {
+    font: 700 14px/3.5rem  Montserrat, sans-serif;
+    background: #2960c4;
+    color: #ffffff;
+    border: .0625rem solid #2960c4;
+    cursor: pointer;
+    border-radius: .3125rem;
+    padding: 0 1.875rem;
+    letter-spacing: .0125rem;
+    outline: 0;
+    white-space: nowrap;
+	margin:0px !important;
+}*/
+.btn{margin:0px !important;}
+.btnicon {
+  /* font-family: poppins; */
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 33px;
+  text-align: left;
+}
+.btntxt {
+  /* font-family: poppins; */
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 27px;
+  text-align: left;
+}
+.fa, .fas {
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+}
+.fa, .fab, .fad, .fal, .far, .fas {
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
+.banner-text .note i {
+    color: #ffffff;
+    padding-right: 24px;
+    width: 22px;
+    height: 21px;
+}
+.trial-btn a:last-child {
+    height: auto;
+    border-radius: 5px;
+}
+.trial .btn {
+  width: auto !important;
+}
+.banner-text .note {
+    padding-top: 6px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+	/* font-family: poppins; */
+
+    color: #C3C3C3;
+}
+.innernote {
+    padding-top: 20px;
+}
+
+.innernote .icon {
+    width: 7%;
+    display: inline-block;
+    vertical-align: top;
+}
+.innernote .text {
+    width: 93%;
+    display: inline-block;
+}
+/*.video-lay {
+  background-image: url(https://elliottwave-forecast.com/wp-content/uploads/2024/06/aaae182dd2fee7698789a90ea43f5d94.png);
+    background-size: auto;
+  background-repeat: no-repeat;
+  border: 1px transparent;
+  width: 580px;
+}*/
+.video-lay img {
+  border-radius: 52px 10px 20px 10px;
+  border: 1px solid #000000;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  display: flex;
+  margin: 20px auto;
+}
+.play-icon {
+  background: url(https://elliottwave-forecast.com/wp-content/uploads/2024/06/b5f74c8d9277aa02205905b43dfe1327.png);
+  background-size: cover;
+  background-blend-mode: luminosity;
+  width: 37px;
+  height: 37px;
+  background-repeat: no-repeat;
+  display: flex;
+  margin: auto;
+  position: relative;
+  top: 185px;
+  z-index: inherit;
+  background-color: aliceblue;
+  border: 1px transparent;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.video-img {
+   width: 50%;
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+	.banner-text h1{font-size: 25px;}
+	.banner.banner--home{background-repeat: no-repeat; padding:0px !important;}
+	.banner-text-top{padding:0px !important;width: 100% !important;}
+	.banner-text{ width: 94% !important; display:block !important; padding: 20px !important;}
+	.banner-text-right_side_img{width: 100% !important;
+	}	.banner-text-right_side_img img {
+  width: 100% !important;}
+	.banner-text-right_side_img a{right: -5px !important;}
+	.banner-text-right_side_img a img {
+  width: 60px !important;
+		height: 66px !important;}
+	.banner-text-right_side_img{margin-top:0px;}
+	.banner .trial .btn{padding: 0 10px 0px 10px;}
+	.trial-btn a:last-child {
+  height: auto;
+  border-radius: 5px;}
+  .trial .btn {
+  width: 155px !important;
+}
+.trial-btn a:last-child{width: 160px !important;
+    margin-top: 10px !important;}
+.trial-btn {
+  display: block !important;
+}
+.video-img {
+  width: 100%;
+}
+.banner.banner--home.lazyloaded{
+	background-size: auto !important;
+}
+.pricing-plan.col-lg-3.col-md-6.col-sm-12.most-popular.d-flex {
+  padding-top: 40px;
+}
+	
+}
+@media (max-width:991.98px) {
+.banner-text	{
+padding: 0 1.25rem ;
+}
+.banner.banner--home{
+	background-size: cover !important;
+}
+.btntxt{
+	font-size: 16px !important;
+}
+
+
+}
+@media only screen and (min-width: 768px) and (max-width: 800px) { 
+  .banner-text {
+    padding: 0;
+    width: 720px !important;
+    margin: auto;
+  }
+}
+@media only screen and (min-width: 801px) and (max-width: 991px) { 
+  .banner-text {
+    padding: 0;
+    width: 800px;
+    margin: auto;
+  }
+}
+
+<!--New Video Section-->
+/*.banner-video::before {
+  content: ''; 
+ background: url(https://elliottwave-forecast.com/wp-content/uploads/2024/06/banner-frame-img.png) no-repeat 50% 50%;
+  background-size: cover;
+  z-index: 2;
+}*/
+.banner-video {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.banner-video-hold {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 55%;
+  height: 90%;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  background-size: cover;
+}
+.banner-video video[poster] {
+  object-fit: cover;
+}
+.banner-video video {
+  display: block;
+  width: 100%;
+  height: 101%;
+}
+.banner-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 5.5rem;
+  height: 5.5rem;
+  border-radius: 50%;
+  padding: .5625rem;
+  background: rgba(255,255,255,.3),.3);
+  margin: -1.875rem 0 0 3.75rem;
+  box-shadow: 0 1.1875rem .875rem rgba(0,0,0,.16),.16);
+  z-index: 100;
+}
+.banner-play a {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--color-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #5f85e1;
+  font-size: 1.125rem;
+  padding: 0 0 0 .1875rem;
+  transition: all .3s linear;
+}
+.fa-play::before {
+  content: "\f04b";
+}
+.banner-inner {
+  height: 100%;
+  position: relative;
+}
+@media (min-width: 992px) {
+  .banner-inner {
+    min-height: calc(100vh - 8.25rem);
+  }
+}
+@media (min-width: 992px) {
+  .banner-text {
+    min-height: calc(100vh - 8.25rem);
+  }
+}

@@ -1,17 +1,19 @@
-@charset "UTF-8";
+/**
+* Theme Name:  KeK
+* Theme URI:    https://bitandbytelab.com/
+* Author:      KeK
+* Version:     1.0.0
+* Author URI:  https://bitandbytelab.com//contact-us
+* License:     GNU General Public License v2 or later
+* License URI: http://www.gnu.org/licenses/gpl-2.0.html
+* Description: sublimeplus is a super user-friendly, elegant and intuitive, yet super powerful multi-purpose WooCommerce theme built with Elementor page builder. sublimeplus was built for your watch store, men store, women store, clothing store, furniture store, bookstore, cosmetics shop, luxury jewelry, and accessories store…
+* Tags: e-commerce, grid-layout, three-columns, custom-header
+* Text Domain: sublimeplus
+* Domain Path: /languages
+* Tested up to: 6.1.1
+* Requires PHP: 7.2
+**/
 
-/*
-Theme Name: Kek Pro
-Theme URI: http://kek.bitandbytelab.com
-Author: Bit & Byte Lab
-Author URI: http://bitandbytelab.com
-Description: A wordpress theme for selling Youtube, Instagram, Twitch and other social services
-Version: 1.0
-License: GNU General Public License v2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: social-media-services
-Text Domain: kek
-*/
 
 /*!
  * Bootstrap  v5.3.2 (https://getbootstrap.com/)

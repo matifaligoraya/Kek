@@ -1,0 +1,180 @@
+@import "../global/variables.scss";
+
+[class^="icon"]:before {
+  font-family: $font_icon_family;
+  font-style: normal;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon"] {
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+}
+
+.icon-menu:before {
+  content: $icon_menu;
+}
+
+.icon-cart:before {
+  content: $icon_cart;
+}
+
+.icon-heart:before {
+  content: $icon_heart;
+}
+
+.icon-heart-o:before {
+  content: $icon_heart_o;
+}
+
+.icon-refresh:before {
+  content: $icon_refresh;
+}
+
+.icon-user:before {
+  content: $icon_user;
+}
+
+.icon-search:before {
+  content: $icon_search;
+}
+
+.icon-filter:before {
+  content: $icon_filter;
+}
+
+.icon-eye:before {
+  content: $icon_eye;
+}
+
+.icon-close:before {
+  content: $icon_close;
+}
+
+.icon-plus:before {
+  content: $icon_plus;
+}
+
+.icon-minus:before {
+  content: $icon_minus;
+}
+
+.icon-up:before {
+  content: $icon_up;
+}
+
+.icon-down:before {
+  content: $icon_down;
+}
+
+.icon-caret-up:before {
+  content: $icon_caret_up;
+}
+
+.icon-caret-down:before {
+  content: $icon_caret_down;
+}
+
+.icon-arrow-up:before {
+  content: $icon_arrow_up;
+}
+
+.icon-arrow-down:before {
+  content: $icon_arrow_down;
+}
+
+.icon-arrow-left:before {
+  content: $icon_arrow_left;
+}
+
+.icon-arrow-right:before {
+  content: $icon_arrow_right;
+}
+
+.icon-long-arrow-left:before {
+  content: $icon_long_arrow_left;
+}
+
+.icon-long-arrow-right:before {
+  content: $icon_long_arrow_right;
+}
+
+.icon-share:before {
+  content: $icon_share;
+}
+
+.icon-facebook:before {
+  content: $icon_facebook;
+}
+
+.icon-twitter:before {
+  content: $icon_twitter;
+}
+
+.icon-googleplus:before {
+  content: $icon_googleplus;
+}
+
+.icon-instagram:before {
+  content: $icon_instagram;
+}
+
+.icon-pinterest:before {
+  content: $icon_pinterest;
+}
+
+.icon-skype:before {
+  content: $icon_skype;
+}
+
+.icon-vimeo:before {
+  content: $icon_vimeo;
+}
+
+.icon-youtube:before {
+  content: $icon_youtube;
+}
+
+.icon-xing:before {
+  content: $icon_xing;
+}
+
+.icon-tumblr:before {
+  content: $icon_tumblr;
+}
+
+.icon-linkedin:before {
+  content: $icon_linkedin;
+}
+
+.icon-github:before {
+  content: $icon_github;
+}
+
+.icon-foursquare:before {
+  content: $icon_foursquare;
+}
+
+.icon-flickr:before {
+  content: $icon_flickr;
+}
+
+.icon-dribbble:before {
+  content: $icon_dribbble;
+}
+
+.icon-email:before {
+  content: $icon_envelope;
+}
+
+.icon-rss:before {
+  content: $icon_rss;
+}
+.icon-clock:before {
+  content: $icon_clock;
+}
