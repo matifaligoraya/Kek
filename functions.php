@@ -73,7 +73,8 @@ function kek_default_setup()
         'mobile-menu'  => esc_html__('Mobile Menu', 'sublimeplus'),
         'primary-menu' => esc_html__('Primary Menu', 'sublimeplus'),
     ]);
-
+    //kek color setting
+    require kek_DIR . 'core/common/functions/custom-theme-colors.php';
     // Load common resources
     require kek_DIR . 'core/common/functions/filesystem.php';
     require kek_DIR . 'core/common/functions/formatting.php';
@@ -453,41 +454,7 @@ function add_additional_class_on_li($classes, $item, $args) {
 }
 add_filter('nav_menu_css_class', 'add_additional_class_on_li', 1, 3);
 
-/*
-    KEK
-    THEME SETTINGS BELOW e.g
-        COLORS
-        SOCIAL ICONS
-*/
 
-function kek_customize_css() {    
-    $options = get_option('kek_options');    
-    $color = esc_attr($options['main_color'] ?? '#1db954');    
-        
-    $rgb = isset($options['main_color_rgb']) ? esc_attr($options['main_color_rgb']) : hex_to_rgb($color);
-    
-    ?>
-    <style type="text/css">
-        :root {
-            --cnvs-themecolor: <?php echo $color; ?>;
-            --cnvs-themecolor-rgb: <?php echo $rgb; ?>;
-        }
-    </style>
-    <?php
-}
-add_action('wp_head', 'kek_customize_css');
-
-function hex_to_rgb($hex) {
-    $hex = ltrim($hex, '#');
-    if (strlen($hex) == 6) {
-        list($r, $g, $b) = array($hex[0].$hex[1], $hex[2].$hex[3], $hex[4].$hex[5]);
-    } elseif (strlen($hex) == 3) {
-        list($r, $g, $b) = array($hex[0].$hex[0], $hex[1].$hex[1], $hex[2].$hex[2]);
-    } else {
-        return '0, 0, 0';
-    }
-    return implode(', ', array_map(function($c) { return hexdec($c); }, array($r, $g, $b)));
-}
 
 function kek_admin_enqueue_scripts() {    
     // print_r("THIS IS THE CONDITION: " . 'kek_page_theme-setting' !== $hook_suffix);

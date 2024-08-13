@@ -61,8 +61,8 @@
                             <a href="demo-seo-about.html" class="button button-rounded ms-3 d-none d-sm-block">Get Started</a>
                         </div>
                         <div class="primary-menu-trigger">
-                            <button class="cnvs-hamburger" type="button" title="Open Mobile Menu">
-                                <span class="cnvs-hamburger-box"><span class="cnvs-hamburger-inner"></span></span>
+                            <button class="kek-hamburger" type="button" title="Open Mobile Menu">
+                                <span class="kek-hamburger-box"><span class="kek-hamburger-inner"></span></span>
                             </button>
                         </div>
 

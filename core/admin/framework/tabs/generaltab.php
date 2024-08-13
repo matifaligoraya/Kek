@@ -35,13 +35,7 @@ class GeneralTab extends SublimeBaseTab {
             </div>
         </div>
         
-        <!-- Color Setting -->
-        <div class="mb-3">
-            <label for="main_color" class="form-label"><?php esc_html_e('Main Color', 'sublimeplus') ?></label>
-            <input type="text" id="main_color" class="kek-color-field form-control" name="<?php echo esc_attr($this->getName('main_color')) ?>" value="<?php echo esc_attr($this->getValue('main_color', '#1db954')); ?>">            
-            <div id="mainColorHelp" class="form-text"><?php esc_html_e('Choose the main color for your theme.', 'sublimeplus') ?></div>
-        </div>
-
+       
         <!-- Header Scripts -->
         <div class="mb-3">
             <label for="header_scripts" class="form-label"><?php esc_html_e('Header scripts', 'sublimeplus') ?></label>

@@ -96,3 +96,6 @@
   border-right: solid #000 1px !important;
   border-bottom: dimgray !important;
 }
+#ThemeColorSetting-settings .wp-picker-container {
+  display: block;
+}
