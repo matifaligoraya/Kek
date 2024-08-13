@@ -23,7 +23,7 @@
                             <?php
                                 wp_nav_menu(array(
                                     'menu_class' => 'top-links-container',
-                                    'theme_location' => 'top-left-menu',
+                                    'theme_location' => 'top-menu',
                                     'container' => true,                                    
                                     'fallback_cb' => false,
                                     'add_li_class'  => 'top-links-item'
@@ -34,12 +34,31 @@
                     <div class="col-12 col-md-auto dark" data-bs-theme="dark">
 
                         <ul id="top-social">
-                            <li><a href="https://facebook.com/semicolonweb" class="h-bg-facebook" target="_blank"><span class="ts-icon"><i class="fa-brands fa-facebook-f"></i></span><span class="ts-text">Facebook</span></a></li>
-                            <li><a href="https://twitter.com/__semicolon" class="h-bg-x-twitter" target="_blank"><span class="ts-icon"><i class="fa-brands fa-x-twitter"></i></span><span class="ts-text">Twitter</span></a></li>
-                            <li><a href="https://youtube.com/semicolonweb" class="h-bg-youtube" target="_blank"><span class="ts-icon"><i class="fa-brands fa-youtube"></i></span><span class="ts-text">Youtube</span></a></li>
-                            <li><a href="https://instagram.com/semicolonweb" class="h-bg-instagram" target="_blank"><span class="ts-icon"><i class="fa-brands fa-instagram"></i></span><span class="ts-text">Instagram</span></a></li>
-                            <li><a href="tel:+10.11.85412542" class="h-bg-call"><span class="ts-icon"><i class="fa-solid fa-phone"></i></span><span class="ts-text">+10.11.85412542</span></a></li>
-                            <li><a href="mailto:info@canvas.com" class="h-bg-email3"><span class="ts-icon"><i class="bi-envelope-fill"></i></span><span class="ts-text">info@canvas.com</span></a></li>
+                            <?php
+                                $settings = get_option(kek_SETTINGS_KEY, true);
+                                $socials = isset($settings['social_links']) ? $settings['social_links'] : array();                                
+
+                                if($socials) {
+                                    for ($i = 0; $i < count($socials['icon']); $i++) {
+                                        $social_icon = !empty($socials['icon'][$i]) ? $socials['icon'][$i] : '';
+                                        $url = !empty($socials['url'][$i]) ? $socials['url'][$i] : '#';
+                                        $container_class = !empty($socials['container_class'][$i]) ? $socials['container_class'][$i] : '';
+                                        $icon_text = !empty($socials['icon_text'][$i]) ? $socials['icon_text'][$i] : '';
+                                        $custom_icon_class = !empty($socials['custom_icon_class'][$i]) ? $socials['custom_icon_class'][$i] : '';
+
+                                        $icon = $custom_icon_class == '' ? esc_attr($icon) : esc_attr($custom_icon_class);
+                            
+                                        echo '<li>
+                                                <a href="' . esc_url($url) . '" class="' . $container_class . '" target="_blank">
+                                                    <span class="ts-icon">
+                                                        <i class="' . $icon . '"></i>
+                                                    </span>
+                                                    <span class="ts-text">' . $icon_text . '</span>
+                                                </a>
+                                            </li>';
+                                    }
+                                }
+                            ?>                            
                         </ul>
                     </div>
                 </div>
@@ -87,4 +106,21 @@
                 </div>
             </div>
             <div class="header-wrap-clone"></div>
-        </header>        
+        </header>
+        <div class="content">
+            <section class="owl">
+                <h2>Owl</h2>
+                <div class="owl-carousel owl-theme">
+                <div class="item"><h4>1</h4></div>
+                <div class="item"><h4>2</h4></div>
+                <div class="item"><h4>3</h4></div>
+                <div class="item"><h4>4</h4></div>
+                <div class="item"><h4>5</h4></div>
+                <div class="item"><h4>6</h4></div>
+                <div class="item"><h4>7</h4></div>
+                <div class="item"><h4>8</h4></div>
+                <div class="item"><h4>9</h4></div>
+                <div class="item"><h4>10</h4></div>
+                </div>
+            </section>
+        </div>

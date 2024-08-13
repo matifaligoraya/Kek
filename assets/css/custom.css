@@ -11,3 +11,43 @@
   background-size: cover;
   padding-top: 70px;
 }
+
+section {
+  width: 75%;
+  margin: auto;
+}
+
+.divider {
+  width: 75%;
+  margin: 100px auto;
+  height: 2px;
+  background-color: #333;
+}
+
+.item {
+  height: 10rem;
+  padding: 1rem;
+  opacity: 0.4;
+  transition: 0.4s ease all;
+  margin: 0 20px;
+  transform: scale(0.9);
+}
+
+.owl .item {
+  background: #4dc7a0;
+}
+
+.slick .item {
+  background: #3498db;
+}
+
+.active .item,
+.slick-center {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.owl-controls {
+  position: absolute;
+  margin-top: 300px;
+}

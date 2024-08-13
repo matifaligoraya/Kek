@@ -70,8 +70,8 @@ function kek_default_setup()
 
     register_nav_menus([
         'top-menu'     => esc_html__('Top Menu', 'sublimeplus'),
-        'mobile-menu'  => esc_html__('Mobile Menu', 'sublimeplus'),
-        'primary-menu' => esc_html__('Primary Menu', 'sublimeplus'),
+        'main-menu'  => esc_html__('Main Menu', 'sublimeplus'),
+        'footer-menu' => esc_html__('Footer Menu', 'sublimeplus'),
     ]);
     //kek color setting
     require kek_DIR . 'core/common/functions/custom-theme-colors.php';
@@ -289,36 +289,6 @@ function kek_social_links_shortcode($atts) {
 }
 }
 add_shortcode('kek_social_links', 'kek_social_links_shortcode');
-
-// function kek_vc_map_social_links() {
-//     vc_map(array(
-//         "name" => __("Social Links", "sublimeplus"),
-//         "base" => "kek_social_links",
-//         "class" => "",
-//         "category" => __("SublimePlus", "sublimeplus"),
-//         "params" => array(
-//             array(
-//                 "type" => "textfield",
-//                 "heading" => __("Extra Class Name", "sublimeplus"),
-//                 "param_name" => "el_class",
-//                 "description" => __("Add a class name and refer to it in custom CSS.", "sublimeplus"),
-//             ),
-//         )
-//     ));
-// }
-// add_action('vc_before_init', 'kek_vc_map_social_links');
-
-
-
-
-function kek_scripts() {
-    wp_enqueue_style('main-style', get_stylesheet_uri());
-
-    wp_enqueue_style('font-icons', get_template_directory_uri() . '/assets/css/font-icons.css');
-    wp_enqueue_style('swiper', get_template_directory_uri() . '/assets/css/swiper.css');
-    wp_enqueue_style('custom', get_template_directory_uri() . '/assets/css/custom.css');    
-}
-add_action('wp_enqueue_scripts', 'kek_scripts');
 
 function kek_customize_register($wp_customize) {
     // Footer Settings

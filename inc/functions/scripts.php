@@ -17,16 +17,7 @@ if (!function_exists('kek_styles')) {
     function kek_styles()
     {
         // Bootstrap and other
-        wp_enqueue_style('bootstrap', kek_URI . 'assets/vendor/bootstrap/bootstrap-grid.min.css');
-        // wp_enqueue_style('wavemain', kek_URI . 'assets/css/wave/style.css');
-        // wp_enqueue_style('ewf_herohome', kek_URI . 'assets/css/wave/hero-home.css');
-        // wp_enqueue_style('ewf_plan_pricing', kek_URI . 'assets/css/wave/plan-pricing.css');
-        // wp_enqueue_style('ewf_new_style', kek_URI . 'assets/css/wave/style-new.css');
-        // wp_enqueue_style('ewf_video_client', kek_URI . 'assets/css/wave/video-client.css');
-        // wp_enqueue_style('wavescroll', kek_URI . 'assets/css/wave/jquery.mCustomScrollbar.min.css');
-        // wp_enqueue_style('wavelightg', kek_URI . 'assets/css/wave/lightgallery.min.css');
-        // wp_enqueue_style('waveanimate', kek_URI . 'assets/css/wave/animate.css');
-        // wp_register_style('slick', kek_URI . 'assets/vendor/slick/slick.css');
+        wp_enqueue_style('bootstrap', kek_URI . 'assets/vendor/bootstrap/bootstrap-grid.min.css');      
 
 
         if (class_exists('WooCommerce', false)) {
@@ -40,6 +31,11 @@ if (!function_exists('kek_styles')) {
         }
         wp_register_style( 'base-styles', false );
         wp_enqueue_style('base-styles');
+        wp_enqueue_style('main-style', get_stylesheet_uri());
+
+        wp_enqueue_style('font-icons', get_template_directory_uri() . '/assets/css/font-icons.css');
+        wp_enqueue_style('swiper', get_template_directory_uri() . '/assets/css/swiper.css');
+        wp_enqueue_style('custom', get_template_directory_uri() . '/assets/css/custom.css');
       //  wp_enqueue_style('styles', kek_URI . 'assets/css/styles.css');
         //Load style of customize
         $kek_auto_css = kek_Customize_Live_CSS::get_instance();
@@ -121,6 +117,7 @@ if (!function_exists('kek_scripts')) {
         wp_enqueue_script('popper');
         wp_enqueue_script('slick');
         wp_enqueue_script('main');
+        wp_enqueue_script('site', kek_URI . 'assets/js/site.js');
     }
 }
 add_action('wp_enqueue_scripts', 'kek_scripts');
