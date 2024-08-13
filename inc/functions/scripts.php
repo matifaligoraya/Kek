@@ -15,11 +15,7 @@
  */
 if (!function_exists('kek_styles')) {
     function kek_styles()
-    {
-        // Bootstrap and other
-        wp_enqueue_style('bootstrap', kek_URI . 'assets/vendor/bootstrap/bootstrap-grid.min.css');      
-
-
+    {       
         if (class_exists('WooCommerce', false)) {
             //Remove style don't use.
             wp_deregister_style('woocommerce-layout');
@@ -31,12 +27,13 @@ if (!function_exists('kek_styles')) {
         }
         wp_register_style( 'base-styles', false );
         wp_enqueue_style('base-styles');
-        wp_enqueue_style('main-style', get_stylesheet_uri());
+        wp_enqueue_style('main-style', kek_URI);
 
-        wp_enqueue_style('font-icons', get_template_directory_uri() . '/assets/css/font-icons.css');
-        wp_enqueue_style('swiper', get_template_directory_uri() . '/assets/css/swiper.css');
-        wp_enqueue_style('custom', get_template_directory_uri() . '/assets/css/custom.css');
-      //  wp_enqueue_style('styles', kek_URI . 'assets/css/styles.css');
+        wp_enqueue_style('font-icons', kek_URI . '/assets/css/font-icons.css');
+        wp_enqueue_style('swiper', kek_URI . '/assets/css/swiper.css');
+        wp_enqueue_style('custom', kek_URI . '/assets/css/custom.css');
+        wp_enqueue_style('slick', kek_URI . '/assets/css//slick/slick.css');
+        wp_enqueue_style('slick-theme', kek_URI . '/assets/css/slick/slick-theme.css');      
         //Load style of customize
         $kek_auto_css = kek_Customize_Live_CSS::get_instance();
 
@@ -82,12 +79,10 @@ if (!function_exists('kek_scripts')) {
         wp_register_script('mCustomScrollbar', kek_URI . 'assets/js/wave/jquery.mCustomScrollbar.js');
         wp_register_script('slideNav', kek_URI . 'assets/js/wave/slideNav.min.js');
         wp_register_script('masonry', kek_URI . 'assets/js/wave/masonry.pkgd.min.js');
-        wp_register_script('lightgallery', kek_URI . 'assets/js/wave/lightgallery-all.min.js');
-        wp_register_script('custom', kek_URI . 'assets/js/wave/custom.js');
+        wp_register_script('lightgallery', kek_URI . 'assets/js/wave/lightgallery-all.min.js');        
 
         //wp_register_script('jquery-core', kek_URI . 'assets/js/wave/jquery-3.3.1.min.js', true);
-        wp_register_script('slick', kek_URI . 'assets/js/wave/slick.min.js');
-        wp_register_script('main', kek_URI . 'assets/js/wave/main.js');
+        wp_register_script('slick', kek_URI . 'assets/js/wave/slick.min.js');        
 
         wp_register_script('isotope', kek_URI . 'assets/vendor/isotope/isotope.pkgd.min.js', array('jquery-core'), '3.0.6', true);
         wp_enqueue_script('defer-js', kek_URI . 'assets/vendor/defer/defer.min.js', array('jquery-core'), '3.0.6', true);

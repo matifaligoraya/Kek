@@ -7,7 +7,7 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
-
+    
     <?php wp_head(); ?>
 </head>
 <body <?php body_class('stretched'); ?>>
@@ -18,7 +18,6 @@
             <div class="container">
                 <div class="row justify-content-between">
                     <div class="col-12 col-md-auto">
-
                         <div class="top-links">
                             <?php
                                 wp_nav_menu(array(
@@ -32,7 +31,6 @@
                         </div>
                     </div>
                     <div class="col-12 col-md-auto dark" data-bs-theme="dark">
-
                         <ul id="top-social">
                             <?php
                                 $settings = get_option(kek_SETTINGS_KEY, true);
@@ -58,7 +56,7 @@
                                             </li>';
                                     }
                                 }
-                            ?>                            
+                            ?>
                         </ul>
                     </div>
                 </div>
@@ -73,10 +71,7 @@
                         <div id="logo">
                             <?php get_template_part('inc/templates/logo'); ?>
                         </div>
-                        <div class="header-misc">
-                            <div id="top-search" class="header-misc-icon">
-                                <a href="#" id="top-search-trigger"><i class="uil uil-search"></i><i class="bi-x-lg"></i></a>
-                            </div>
+                        <div class="header-misc">                            
                             <a href="demo-seo-about.html" class="button button-rounded ms-3 d-none d-sm-block">Get Started</a>
                         </div>
                         <div class="primary-menu-trigger">
@@ -98,29 +93,61 @@
                                 'walker' => new Custom_Walker_Nav_Menu(), // Use the custom walker
                             ));
                         ?>
-                        </nav>
-                        <form class="top-search-form" action="search.html" method="get" style="width: 1260px;">
-                            <input type="text" name="q" class="form-control" value="" placeholder="Type &amp; Hit Enter.." autocomplete="off">
-                        </form>
+                        </nav>                       
                     </div>
                 </div>
             </div>
             <div class="header-wrap-clone"></div>
         </header>
-        <div class="content">
-            <section class="owl">
-                <h2>Owl</h2>
-                <div class="owl-carousel owl-theme">
-                <div class="item"><h4>1</h4></div>
-                <div class="item"><h4>2</h4></div>
-                <div class="item"><h4>3</h4></div>
-                <div class="item"><h4>4</h4></div>
-                <div class="item"><h4>5</h4></div>
-                <div class="item"><h4>6</h4></div>
-                <div class="item"><h4>7</h4></div>
-                <div class="item"><h4>8</h4></div>
-                <div class="item"><h4>9</h4></div>
-                <div class="item"><h4>10</h4></div>
-                </div>
-            </section>
-        </div>
+        <br />
+        <div class="slick-slider">
+            <?php
+                $settings = get_option(kek_SETTINGS_KEY, true);
+                $tiles = isset($settings['sub_header_tiles']) ? $settings['sub_header_tiles'] : array();                            
+
+                if ($tiles): ?>                
+                    <div class="container mt-4">
+                        <div class="row">
+                            <?php for ($i = 0; $i < count($tiles['image']); $i++): 
+                                $image = !empty($tiles['image'][$i]) ? $tiles['image'][$i] : '';
+                                $title = !empty($tiles['title'][$i]) ? $tiles['title'][$i] : '';
+                                $isNew = !empty($tiles['isNew'][$i]); // Check if the tile is new
+                            ?>
+                                <div class="platform-item col-md-4 mb-4">
+                                    <div class="d-flex align-items-center p-3">
+                                        <img src="<?php echo esc_url($image); ?>" alt="Logo" class="subheader-tile-image">
+                                        <div class="ml-2 flex-grow-1">
+                                            <?php if ($isNew): ?>
+                                                <span class="badge bg-kek">New</span>
+                                            <?php endif; ?>
+                                            <h5 class="mb-1"><?php echo esc_html($title); ?></h5>                                            
+                                        </div>                                              
+                                    </div>
+                                    <ul class="data-pages">
+                                            <li>
+                                            <a href="https://views4you.com/buy-instagram-followers/">
+                                            Buy Instagram Followers </a>
+                                            </li>
+                                            <li>
+                                            <a href="https://views4you.com/buy-instagram-likes/">
+                                            Buy Instagram Likes </a>
+                                            </li>
+                                            <li>
+                                            <a href="https://views4you.com/buy-instagram-views/">
+                                            Buy Instagram Views </a>
+                                            </li>
+                                            <li>
+                                            <a href="https://views4you.com/buy-instagram-reels-views/">
+                                            Buy Instagram Reels Views </a>
+                                            </li>
+                                            <li>
+                                            <a href="https://views4you.com/buy-instagram-auto-likes/">
+                                            Buy Instagram Auto Likes </a>
+                                            </li>
+                                        </ul>  
+                                </div>
+                            <?php endfor; ?>
+                        </div>                                                 
+                    </div>
+                <?php endif; ?>                        
+        </div>               

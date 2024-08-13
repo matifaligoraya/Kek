@@ -4,7 +4,7 @@ require_once kek_DIR . 'core/admin/framework/basetab.php'; // If SublimeBaseTab 
 class ThemeColorSettingTab extends SublimeBaseTab {
 
     public function getTitle() {
-        return __('Theme Color Setting', 'sublimeplus');
+        return __('Colors', 'sublimeplus');
     }
 
     public function renderopen() {

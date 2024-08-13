@@ -65,8 +65,6 @@ add_action('wp_enqueue_scripts', function () {
     $theme_options['isRtl'] = is_rtl();
     $theme_options['ajaxUrl'] = admin_url('admin-ajax.php');
 
-    wp_enqueue_style('clever-font', kek_URI . 'assets/vendor/cleverfont/style.min.css', [], kek_VERSION);
-
     if (class_exists('WooCommerce', false)) {
         if(get_theme_mod('kek_enable_wishlist','1')){
             wp_enqueue_script('wishlist', kek_URI . 'core/assets/js/wishlist' . kek_JS_SUFFIX, ['jquery-core'], kek_VERSION, true);

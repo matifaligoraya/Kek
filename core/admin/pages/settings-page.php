@@ -41,9 +41,9 @@ final class kek_Settings_Page
     private function initTabs() {
         $settings = get_option(kek_SETTINGS_KEY) ?: []; 
         $this->tabs['general-settings'] = new GeneralTab($settings);
-         $this->tabs['ThemeColorSetting-settings'] = new ThemeColorSettingTab($settings);
-       
+        $this->tabs['ThemeColorSetting-settings'] = new ThemeColorSettingTab($settings);
         $this->tabs['social-settings'] = new SocialMediaTab($settings);
+        $this->tabs['sub-header-settings'] = new SubHeaderTab($settings);
     
         // $this->tabs['homepage-banner-settings'] = new SublimeHomePageBannerTab($settings);
         // Add more tabs as needed

@@ -8,7 +8,7 @@
         $stripe_enabled = get_theme_mod('kek_stripe_enabled', false);        
     ?>
 
-    <footer id="footer" style="background: url('<?php echo esc_url(get_theme_mod('kek_footer_bg_image', get_template_directory_uri() . '/images/footer-bg.jpg')); ?>') repeat; background-size: cover;">
+    <footer id="footer" style="background: url('<?php echo esc_url(get_theme_mod('kek_footer_bg_image', '')); ?>') repeat; background-size: cover;">
         <div class="container">
             <div class="footer-widgets-wrap">
                 <div class="row col-mb-50">
@@ -125,7 +125,6 @@
 	<!-- JavaScripts
 	============================================= -->
 	<script src="<?php echo get_template_directory_uri() ?>/assets/js/plugins.min.js"></script>
-	<script src="<?php echo get_template_directory_uri() ?>/assets/js/functions.bundle.js"></script>
-
+	<script src="<?php echo get_template_directory_uri() ?>/assets/js/functions.bundle.js"></script>    
 </body>
 </html>
