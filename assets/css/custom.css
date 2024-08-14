@@ -12,42 +12,80 @@
   padding-top: 70px;
 }
 
-section {
-  width: 75%;
-  margin: auto;
+.slick-slider {
+  width: 90% !important;
+  margin: auto !important;
 }
 
-.divider {
-  width: 75%;
-  margin: 100px auto;
-  height: 2px;
-  background-color: #333;
+/* Ensure the parent element (.platform-item) has a relative position */
+.platform-item {
+  position: relative;
+  cursor: pointer !important;
+  transition: transform 0.2s;
+  z-index: 99999 !important;
 }
 
-.item {
-  height: 10rem;
-  padding: 1rem;
-  opacity: 0.4;
-  transition: 0.4s ease all;
-  margin: 0 20px;
-  transform: scale(0.9);
+.platform-item:hover {
+  transform: scale(1.2);
 }
 
-.owl .item {
-  background: #4dc7a0;
-}
-
-.slick .item {
-  background: #3498db;
-}
-
-.active .item,
-.slick-center {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.owl-controls {
+/* Initially hide the submenu */
+.platform-item .data-pages {
   position: absolute;
-  margin-top: 300px;
+  display: block;
+  width: 100%;
+  height: auto;
+  min-width: 300px;
+  min-height: 300px;
+  padding: 1.5rem;
+  border-radius: 16px;
+  background: #000;
+  box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.1);
+  top: 90%;
+  left: 0;
+  z-index: 9999 !important;
+}
+
+/* Show the submenu when hovering over the tile */
+.platform-item:hover .data-pages {
+  display: block;
+}
+
+/* Style for submenu items */
+.platform-item .data-pages li a {
+  color: #fff; /* Default link color */
+  text-decoration: none;
+  display: block;
+  padding: 0.5rem 0;
+}
+
+/* Change color of submenu item on hover */
+.platform-item .data-pages li a:hover {
+  color: var(--kek-themecolor);
+}
+
+.slick-prev::before,
+.slick-next::before {
+  color: black !important;
+}
+
+.btn {
+  margin-right: 10px !important;
+}
+
+#header:not(.sticky-header) #header-wrap .container {
+  box-shadow: var(--kek-header-boxshadow) !important;
+}
+
+.ml-2 {
+  margin-left: 2rem !important;
+}
+
+.subheader-tile-image {
+  max-width: 100px;
+  max-height: 80px;
+}
+
+.bg-kek {
+  background-color: var(--kek-themecolor) !important;
 }

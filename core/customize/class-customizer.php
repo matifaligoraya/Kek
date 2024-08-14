@@ -379,16 +379,7 @@ final class kek_Customizer
                 'class_config' => '__icon_name__'
             ]
         ];
-
-        if (current_theme_supports('cs-font')) {
-            $fonts['cs-font'] = [
-                'name'  => esc_html__('Clever Font', 'sublimeplus'),
-                'icons' => kek_get_font_icons('cs-font'),
-                'url'   => kek_URI . 'assets/vendor/cleverfont/style' . kek_CSS_SUFFIX,
-                'class_config' => 'cs-font __icon_name__'
-            ];
-        }
-
+        
         wp_send_json_success($fonts);
     }
 
