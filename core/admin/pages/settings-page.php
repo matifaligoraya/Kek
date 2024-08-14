@@ -43,7 +43,7 @@ final class kek_Settings_Page
         $this->tabs['general-settings'] = new GeneralTab($settings);
         $this->tabs['ThemeColorSetting-settings'] = new ThemeColorSettingTab($settings);
         $this->tabs['social-settings'] = new SocialMediaTab($settings);
-        $this->tabs['sub-header-settings'] = new SubHeaderTab($settings);
+        $this->tabs['home-page-settings'] = new HomePageTab($settings);
     
         // $this->tabs['homepage-banner-settings'] = new SublimeHomePageBannerTab($settings);
         // Add more tabs as needed

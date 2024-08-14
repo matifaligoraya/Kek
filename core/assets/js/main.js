@@ -156,7 +156,7 @@ jQuery(document).ready(async function ($) {
           });
       });
     }, 100);
-    $(".wcl-platform-slider .owl-carousel").owlCarousel({
+    $(".kek-subheader-slider .owl-carousel").owlCarousel({
       nav: !0,
       dots: !1,
       items: 5,
@@ -167,7 +167,7 @@ jQuery(document).ready(async function ($) {
         1024: { items: 5 },
       },
       onInitialized: function () {
-        $(".wcl-platform-slider").removeClass("loading");
+        $(".kek-subheader-slider").removeClass("loading");
       },
     });
     setTimeout(() => {

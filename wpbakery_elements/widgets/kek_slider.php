@@ -60,7 +60,7 @@ class WPBakeryKekSliderElement {
         ob_start();
         ?>
         <!-- Slider -->
-        <section id="slider" class="slider-element dark min-vh-100 include-header" style="background-image: url('<?php echo esc_url($bg_image_url); ?>');">
+        <section id="slider" class="slider-element dark min-vh-100 " style="background-image: url('<?php echo esc_url($bg_image_url); ?>');">
             <div class="slider-inner flex-column">
 
                 <div class="vertical-middle">

@@ -1,4 +1,53 @@
 <?php 
+function create_k_custom_block_post_type() {
+    $labels = array(
+        'name'                  => _x('Custom Blocks', 'Post type general name', 'your-textdomain'),
+        'singular_name'         => _x('Custom Block', 'Post type singular name', 'your-textdomain'),
+        'menu_name'             => _x('Custom Blocks', 'Admin Menu text', 'your-textdomain'),
+        'name_admin_bar'        => _x('Custom Block', 'Add New on Toolbar', 'your-textdomain'),
+        'add_new'               => __('Add New', 'your-textdomain'),
+        'add_new_item'          => __('Add New Custom Block', 'your-textdomain'),
+        'new_item'              => __('New Custom Block', 'your-textdomain'),
+        'edit_item'             => __('Edit Custom Block', 'your-textdomain'),
+        'view_item'             => __('View Custom Block', 'your-textdomain'),
+        'all_items'             => __('All Custom Blocks', 'your-textdomain'),
+        'search_items'          => __('Search Custom Blocks', 'your-textdomain'),
+        'parent_item_colon'     => __('Parent Custom Blocks:', 'your-textdomain'),
+        'not_found'             => __('No custom blocks found.', 'your-textdomain'),
+        'not_found_in_trash'    => __('No custom blocks found in Trash.', 'your-textdomain'),
+        'featured_image'        => _x('Custom Block Cover Image', 'Overrides the “Featured Image” phrase for this post type. Added in 4.3', 'your-textdomain'),
+        'set_featured_image'    => _x('Set custom block image', 'Overrides the “Set featured image” phrase for this post type. Added in 4.3', 'your-textdomain'),
+        'remove_featured_image' => _x('Remove custom block image', 'Overrides the “Remove featured image” phrase for this post type. Added in 4.3', 'your-textdomain'),
+        'use_featured_image'    => _x('Use as custom block image', 'Overrides the “Use as featured image” phrase for this post type. Added in 4.3', 'your-textdomain'),
+        'archives'              => _x('Custom Block archives', 'The post type archive label used in nav menus. Default “Post Archives”. Added in 4.4', 'your-textdomain'),
+        'insert_into_item'      => _x('Insert into custom block', 'Overrides the “Insert into post”/”Insert into page” phrase (used when inserting media into a post). Added in 4.4', 'your-textdomain'),
+        'uploaded_to_this_item' => _x('Uploaded to this custom block', 'Overrides the “Uploaded to this post”/”Uploaded to this page” phrase (used when viewing media attached to a post). Added in 4.4', 'your-textdomain'),
+        'filter_items_list'     => _x('Filter custom blocks list', 'Screen reader text for the filter links heading on the post type listing screen. Default “Filter posts list”/”Filter pages list”. Added in 4.4', 'your-textdomain'),
+        'items_list_navigation' => _x('Custom blocks list navigation', 'Screen reader text for the pagination heading on the post type listing screen. Default “Posts list navigation”/”Pages list navigation”. Added in 4.4', 'your-textdomain'),
+        'items_list'            => _x('Custom blocks list', 'Screen reader text for the items list heading on the post type listing screen. Default “Posts list”/”Pages list”. Added in 4.4', 'your-textdomain'),
+    );
+
+    $args = array(
+        'labels'             => $labels,
+        'public'             => true,
+        'publicly_queryable' => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => true,
+        'rewrite'            => array('slug' => 'custom-block'),
+        'capability_type'    => 'post',
+        'has_archive'        => true,
+        'hierarchical'       => false,
+        'menu_position'      => null,
+        'supports'           => array('title', 'editor', 'thumbnail', 'revisions'),
+        'show_in_rest'       => true, // Enable Gutenberg editor support
+    );
+
+    register_post_type('k_custom_block', $args);
+}
+add_action('init', 'create_k_custom_block_post_type');
+
+
 add_action('init', 'kek_create_ebook_block');
 function kek_create_ebook_block() {
     register_post_type('ebook_block',
@@ -82,7 +131,7 @@ function set_wpbakery_post_types()
         'sp_header_builder',
         'educationalpackage',
         'sp_footer_builder',
-        'ebook_block',
+        'ebook_block','k_custom_block',
         'sp_pre_footer_builder',  // Your custom post type identifier
     );
     vc_set_default_editor_post_types($list);
