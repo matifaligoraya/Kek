@@ -36,10 +36,10 @@ $(function () {
         e.preventDefault();
     });
 
-    $('.testim-grid').masonry({
-        // columnWidth: 200,
-        itemSelector: '.testim-item'
-    });
+    // $('.testim-grid').masonry({
+    //     // columnWidth: 200,
+    //     itemSelector: '.testim-item'
+    // });
 
     $('.footer-box-open').on('click', function (e) {
         $(this).closest('.footer-box').toggleClass('show');

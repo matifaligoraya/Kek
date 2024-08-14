@@ -65,7 +65,7 @@ add_action('wp_enqueue_scripts', function () {
     $theme_options['isRtl'] = is_rtl();
     $theme_options['ajaxUrl'] = admin_url('admin-ajax.php');
 
-    wp_enqueue_style('clever-font', kek_URI . 'assets/vendor/cleverfont/style.min.css', [], kek_VERSION);
+    //wp_enqueue_style('clever-font', kek_URI . 'assets/vendor/cleverfont/style.min.css', [], kek_VERSION);
 
     if (class_exists('WooCommerce', false)) {
         if(get_theme_mod('kek_enable_wishlist','1')){
@@ -123,7 +123,10 @@ add_action('wp_enqueue_scripts', function () {
             ] );
         }
     }
-
+    if (function_exists('vc_asset_url')) {
+        wp_enqueue_style('js_composer_front', vc_asset_url('css/js_composer.min.css'), array(), WPB_VC_VERSION);
+        wp_enqueue_script('js_composer_front_js', vc_asset_url('js/dist/js_composer_front.min.js'), array('jquery'), WPB_VC_VERSION, true);
+    }
     wp_localize_script('jquery-core', 'zooThemeSettings', $theme_options);
 
     wp_add_inline_style('styles', $kek_auto_css->auto_css());

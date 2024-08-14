@@ -470,6 +470,11 @@ function kek_admin_styles() {
     <?php
 }
 add_action('admin_head', 'kek_admin_styles');
+add_action('vc_before_init', 'mytheme_vc_set_post_types');
+function mytheme_vc_set_post_types() {
+    vc_set_default_editor_post_types(array('post', 'page', 'your_custom_post_type'));
+}
+
 
 /* 
     KEK
