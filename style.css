@@ -17659,8 +17659,6 @@ img.lazy:not([src]) {
   --kek-topbar-submenu-padding: 0.625rem;
   --kek-topbar-submenu-font-size: 0.75rem;
   position: relative;
-  border-bottom: var(--kek-topbar-border-size) solid
-    var(--kek-topbar-border-color);
   font-size: var(--kek-topbar-font-size);
   background-color: var(--kek-topbar-bg);
 }
@@ -17689,8 +17687,6 @@ img.lazy:not([src]) {
 }
 .top-links-item {
   position: relative;
-  border-left: var(--kek-topbar-border-size) solid
-    var(--kek-topbar-border-color);
 }
 .top-links-item:first-child,
 .top-links-sub-menu .top-links-item {

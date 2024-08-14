@@ -125,6 +125,29 @@ function kek_default_setup()
 }
 add_action('after_setup_theme', 'kek_default_setup', 9, 0);
 
+/*
+ * Initialize WPBakery Custom Elements
+ */
+
+
+ add_action('vc_before_init', 'kek_load_wpbakery_elements');
+
+ function kek_load_wpbakery_elements() {    
+     $vcDirectoryPath = kek_DIR . '/wpbakery_elements/widgets/*.php';
+ 
+     // Use glob() to get an array of file names
+     $vcFiles = glob($vcDirectoryPath);
+ 
+     // Check if there are any files
+     if ($vcFiles !== false) {
+         // Loop through the array of file names
+         foreach ($vcFiles as $vcFile) {
+             // Include each file
+             require_once($vcFile);
+         }
+     }
+ }
+
 /**
  * Register Elementor Locations.
  *
