@@ -66,7 +66,8 @@
   .kek-subheader-slider .data-wrapper {
     display:flex;
     justify-content:center;
-    padding:.8rem 0
+    padding:.8rem 0;
+    background-color: var(--bs-border-color);
   }
   .kek-subheader-slider .owl-carousel {
     display:block;

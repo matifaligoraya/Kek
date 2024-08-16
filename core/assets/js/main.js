@@ -146,6 +146,16 @@ jQuery(document).ready(async function ($) {
       onInitialized: function () {
         $(".section-reviews .owl-carousel .item").removeClass("d-none");
       },
+    }); $(".kek-subheader-slider .owl-carousel").owlCarousel({
+      loop: !1,
+      margin: 40,
+      nav: !1,
+      dots: !0,
+      dotsContainer: "#carousel-custom-dots",
+      responsive: { 0: { items: 1 }, 768: { items: 2 }, 1200: { items: 1 } },
+      onInitialized: function () {
+        $(".section-reviews .owl-carousel .item").removeClass("d-none");
+      },
     });
     setTimeout(() => {
       $(".owl-dots").each(function () {

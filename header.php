@@ -1,32 +1,36 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
+
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Font Imports -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital@0;1&display=swap"
+        rel="stylesheet">
+
     <?php wp_head(); ?>
     <?php  $settings = get_option(kek_SETTINGS_KEY, true); ?>
 </head>
+
 <body <?php body_class('stretched'); ?>>
-     <!-- Document Wrapper
+    <!-- Document Wrapper
 	============================================= -->
     <div id="wrapper">
-    <?php if (is_front_page()) : ?>
-    <div class="position-absolute vh-100 w-100 top-0 start-0 overflow-hidden">
-        <?php 
+        <?php if (is_front_page()) : ?>
+        <div class="position-absolute vh-100 w-100 top-0 start-0 overflow-hidden">
+            <?php 
         // Retrieve the background image URL from the settings
         $background_image_url = isset($settings['home_page_background']) ? $settings['home_page_background'] : '';
 
         if (!empty($background_image_url)) : ?>
             <img src="<?php echo esc_url($background_image_url); ?>" alt="" class="hero-bg">
             <div class="overlay"></div>
+            <?php endif; ?>
+        </div>
         <?php endif; ?>
-    </div>
-<?php endif; ?>
 
         <div id="top-bar" class="transparent-topbar">
             <div class="container">
@@ -85,8 +89,9 @@
                         <div id="logo">
                             <?php get_template_part('inc/templates/logo'); ?>
                         </div>
-                        <div class="header-misc">                            
-                            <a href="demo-seo-about.html" class="button button-rounded ms-3 d-none d-sm-block">Get Started</a>
+                        <div class="header-misc">
+                            <a href="demo-seo-about.html" class="button button-rounded ms-3 d-none d-sm-block">Get
+                                Started</a>
                         </div>
                         <div class="primary-menu-trigger">
                             <button class="kek-hamburger" type="button" title="Open Mobile Menu">
@@ -95,7 +100,7 @@
                         </div>
 
                         <nav class="primary-menu with-arrows primary-menu-init">
-                        <?php
+                            <?php
                             wp_nav_menu(array(
                                 'theme_location' => 'main-menu',
                                 'container' => false,
@@ -107,19 +112,20 @@
                                 'walker' => new Custom_Walker_Nav_Menu(), // Use the custom walker
                             ));
                         ?>
-                        </nav>                       
+                        </nav>
                     </div>
                 </div>
             </div>
             <div class="header-wrap-clone"></div>
         </header>
-        <br />
-        <section class="kek-subheader-slider">
-    <div class="data-border">
-        <div class="container">
-            <div class="data-wrapper">
-                <div class="owl-carousel owl-theme">
-                    <?php
+    
+        <section class="kek-subheader-slider ">
+            <div class="container">
+            <div class="">
+                <div class="container">
+                    <div class="data-wrapper">
+                        <div class="owl-carousel owl-theme">
+                            <?php
                         $settings = get_option(kek_SETTINGS_KEY, true);
                         $tiles = isset($settings['sub_header_tiles']) ? $settings['sub_header_tiles'] : array();
 
@@ -133,42 +139,45 @@
                                 // Fetch the menu items based on the menu ID
                                 $menu_items = wp_get_nav_menu_items($menu_id);
                     ?>
-                                <div class="platform-item">
-                                    <button class="data-button">
-                                        <div class="data-logo">
-                                            <img width="69" height="69" src="<?php echo esc_url($image); ?>" class="attachment-platform_logo size-platform_logo" alt="<?php echo esc_attr($title); ?>" decoding="async">
-                                        </div>
-                                        <div class="data-name-wrapper">
-                                            <p class="data-name"><?php echo esc_html($title); ?></p>
-                                            <?php if ($isNew): ?>
-                                                <span class="data-label">new</span>
-                                            <?php endif; ?>
-                                        </div>
-                                    </button>
-                                    <ul class="data-pages">
-                                        <?php if ($menu_items): ?>
-                                            <?php foreach ($menu_items as $menu_item): ?>
-                                                <li>
-                                                    <a href="<?php echo esc_url($menu_item->url); ?>">
-                                                        <?php echo esc_html($menu_item->title); ?>
-                                                    </a>
-                                                </li>
-                                            <?php endforeach; ?>
+                            <div class="platform-item">
+                                <button class="data-button">
+                                    <div class="data-logo">
+                                        <img width="69" height="69" src="<?php echo esc_url($image); ?>"
+                                            class="attachment-platform_logo size-platform_logo"
+                                            alt="<?php echo esc_attr($title); ?>" decoding="async">
+                                    </div>
+                                    <div class="data-name-wrapper">
+                                        <p class="data-name"><?php echo esc_html($title); ?></p>
+                                        <?php if ($isNew): ?>
+                                        <span class="data-label">new</span>
                                         <?php endif; ?>
-                                    </ul>
-                                </div>
-                    <?php
+                                    </div>
+                                </button>
+                                <ul class="data-pages">
+                                    <?php if ($menu_items): ?>
+                                    <?php foreach ($menu_items as $menu_item): ?>
+                                    <li>
+                                        <a href="<?php echo esc_url($menu_item->url); ?>">
+                                            <?php echo esc_html($menu_item->title); ?>
+                                        </a>
+                                    </li>
+                                    <?php endforeach; ?>
+                                    <?php endif; ?>
+                                </ul>
+                            </div>
+                            <?php
                             endfor;
                         endif;
                     ?>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</section>
-  <!-- Custom Block Display -->
-  <div class="custom-block-container">
-        <?php 
+            </div>
+        </section>
+        <!-- Custom Block Display -->
+        <div class="custom-block-container">
+            <?php 
         // Retrieve the selected custom block ID from the settings
         $custom_block_id = isset($settings['home_page_custom_block']) ? $settings['home_page_custom_block'] : '';
 
@@ -182,4 +191,4 @@
             }
         }
         ?>
-    </div>
+        </div>
