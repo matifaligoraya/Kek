@@ -12,36 +12,41 @@ class HomePageTab extends SublimeBaseTab {
 
             <!-- Background Image Selection -->
             <div class="form-group">
-                <label for="home_page_background"><?php esc_html_e('Background Image', 'sublimeplus'); ?></label>
-                <input type="text" name="<?php echo esc_attr($this->getName('home_page_background')); ?>" id="home_page_background" class="form-control image-url" value="<?php echo esc_url($this->getValue('home_page_background')); ?>" readonly>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="home_page_background"><?php esc_html_e('Background Image', 'sublimeplus'); ?></label>
+                        <input type="text" name="<?php echo esc_attr($this->getName('home_page_background')); ?>" id="home_page_background" class="form-control image-url" value="<?php echo esc_url($this->getValue('home_page_background')); ?>" readonly>
+                    </div>
+                    <div class="col-md-6">
+                         <!-- Custom Block Selection -->
+                        <div class="form-group">
+                            <label for="home_page_custom_block"><?php esc_html_e('Custom Block', 'sublimeplus'); ?></label>
+                            <select name="<?php echo esc_attr($this->getName('home_page_custom_block')); ?>" id="home_page_custom_block" class="form-control">
+                                <option value=""><?php esc_html_e('Select Custom Block', 'sublimeplus'); ?></option>
+                                <?php
+                                $custom_blocks = get_posts(array('post_type' => 'k_custom_block', 'posts_per_page' => -1));
+                                foreach ($custom_blocks as $block) {
+                                    ?>
+                                    <option value="<?php echo esc_attr($block->ID); ?>" <?php selected($this->getValue('home_page_custom_block'), $block->ID); ?>>
+                                        <?php echo esc_html($block->post_title); ?>
+                                    </option>
+                                    <?php
+                                }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+                </div>                
                 <br />
                 <img src="<?php echo esc_url($this->getValue('home_page_background')); ?>" width="100" height="100" />
                 <button type="button" class="button-secondary upload-image-button"><?php esc_html_e('Upload Image', 'sublimeplus'); ?></button>
-            </div>
-
-            <!-- Custom Block Selection -->
-            <div class="form-group">
-                <label for="home_page_custom_block"><?php esc_html_e('Custom Block', 'sublimeplus'); ?></label>
-                <select name="<?php echo esc_attr($this->getName('home_page_custom_block')); ?>" id="home_page_custom_block" class="form-control">
-                    <option value=""><?php esc_html_e('Select Custom Block', 'sublimeplus'); ?></option>
-                    <?php
-                    $custom_blocks = get_posts(array('post_type' => 'k_custom_block', 'posts_per_page' => -1));
-                    foreach ($custom_blocks as $block) {
-                        ?>
-                        <option value="<?php echo esc_attr($block->ID); ?>" <?php selected($this->getValue('home_page_custom_block'), $block->ID); ?>>
-                            <?php echo esc_html($block->post_title); ?>
-                        </option>
-                        <?php
-                    }
-                    ?>
-                </select>
-            </div>
-
+            </div>           
+                
             <!-- Sub Header Tiles Section -->
-            <div id="sub-header-tiles" class="sub-header-tiles">
+            <div id="sub-header-tiles" class="sub-header-tiles mt-5">
                 <h4><?php esc_html_e('Sub Header Tiles', 'sublimeplus'); ?></h4>
                 <button type="button" class="btn btn-primary add-sub-header-tile"><?php esc_html_e('Add New Subheader Tile', 'sublimeplus'); ?></button>
-                <ul class="list-unstyled">
+                <ul class="list-unstyled mt-3">
                     <?php
                     $sub_header_tiles = $this->getValue('sub_header_tiles') ?: array(
                         'image' => array(),

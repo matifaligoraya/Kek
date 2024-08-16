@@ -60,9 +60,8 @@ class WPBakeryKekSliderElement {
         ob_start();
         ?>
         <!-- Slider -->
-        <section id="slider" class="slider-element dark min-vh-100 " style="background-image: url('<?php echo esc_url($bg_image_url); ?>');">
+        <section id="slider" class="slider-element min-vh-100">
             <div class="slider-inner flex-column">
-
                 <div class="vertical-middle">
                     <div class="container">
                         <div class="row align-items-lg-center g-0">
@@ -93,22 +92,8 @@ class WPBakeryKekSliderElement {
                         </div>
                     </div>
                 </div>
-
-                <div class="section-clients">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-8 col-md-7 d-flex align-items-lg-center flex-row">
-                                <div class="col"><img src="demos/conference/images/sponcors/amazon.svg" alt="Clients"></div>
-                                <div class="col"><img src="demos/conference/images/sponcors/netflix.svg" alt="Clients"></div>
-                                <div class="col"><img src="demos/conference/images/sponcors/google.svg" alt="Clients"></div>
-                                <div class="col"><img src="demos/conference/images/sponcors/linkedin.svg" alt="Clients"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
             </div>
-        </section><!-- #slider end -->
+        </section>
         <?php
         return ob_get_clean();
     }

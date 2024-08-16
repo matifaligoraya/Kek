@@ -19,15 +19,14 @@
     <!-- Document Wrapper
 	============================================= -->
     <div id="wrapper">
-        <?php if (is_front_page()) : ?>
-        <div class="position-absolute vh-100 w-100 top-0 start-0 overflow-hidden">
-            <?php 
-        // Retrieve the background image URL from the settings
+        <?php if (is_front_page()) : ?>        
+        <?php         
         $background_image_url = isset($settings['home_page_background']) ? $settings['home_page_background'] : '';
-
+        
         if (!empty($background_image_url)) : ?>
-            <img src="<?php echo esc_url($background_image_url); ?>" alt="" class="hero-bg">
-            <div class="overlay"></div>
+        <div class="position-absolute vh-100 w-100 top-0 start-0 overflow-hidden" 
+                style="background-image: url('<?php echo esc_url($background_image_url); ?>">
+                <div class="overlay"></div>           
             <?php endif; ?>
         </div>
         <?php endif; ?>
@@ -119,76 +118,70 @@
             <div class="header-wrap-clone"></div>
         </header>
     
-        <section class="kek-subheader-slider ">
-            <div class="container">
-            <div class="">
-                <div class="container">
-                    <div class="data-wrapper">
-                        <div class="owl-carousel owl-theme">
-                            <?php
-                        $settings = get_option(kek_SETTINGS_KEY, true);
-                        $tiles = isset($settings['sub_header_tiles']) ? $settings['sub_header_tiles'] : array();
+        <section class="kek-subheader-slider">                        
+            <div class="container data-wrapper">   
+                    <div class="owl-carousel owl-theme">
+                        <?php
+                    $settings = get_option(kek_SETTINGS_KEY, true);
+                    $tiles = isset($settings['sub_header_tiles']) ? $settings['sub_header_tiles'] : array();
 
-                        if ($tiles):
-                            for ($i = 0; $i < count($tiles['image']); $i++):
-                                $image = !empty($tiles['image'][$i]) ? $tiles['image'][$i] : '';
-                                $title = !empty($tiles['title'][$i]) ? $tiles['title'][$i] : '';
-                                $menu_id = !empty($tiles['menu'][$i]) ? $tiles['menu'][$i] : ''; // Get the associated menu ID
-                                $isNew = !empty($tiles['isNew'][$i]); // Check if the tile is new
+                    if ($tiles):
+                        for ($i = 0; $i < count($tiles['image']); $i++):
+                            $image = !empty($tiles['image'][$i]) ? $tiles['image'][$i] : '';
+                            $title = !empty($tiles['title'][$i]) ? $tiles['title'][$i] : '';
+                            $menu_id = !empty($tiles['menu'][$i]) ? $tiles['menu'][$i] : ''; // Get the associated menu ID
+                            $isNew = !empty($tiles['isNew'][$i]); // Check if the tile is new
 
-                                // Fetch the menu items based on the menu ID
-                                $menu_items = wp_get_nav_menu_items($menu_id);
+                            // Fetch the menu items based on the menu ID
+                            $menu_items = wp_get_nav_menu_items($menu_id);
                     ?>
-                            <div class="platform-item">
-                                <button class="data-button">
-                                    <div class="data-logo">
-                                        <img width="69" height="69" src="<?php echo esc_url($image); ?>"
-                                            class="attachment-platform_logo size-platform_logo"
-                                            alt="<?php echo esc_attr($title); ?>" decoding="async">
-                                    </div>
-                                    <div class="data-name-wrapper">
-                                        <p class="data-name"><?php echo esc_html($title); ?></p>
-                                        <?php if ($isNew): ?>
-                                        <span class="data-label">new</span>
-                                        <?php endif; ?>
-                                    </div>
-                                </button>
-                                <ul class="data-pages">
-                                    <?php if ($menu_items): ?>
-                                    <?php foreach ($menu_items as $menu_item): ?>
-                                    <li>
-                                        <a href="<?php echo esc_url($menu_item->url); ?>">
-                                            <?php echo esc_html($menu_item->title); ?>
-                                        </a>
-                                    </li>
-                                    <?php endforeach; ?>
+                        <div class="platform-item">
+                            <button class="data-button">
+                                <div class="data-logo">
+                                    <img width="69" height="69" src="<?php echo esc_url($image); ?>"
+                                        class="attachment-platform_logo size-platform_logo"
+                                        alt="<?php echo esc_attr($title); ?>" decoding="async">
+                                </div>
+                                <div class="data-name-wrapper">
+                                    <p class="data-name"><?php echo esc_html($title); ?></p>
+                                    <?php if ($isNew): ?>
+                                    <span class="data-label">new</span>
                                     <?php endif; ?>
-                                </ul>
-                            </div>
-                            <?php
-                            endfor;
-                        endif;
-                    ?>
+                                </div>
+                            </button>
+                            <ul class="data-pages">
+                                <?php if ($menu_items): ?>
+                                <?php foreach ($menu_items as $menu_item): ?>
+                                <li>
+                                    <a href="<?php echo esc_url($menu_item->url); ?>">
+                                        <?php echo esc_html($menu_item->title); ?>
+                                    </a>
+                                </li>
+                                <?php endforeach; ?>
+                                <?php endif; ?>
+                            </ul>
                         </div>
-                    </div>
-                </div>
-            </div>
+                        <?php
+                        endfor;
+                    endif;
+                    ?>                    
+                </div>                            
             </div>
         </section>
-        <!-- Custom Block Display -->
-        <div class="custom-block-container">
+       <!-- Custom Block Display -->
+       <div class="custom-block-container">
             <?php 
-        // Retrieve the selected custom block ID from the settings
-        $custom_block_id = isset($settings['home_page_custom_block']) ? $settings['home_page_custom_block'] : '';
+            // Retrieve the selected custom block ID from the settings
+            $custom_block_id = isset($settings['home_page_custom_block']) ? $settings['home_page_custom_block'] : '';
 
-        if (!empty($custom_block_id)) {
-            // Fetch the post content of the selected custom block
-            $custom_block = get_post($custom_block_id);
+            if (!empty($custom_block_id)) {
+                // Fetch the post content of the selected custom block
+                $custom_block = get_post($custom_block_id);
 
-            if ($custom_block && !is_wp_error($custom_block)) {
-                // Display the content with WPBakery shortcodes processed
-                echo apply_filters('the_content', $custom_block->post_content);
+                if ($custom_block && !is_wp_error($custom_block)) {
+                    // Display the content with WPBakery shortcodes processed
+                    echo apply_filters('the_content', $custom_block->post_content);
+                }
             }
-        }
-        ?>
+            ?>
         </div>

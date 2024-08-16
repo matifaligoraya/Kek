@@ -104,6 +104,21 @@
   max-height: 100px !important;
 }
 
+.background-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; /* Adjust if necessary */
+  background-size: cover;
+  background-position: center;
+  z-index: -1; /* Ensure it stays behind other content */
+}
+
+.card-img {
+  left: 100px !important;
+}
+
 /* Cloud animation starts */
 
 .animation-cloud-parts {
