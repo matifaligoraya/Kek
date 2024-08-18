@@ -146,7 +146,8 @@ jQuery(document).ready(async function ($) {
       onInitialized: function () {
         $(".section-reviews .owl-carousel .item").removeClass("d-none");
       },
-    }); $(".kek-subheader-slider .owl-carousel").owlCarousel({
+    });
+    $(".kek-subheader-slider .owl-carousel").owlCarousel({
       loop: !1,
       margin: 40,
       nav: !1,
@@ -178,6 +179,50 @@ jQuery(document).ready(async function ($) {
       },
       onInitialized: function () {
         $(".kek-subheader-slider").removeClass("loading");
+      },
+    });
+    setTimeout(() => {
+      $(".owl-dots").each(function () {
+        $(this)
+          .find(".owl-dot")
+          .each(function (index) {
+            $(this).attr("aria-label", index + 1);
+          });
+      });
+    }, 100);
+
+    $(".kek-testimonials .owl-carousel").owlCarousel({
+      loop: !1,
+      margin: 40,
+      nav: !1,
+      dots: !0,
+      dotsContainer: "#carousel-custom-dots",
+      responsive: { 0: { items: 1 }, 768: { items: 2 }, 1200: { items: 1 } },
+      onInitialized: function () {
+        $(".section-reviews .owl-carousel .item").removeClass("d-none");
+      },
+    });
+    setTimeout(() => {
+      $(".owl-dots").each(function () {
+        $(this)
+          .find(".owl-dot")
+          .each(function (index) {
+            $(this).attr("aria-label", index + 1);
+          });
+      });
+    }, 100);
+    $(".kek-testimonials .owl-carousel").owlCarousel({
+      nav: !0,
+      dots: !1,
+      items: 5,
+      responsive: {
+        0: { items: 1 },
+        576: { items: 2 },
+        767: { items: 3 },
+        1024: { items: 5 },
+      },
+      onInitialized: function () {
+        $(".kek-testimonials").removeClass("loading");
       },
     });
     setTimeout(() => {
@@ -405,3 +450,27 @@ function copyYoutubeTitleCreatorTextAll() {
     copyButton.textContent = originalText;
   }, 1000);
 }
+
+var SwiperTabsContainer = new Swiper(".swiper-tab-container", {
+  loop: true,
+  slidesPerView: 1,
+  autoHeight: true,
+  autoplay: {
+    delay: 5000,
+    disableOnInteraction: false,
+    autoplayDisableOnInteraction: false,
+  },
+  effect: "fade",
+  fadeEffect: {
+    crossFade: true,
+  },
+  longSwipes: true,
+  autoplayDisableOnInteraction: true,
+  on: {
+    activeIndexChange: function (swiper) {
+      var index = swiper.realIndex;
+      jQuery(".swiper-tab-link").removeClass("active");
+      jQuery(".swiper-tab-link").eq(index).addClass("active");
+    },
+  },
+});

@@ -21,6 +21,8 @@ include kek_DIR.'inc/functions/scripts.php';
 include kek_DIR.'inc/functions/plugins.php';
 include kek_DIR.'inc/functions/functions.php';
 include kek_DIR.'inc/functions/hooks.php';
+require kek_DIR.'inc/functions/testimonials.php';
+
 /**
  * WooCommerce theme functions
  * All hooks, functions, features will load below.

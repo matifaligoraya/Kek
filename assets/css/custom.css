@@ -119,87 +119,215 @@
   left: 100px !important;
 }
 
-/* Cloud animation starts */
+/* ========== CAROUSEL STYLES START ========== */
 
-.animation-cloud-parts {
-  position: relative;
-  display: block;
-  height: 100%;
-}
-
-.animation-cloud-btn-inner {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 8px !important;
-  overflow: hidden;
-  z-index: 0;
-}
-
-.animation-cloud-part {
-  position: absolute;
-  top: 0;
-  width: 25%;
-  height: 100%;
+.kek-slider .data-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 2rem 0;
+  margin-top: -10px;
   background: #fff;
-  border-radius: 100%;
-  transform: translate3d(0, 150%, 0) scale(1.7);
-  transition: transform 0.45s;
+  /* background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 2)),
+    url("../images/subheader-bg.jpg"); */
+  /* background-size: cover; */
 }
-
-.animation-cloud-part:nth-child(1) {
-  left: 0;
-  transition-delay: 0s;
+.kek-slider .owl-carousel {
+  display: block;
+  width: 100%;
 }
-
-.animation-cloud-part:nth-child(2) {
-  left: 30%;
-  transition-delay: 80ms;
+.kek-slider .owl-carousel .owl-slide {
+  display: inline-block;
+  width: 100%;
 }
-
-.animation-cloud-part:nth-child(3) {
-  left: 60%;
-  transition-delay: 0.16s;
+.kek-slider .owl-carousel .owl-stage-outer {
+  overflow: initial;
+  z-index: 1;
 }
-
-.animation-cloud-part:nth-child(4) {
-  left: 90%;
-  transition-delay: 0.24s;
+.kek-slider .owl-carousel .owl-item {
+  opacity: 0;
+  transition: opacity 0.25s ease-in-out;
 }
-
-.animation-cloud-btn {
-  position: relative;
-}
-
-.animation-cloud-btn:hover .animation-cloud-part {
-  transform: translate3d(0, 0%, 0) scale(1.7);
-}
-
-.animation-cloud-btn:hover {
+.kek-slider .owl-carousel .owl-item.active {
   opacity: 1;
-  border-color: var(--kek-themecolor);
+}
+.kek-slider .data-wrapper .owl-carousel .owl-nav {
+  position: absolute;
+  inset: 0;
+  top: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 0;
+  margin: 0 -2rem;
+  transform: translateY(-50%);
+  z-index: 5;
+}
+@media only screen and (max-width: 576px) {
+  .kek-slider .data-wrapper .owl-carousel .owl-nav {
+    margin: 0;
+  }
+}
+.kek-slider .data-wrapper .owl-carousel .owl-prev,
+.kek-slider .data-wrapper .owl-carousel .owl-next {
+  width: 28px;
+  height: 28px;
+  border: 1px solid #e5e9ed;
+  border-radius: 100%;
+}
+.kek-slider .data-wrapper .owl-carousel .owl-prev {
+  background-image: url(../img/arrow-left.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.kek-slider .data-wrapper .owl-carousel .owl-next {
+  background-image: url(../img/arrow-right.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.kek-slider .data-wrapper .owl-carousel .owl-prev span,
+.kek-slider .data-wrapper .owl-carousel .owl-next span {
+  font-size: 0;
 }
 
-.animation-cloud-btn:hover span.cloud-button-content {
-  color: var(--kek-themecolor);
+/* ========== CAROUSEL STYLES END ========== */
+
+/* ========== TESTIMONIALS START ========== */
+
+blockquote {
+  padding: 0;
+  margin: 0;
 }
 
-.animation-cloud-btn:hover .cloud-button-icon {
-  color: var(--kek-themecolor);
+section.t-bq-section {
+  padding: 30px;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 60px;
 }
 
-span.cloud-button-content {
-  z-index: 10;
+.t-bq-wrapper.t-bq-wrapper-boxed {
+  max-width: 576px;
+  margin: 0 auto;
+}
+
+.t-bq-wrapper.t-bq-wrapper-fullwidth {
+  max-width: 100%;
+}
+
+/* ========== Testimonial Card Style 1 ========== */
+
+.t-bq-quote-kek-testimonial-1 {
   position: relative;
-  color: #fff;
+  display: flex;
+  flex-direction: row;
+  min-height: 250px;
+  box-shadow: 2px 2px 25px #cecece;
+  border-radius: 10px;
 }
 
-.animation-cloud-btn {
-  border: none;
-  padding: 1.1rem 5rem !important;
+.t-bq-quote-kek-testimonial-1 .t-bq-quote-kek-testimonial-1-pattern {
+  flex-basis: 80px;
+  background-color: var(--kek-themecolor);
+  border-radius: 10px 100px 100px 10px;
 }
+
+.t-bq-quote-kek-testimonial-1 .t-bq-quote-kek-testimonial-1-base {
+  flex-basis: calc(100% - 80px);
+  background: #ffffff;
+  padding: 40px 30px 50px 80px;
+  font-size: 11pt;
+  font-weight: bold;
+  line-height: 1.62em;
+  border-radius: 0 10px 10px 0;
+}
+
+.t-bq-quote-kek-testimonial-1 .t-bq-quote-kek-testimonial-1-qmark {
+  position: absolute;
+  top: 50px;
+  left: 105px;
+  font-family: Garamond, Georgia, "Times New Roman", serif;
+  font-size: 42pt;
+  color: var(--kek-themecolor);
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.t-bq-quote-kek-testimonial-1 .t-bq-quote-kek-testimonial-1-userpic {
+  position: absolute;
+  top: 80px;
+  left: 45px;
+  width: 70px;
+  height: 70px;
+  background-size: cover;
+  border-radius: 50%;
+  box-shadow: var(--kek-box-shadow);
+  background-color: white;
+}
+
+.t-bq-quote-kek-testimonial-1 .t-bq-quote-kek-testimonial-1-meta {
+  margin-top: 30px;
+  padding-top: 10px;
+  border-top: 2px dotted #777777;
+}
+
+.t-bq-quote-kek-testimonial-1
+  .t-bq-quote-kek-testimonial-1-meta
+  .t-bq-quote-kek-testimonial-1-author,
+.t-bq-quote-kek-testimonial-1
+  .t-bq-quote-kek-testimonial-1-meta
+  .t-bq-quote-kek-testimonial-1-source {
+  color: #777777;
+}
+
+.t-bq-quote-kek-testimonial-1
+  .t-bq-quote-kek-testimonial-1-meta
+  .t-bq-quote-kek-testimonial-1-author {
+  font-style: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-size: 10pt;
+  font-weight: bold;
+}
+
+.t-bq-quote-kek-testimonial-1
+  .t-bq-quote-kek-testimonial-1-meta
+  .t-bq-quote-kek-testimonial-1-author
+  cite {
+  font-style: normal;
+}
+
+.t-bq-quote-kek-testimonial-1
+  .t-bq-quote-kek-testimonial-1-meta
+  .t-bq-quote-kek-testimonial-1-source {
+  font-size: 9pt;
+}
+
+@media screen and (max-width: 768px) {
+  .t-bq-quote-kek-testimonial-1 .t-bq-quote-kek-testimonial-1-pattern {
+    flex-basis: 20px;
+  }
+
+  .t-bq-quote-kek-testimonial-1 .t-bq-quote-kek-testimonial-1-base {
+    flex-basis: calc(100% - 20px);
+    padding: 100px 30px 50px 30px;
+  }
+
+  .t-bq-quote-kek-testimonial-1 .t-bq-quote-kek-testimonial-1-userpic {
+    width: 50px;
+    height: 50px;
+    left: 40px;
+    top: 20px;
+  }
+
+  .t-bq-quote-kek-testimonial-1 .t-bq-quote-kek-testimonial-1-qmark {
+    left: 100px;
+    top: 45px;
+  }
+}
+
+/* ========== TESTIMONIALS END ========== */
 
 /* Cloud animation ends */
 
