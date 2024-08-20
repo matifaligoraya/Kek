@@ -329,6 +329,125 @@ section.t-bq-section {
 
 /* ========== TESTIMONIALS END ========== */
 
+/* Cloud animation starts */
+
+.animation-cloud-parts {
+  position: relative;
+  position: relative;
+  display: block;
+  display: block;
+  height: 100%;
+  height: 100%;
+}
+
+.animation-cloud-btn-inner {
+  position: absolute;
+  position: absolute;
+  left: 0;
+  left: 0;
+  top: 0;
+  top: 0;
+  width: 100%;
+  width: 100%;
+  height: 100%;
+  height: 100%;
+  border-radius: 8px !important;
+  border-radius: 8px !important;
+  overflow: hidden;
+  overflow: hidden;
+  z-index: 0;
+  z-index: 0;
+}
+
+.animation-cloud-part {
+  position: absolute;
+  position: absolute;
+  top: 0;
+  top: 0;
+  width: 25%;
+  width: 25%;
+  height: 100%;
+  height: 100%;
+  background: #fff;
+  background: #fff;
+  border-radius: 100%;
+  border-radius: 100%;
+  transform: translate3d(0, 150%, 0) scale(1.7);
+  transform: translate3d(0, 150%, 0) scale(1.7);
+  transition: transform 0.45s;
+  transition: transform 0.45s;
+}
+
+.animation-cloud-part:nth-child(1) {
+  left: 0;
+  left: 0;
+  transition-delay: 0s;
+  transition-delay: 0s;
+}
+
+.animation-cloud-part:nth-child(2) {
+  left: 30%;
+  left: 30%;
+  transition-delay: 80ms;
+  transition-delay: 80ms;
+}
+
+.animation-cloud-part:nth-child(3) {
+  left: 60%;
+  left: 60%;
+  transition-delay: 0.16s;
+  transition-delay: 0.16s;
+}
+
+.animation-cloud-part:nth-child(4) {
+  left: 90%;
+  left: 90%;
+  transition-delay: 0.24s;
+  transition-delay: 0.24s;
+}
+
+.animation-cloud-btn {
+  position: relative;
+  position: relative;
+}
+
+.animation-cloud-btn:hover .animation-cloud-part {
+  transform: translate3d(0, 0%, 0) scale(1.7);
+  transform: translate3d(0, 0%, 0) scale(1.7);
+}
+
+.animation-cloud-btn:hover {
+  opacity: 1;
+  opacity: 1;
+  border-color: var(--kek-themecolor);
+  border-color: var(--kek-themecolor);
+}
+
+.animation-cloud-btn:hover span.cloud-button-content {
+  color: var(--kek-themecolor);
+  color: var(--kek-themecolor);
+}
+
+.animation-cloud-btn:hover .cloud-button-icon {
+  color: var(--kek-themecolor);
+  color: var(--kek-themecolor);
+}
+
+span.cloud-button-content {
+  z-index: 10;
+  z-index: 10;
+  position: relative;
+  position: relative;
+  color: #fff;
+  color: #fff;
+}
+
+.animation-cloud-btn {
+  border: none;
+  border: none;
+  padding: 1.1rem 5rem !important;
+  padding: 1.1rem 5rem !important;
+}
 /* Cloud animation ends */
 
 /*
