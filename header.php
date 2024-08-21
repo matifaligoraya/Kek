@@ -166,22 +166,25 @@
                     endif;
                     ?>                    
                 </div>                            
-            </div>               
-            <!-- Custom Block Display -->
-            <div class="custom-block-container">
-                <?php 
-                // Retrieve the selected custom block ID from the settings
-                $custom_block_id = isset($settings['home_page_custom_block']) ? $settings['home_page_custom_block'] : '';
+            </div>    
+        </section>        
+        <?php if (is_front_page()) : ?>      
+        <!-- Custom Block Display -->
+        <div class="custom-block-container">
+            <?php 
+            // Retrieve the selected custom block ID from the settings
+            $custom_block_id = isset($settings['home_page_custom_block']) ? $settings['home_page_custom_block'] : '';
 
-                if (!empty($custom_block_id)) {
-                    // Fetch the post content of the selected custom block
-                    $custom_block = get_post($custom_block_id);
+            if (!empty($custom_block_id)) {
+                // Fetch the post content of the selected custom block
+                $custom_block = get_post($custom_block_id);
 
-                    if ($custom_block && !is_wp_error($custom_block)) {
-                        // Display the content with WPBakery shortcodes processed
-                        echo apply_filters('the_content', $custom_block->post_content);
-                    }
+                if ($custom_block && !is_wp_error($custom_block)) {
+                    // Display the content with WPBakery shortcodes processed
+                    echo apply_filters('the_content', $custom_block->post_content);
                 }
-                ?>
-            </div> 
-        </section>           
+            }
+            ?>
+        </div>                 
+        <?php endif; ?>
+        <div class="container">

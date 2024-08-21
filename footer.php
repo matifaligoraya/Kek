@@ -7,7 +7,7 @@
         $american_express_enabled = get_theme_mod('kek_american_express_enabled', false);
         $stripe_enabled = get_theme_mod('kek_stripe_enabled', false);        
     ?>
-
+    </div>
     <footer id="footer" style="background: url('<?php echo esc_url(get_theme_mod('kek_footer_bg_image', '')); ?>') repeat; background-size: cover;">
         <div class="container">
             <div class="footer-widgets-wrap">

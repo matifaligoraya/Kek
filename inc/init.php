@@ -22,6 +22,7 @@ include kek_DIR.'inc/functions/plugins.php';
 include kek_DIR.'inc/functions/functions.php';
 include kek_DIR.'inc/functions/hooks.php';
 require kek_DIR.'inc/functions/testimonials.php';
+require kek_DIR.'inc/functions/woocommerce.php';
 
 /**
  * WooCommerce theme functions
