@@ -1,15 +1,15 @@
 jQuery(document).ready(function ($) {
   // Tab switching functionality
-  $(".nav-tab").on("click", function (e) {
-    e.preventDefault();
+  // $(".nav-tab").on("click", function (e) {
+  //   e.preventDefault();
 
-    $(".nav-tab").removeClass("nav-tab-active");
-    $(this).addClass("nav-tab-active");
+  //   $(".nav-tab").removeClass("nav-tab-active");
+  //   $(this).addClass("nav-tab-active");
 
-    var tab = $(this).attr("href");
-    $(".tab-content").hide();
-    $(tab).show();
-  });
+  //   var tab = $(this).attr("href");
+  //   $(".tab-content").hide();
+  //   $(tab).show();
+  // });
 
   $(".kek-color-field").wpColorPicker({
     change: function (event, ui) {
