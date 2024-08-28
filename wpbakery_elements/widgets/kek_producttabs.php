@@ -81,11 +81,13 @@ class WPBakeryProductTabElement {
                     $active_class = ($tab_content_count == 1) ? 'active show' : '';
                     ?>
                     <div class="tab-pane fade <?php echo esc_attr($active_class); ?>" id="<?php echo sanitize_title($tab['tab_title']); ?>" role="tabpanel" aria-labelledby="<?php echo sanitize_title($tab['tab_title']); ?>-tab">
+                    <?php if(!empty($tab['tab_description'])) : ?>
                         <div class="grey-title">
-                            <p><?php echo esc_html($tab['tab_description']); ?></p>
+                                <p><?php echo esc_html($tab['tab_description']); ?></p>
+                            </div>
+                            <?php echo $this->render_products($tab['products']); ?>
                         </div>
-                        <?php echo $this->render_products($tab['products']); ?>
-                    </div>
+                    <?php endif ?>
                 <?php } ?>
             </div>
         </div>
@@ -104,8 +106,11 @@ class WPBakeryProductTabElement {
             ?>
             <form class="wcl-form">
                 <div class="kek-owl-carousel">
-                    <?php foreach ($products as $product): ?>
-                        <?php
+                <?php
+                    $item_count = 0;
+                    $radio_count = 0;
+                    $first_item = true;
+                    foreach ($products as $product):
                         // Ensure product_id is not null
                         if (!empty($product['product_id'])) {
                             // Get the main product using product ID
@@ -118,59 +123,123 @@ class WPBakeryProductTabElement {
                                         $variation_id = $variation['variation_id'];
                                         $variation_product = wc_get_product($variation_id);
                                         $variation_name = $variation_product->get_name();
-                                        $variation_price = $variation_product->get_price_html();
+                                        $variation_desc = $variation_product->get_description();
                                         $variation_url = $variation_product->add_to_cart_url();
+
+                                        $regular_price = $variation_product->get_regular_price();
+                                        $sale_price = $variation_product->get_sale_price();
+
+                                        // Get the variation attributes
+                                        $v_attributes = $variation_product->get_attributes();
+                                        $attribute_name = "";
+                                        foreach ($v_attributes as $att_name => $attribute) {
+                                            $attribute_name = $att_name;
+                                        }
+
+                                        // Start a new item div if necessary
+                                        if ($first_item && $radio_count == 0) {
+                                            echo '<div class="item"><div class="btn-group" role="group">';
+                                        } elseif (!$first_item && $radio_count % 4 == 0) {
+                                            echo '</div></div><div class="item"><div class="btn-group" role="group">';
+                                        }
+
+                                        $radio_count++;
                                         ?>
-                                        <div class="item" data-product-url="<?php echo esc_url($variation_url); ?>">
-                                            <div class="btn-group" role="group">
-                                                <div class="btn-radio">
-                                                    <input type="radio" value="<?php echo esc_attr($variation_id); ?>" class="btn-check" name="product_select" id="btnradio-<?php echo esc_attr($variation_id); ?>" autocomplete="off">
-                                                    <label class="btn" for="btnradio-<?php echo esc_attr($variation_id); ?>">
-                                                        <div class="col left-col">
-                                                            <span class="number"><?php echo esc_html($variation_name); ?></span>
-                                                        </div>
-                                                        <div class="col right-col single">
-                                                            <div class="price"><?php echo wp_kses_post($variation_price); ?></div>
-                                                        </div>
-                                                    </label>
+                                        <div class="btn-radio <?php echo empty($sale_price) ? 'wcl-big-btn-radio' : ''; ?>">
+                                            <input type="radio" value="<?php echo esc_attr($variation_id); ?>" class="btn-check" name="product_select" id="btnradio-<?php echo esc_attr($variation_id); ?>" autocomplete="off">
+                                            <label class="btn" for="btnradio-<?php echo esc_attr($variation_id); ?>">
+                                                <div class="col left-col">
+                                                    <span class="number"><?php echo esc_html($v_attributes[strtolower($attribute_name)]); ?></span>
+                                                    <span><?php echo esc_html($attribute_name); ?></span>
                                                 </div>
-                                            </div>
+                                                <div class="col right-col">
+                                                    <div class="price">
+                                                        <span class="old-price"><?php echo $regular_price; ?></span>
+                                                        <?php if ($sale_price) : ?>
+                                                            <span class="new-price"><?php echo $sale_price; ?></span>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                    <?php if ($sale_price) : ?>
+                                                        <?php
+                                                        $discount = (($regular_price - $sale_price) / $regular_price) * 100;
+                                                        $discount_percentage = round($discount);
+                                                        ?>
+                                                        <span class="save">save <?php echo esc_html($discount_percentage); ?>%</span>
+                                                    <?php else : ?>
+                                                        <span class="save">Free</span>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </label>
                                         </div>
                                         <?php
+
+                                        if ($first_item && $radio_count == 5) {
+                                            $first_item = false;
+                                            $radio_count = 0;
+                                            echo '</div></div>';
+                                        }
                                     }
                                 } else {
                                     // If not a variable product, render as a single option
+                                    if ($first_item && $radio_count == 0) {
+                                        echo '<div class="item"><div class="btn-group" role="group">';
+                                    } elseif (!$first_item && $radio_count % 4 == 0) {
+                                        echo '</div></div><div class="item"><div class="btn-group" role="group">';
+                                    }
+
                                     $product_name = $product_post->get_name();
                                     $product_price = $product_post->get_price_html();
                                     $product_url = $product_post->add_to_cart_url();
+
+                                    $radio_count++;
                                     ?>
-                                    <div class="item" data-product-url="<?php echo esc_url($product_url); ?>">
-                                        <div class="btn-group" role="group">
-                                            <div class="btn-radio">
-                                                <input type="radio" value="<?php echo esc_attr($product['product_id']); ?>" class="btn-check" name="product_select" id="btnradio-<?php echo esc_attr($product['product_id']); ?>" autocomplete="off">
-                                                <label class="btn" for="btnradio-<?php echo esc_attr($product['product_id']); ?>">
-                                                    <div class="col left-col">
-                                                        <span class="number"><?php echo esc_html($product_name); ?></span>
-                                                    </div>
-                                                    <div class="col right-col single">
-                                                        <div class="price"><?php echo wp_kses_post($product_price); ?></div>
-                                                    </div>
-                                                </label>
+                                    <div class="btn-radio">
+                                        <input type="radio" value="<?php echo esc_attr($product['product_id']); ?>" class="btn-check" name="product_select" id="btnradio-<?php echo esc_attr($product['product_id']); ?>" autocomplete="off">
+                                        <label class="btn" for="btnradio-<?php echo esc_attr($product['product_id']); ?>">
+                                            <div class="col left-col">
+                                                <span class="number"><?php echo esc_html($product_name); ?></span>
                                             </div>
-                                        </div>
+                                            <div class="col right-col single">
+                                                <div class="price"><?php echo wp_kses_post($product_price); ?></div>
+                                            </div>
+                                        </label>
                                     </div>
                                     <?php
+
+                                    if ($first_item && $radio_count == 5) {
+                                        $first_item = false;
+                                        $radio_count = 0;
+                                        echo '</div></div>';
+                                    }
                                 }
                             } else {
-                                echo 'Invalid Product ID';
+                                echo '';
                             }
                         } else {
-                            echo 'No Product ID';
+                            echo '';
                         }
-                        ?>
-                    <?php endforeach; ?>
-                </div>
-                <button type="button" class="btn btn-black wcl_select_product_btn" id="buy_now_btn"><strong>Buy now</strong></button>
+                    endforeach;
+
+                    // Close the last item and btn-group divs
+                    if ($radio_count > 0) {
+                        echo '</div></div>';
+                    }
+                    ?>
+
+                </div>                
+                <a id="buy_now_btn" class="btn w-100 text-white bg-color rounded-3 p-3 fw-bold animation-cloud-btn" style="height:60px !important;">                    
+                    <span class="cloud-button-content">
+                        Buy Now
+                    </span>
+                    <span class="animation-cloud-btn-inner">
+                        <span class="animation-cloud-parts">
+                            <span class="animation-cloud-part"></span>
+                            <span class="animation-cloud-part"></span>
+                            <span class="animation-cloud-part"></span>
+                            <span class="animation-cloud-part"></span>
+                        </span>
+                    </span>
+                </a>                
             </form>
             <script type="text/javascript">
                 document.addEventListener('DOMContentLoaded', function () {
