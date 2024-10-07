@@ -234,6 +234,30 @@ jQuery(document).ready(async function ($) {
           });
       });
     }, 100);
+
+    $(".kek-owl-carousel").owlCarousel({
+      nav: !0,
+      dots: !1,
+      items: 5,
+      responsive: {
+        0: { items: 1 },
+        576: { items: 2 },
+        767: { items: 3 },
+        1024: { items: 5 },
+      },
+      onInitialized: function () {
+        $(".kek-owl-carousel").removeClass("loading");
+      },
+    });
+    setTimeout(() => {
+      $(".owl-dots").each(function () {
+        $(this)
+          .find(".owl-dot")
+          .each(function (index) {
+            $(this).attr("aria-label", index + 1);
+          });
+      });
+    }, 100);
   }
   let commentsReviewsSwiper = new Swiper(".swiper-reviews-comments", {
     slidesPerView: 3,
