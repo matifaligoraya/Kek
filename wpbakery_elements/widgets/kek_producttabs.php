@@ -92,6 +92,36 @@ class WPBakeryProductTabElement {
         <?php
         return ob_get_clean();
     }
+    function get_prefix_from_name($name, $delimiter = ' ') {
+        $parts = explode($delimiter, $name);
+        print_r($parts);
+        return $parts[1]; // Return the first part as the prefix
+    }
+
+    function get_variation_attributes($attributes,$variation_id) {
+      //  $variation_product = wc_get_product($variation_id);
+     //   $attributes = $variation_product ? $variation_product->get_attributes() : array();
+        $attribute_details = array();
+    
+        foreach ($attributes as $attribute_name => $attribute) {
+            // Get attribute title (name) and its value(s)
+            print_r($attribute_name);   
+            if ($attribute->is_taxonomy()) {
+                $term_names = wp_get_post_terms($variation_id, str_replace('pa_', '', $attribute_name), array('fields' => 'names'));
+                $attribute_title = ucfirst(str_replace('pa_', '', $attribute_name)); // Assuming taxonomy attributes
+            } else {
+                $attribute_title = $attribute_name;
+                $term_names = $attribute->get_options();
+            }
+            
+            $attribute_details[] = array(
+                'name' => $attribute_title,
+                'value' => implode(', ', $term_names)
+            );
+        }
+    
+        return $attribute_details;
+    }
 
     private function render_products($products) {
         ob_start();
@@ -115,11 +145,25 @@ class WPBakeryProductTabElement {
                                 if ($product_post->is_type('variable')) {
                                     $variations = $product_post->get_available_variations();
                                     foreach ($variations as $variation) {
-                                        $variation_id = $variation['variation_id'];
+                                       echo $variation_id = $variation['variation_id'];
                                         $variation_product = wc_get_product($variation_id);
+
+                                      $v_attributes =  $variation_product->get_attributes();
+                                      $attribute_name = "";
+                                      //  $xyz = $this->get_variation_attributes($v_attributes,$variation_id);
+                                       // print_r($xyz);
+                                       foreach ($v_attributes as $att_name => $attribute) {
+                                        // Get attribute title (name) and its value(s)
+                                        $attribute_name = $att_name;
+                                      //  print_r($attribute_name);  
+                                       }
                                         $variation_name = $variation_product->get_name();
                                         $variation_price = $variation_product->get_price_html();
                                         $variation_url = $variation_product->add_to_cart_url();
+                                         $delimiter = "-";
+                                        // Extract the prefix
+                                         //$prefix = $this->get_prefix_from_name($variation_name,$delimiter);
+                                      
                                         ?>
                                         <div class="item" data-product-url="<?php echo esc_url($variation_url); ?>">
                                             <div class="btn-group" role="group">
@@ -127,7 +171,7 @@ class WPBakeryProductTabElement {
                                                     <input type="radio" value="<?php echo esc_attr($variation_id); ?>" class="btn-check" name="product_select" id="btnradio-<?php echo esc_attr($variation_id); ?>" autocomplete="off">
                                                     <label class="btn" for="btnradio-<?php echo esc_attr($variation_id); ?>">
                                                         <div class="col left-col">
-                                                            <span class="number"><?php echo esc_html($variation_name); ?></span>
+                                                            <span class="number"><?php echo esc_html($variation_name); ?> <?=$attribute_name  ?></span>
                                                         </div>
                                                         <div class="col right-col single">
                                                             <div class="price"><?php echo wp_kses_post($variation_price); ?></div>
