@@ -35,9 +35,10 @@ if (!function_exists('kek_styles')) {
 
         wp_enqueue_style('font-icons', get_template_directory_uri() . '/assets/css/font-icons.css');
         wp_enqueue_style('swiper', get_template_directory_uri() . '/assets/css/swiper.css');
-        wp_enqueue_style('custom', get_template_directory_uri() . '/assets/css/custom.css');
+        wp_enqueue_style('custom', get_template_directory_uri() . '/assets/css/custom.css');        
         wp_enqueue_style('subheader', get_template_directory_uri() . '/assets/css/subheader.css');
         wp_enqueue_style('woocommerce', get_template_directory_uri() . '/assets/css/woocommerce.css');
+        wp_enqueue_style('product', get_template_directory_uri() . '/assets/css/product.css');
         
       //  wp_enqueue_style('styles', kek_URI . 'assets/css/styles.css');
         //Load style of customize

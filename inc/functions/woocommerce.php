@@ -1,7 +1,21 @@
 <?php
+/* 
+    Custom Product Tabs and Badge
+    for WooCommerce product edit page
+*/
+
 // Add the custom meta box for product tabs
 add_action('add_meta_boxes', 'kek_add_custom_product_tabs_meta_box');
 function kek_add_custom_product_tabs_meta_box() {
+    add_meta_box(
+        'kek_product_title_badge',
+        __('Product Title Badge', 'kek'),
+        'kek_product_title_badge_callback',
+        'product',
+        'normal',
+        'high'
+    );
+
     add_meta_box(
         'kek_custom_product_tabs',
         __('Product Custom Tabs', 'kek'),
@@ -9,7 +23,30 @@ function kek_add_custom_product_tabs_meta_box() {
         'product',
         'normal',
         'high'
-    );
+    );    
+}
+
+// Callback function to display the product title badge
+function kek_product_title_badge_callback($post) {
+    wp_nonce_field(basename(__FILE__), 'kek_product_title_badge_nonce');
+    $badge_value = get_post_meta($post->ID, '_kek_product_title_badge', true);
+    ?>
+    <p>
+        <label for="kek_product_title_badge"><?php _e('Badge Text', 'kek'); ?></label>
+        <input type="text" name="_kek_product_title_badge" value="<?php echo esc_attr($badge_value); ?>" />
+    </p>
+    <?php
+}
+
+// Save the product title badge
+add_action('save_post', 'kek_save_product_title_badge');
+function kek_save_product_title_badge($post_id) {
+    if (!isset($_POST['kek_product_title_badge_nonce']) || !wp_verify_nonce($_POST['kek_product_title_badge_nonce'], basename(__FILE__))) {
+        return $post_id;
+    }
+
+    $badge_value = isset($_POST['_kek_product_title_badge']) ? sanitize_text_field($_POST['_kek_product_title_badge']) : '';
+    update_post_meta($post_id, '_kek_product_title_badge', $badge_value);
 }
 
 // Callback function to display the custom product tabs
@@ -102,37 +139,116 @@ function kek_display_product_detail_tabs() {
     global $post, $product;
     $custom_tabs = get_post_meta($post->ID, '_kek_custom_product_tabs', true);
 
-    if (!empty($custom_tabs)) {
-        echo '<div class="kek-custom-product-tabs">';
-        foreach ($custom_tabs as $tab_index => $tab) {
-            echo '<div class="kek-custom-tab">';
-            echo '<h3>' . esc_html($tab['title']) . '</h3>';
-            echo '<p>' . esc_html($tab['description']) . '</p>';
+    if (!empty($custom_tabs)) { ?>
 
-            if (!empty($tab['options'])) {
-                echo '<form method="post" action="' . esc_url(wc_get_checkout_url()) . '">'; // Direct to checkout
-                echo '<ul>';
-                foreach ($tab['options'] as $option_index => $option) {
-                    echo '<li>';
-                    echo '<label>';
-                    // Set the value of the radio button as the price
-                    echo '<input type="radio" name="kek_custom_product_option[' . $tab_index . ']" value="' . esc_attr($option['price']) . '" required>';
-                    echo esc_html($option['title']) . ' - $' . esc_html($option['price']);
-                    echo '</label>';
-                    echo '</li>';
-                }                
-                echo '</ul>';
-                // Hidden fields to pass additional data
-                echo '<input type="hidden" name="kek_custom_product_tab" value="' . esc_attr($tab['title']) . '">';
-                echo '<input type="hidden" name="add-to-cart" value="' . esc_attr($product->get_id()) . '">';
-                echo '<button type="submit" class="button kek-buy-now-button">' . __('Buy Now', 'kek') . '</button>';
-                echo '</form>';
-            }
+    <div class="col col-box">
+        <div class="banner-box">
+            <div class="box-head">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <?php if (!empty($custom_tabs)): ?>
+                        <?php foreach ($custom_tabs as $index => $tab): ?>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link <?php echo ($index === 0) ? 'active' : ''; ?>" 
+                                        id="<?php echo sanitize_title($tab['title']); ?>-tab" 
+                                        data-bs-toggle="tab" 
+                                        data-bs-target="#<?php echo sanitize_title($tab['title']); ?>" 
+                                        type="button" 
+                                        role="tab" 
+                                        aria-controls="<?php echo sanitize_title($tab['title']); ?>" 
+                                        aria-selected="<?php echo ($index === 0) ? 'true' : 'false'; ?>">
+                                    <?php echo esc_html($tab['title']); ?>
+                                </button>
+                            </li>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </ul>
+            </div>
+            <div class="tab-content" id="myTabContent">
+                <?php if (!empty($custom_tabs)): ?>
+                    <?php foreach ($custom_tabs as $index => $tab): ?>
+                        <div class="tab-pane fade <?php echo ($index === 0) ? 'show active' : ''; ?>" 
+                            id="<?php echo sanitize_title($tab['title']); ?>" 
+                            role="tabpanel" 
+                            aria-labelledby="<?php echo sanitize_title($tab['title']); ?>-tab">                        
+                            
+                            <?php if(!empty($tab['description'])) { ?>
+                                <div class="grey-title">                        
+                                <p>
+                                    <span dir="ltr">
+                                        <?php echo esc_html($tab['description']); ?>
+                                    </span>
+                                </p>
+                                </div>
+                            <?php } ?>         
+                            <form class="wcl-form">                   
+                                <?php if (!empty($tab['options'])): ?>
+                                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                        <?php foreach ($tab['options'] as $index => $option): ?>
+                                            <?php                          
+                                                $title = $option['title'];                       
+                                                if (isset($title) && !empty($title)) {
+                                                    $title_parts = explode(' ', $title);
+                                                    $pre_title = $title_parts[0] ?? '';
+                                                    $post_title = isset($title_parts[1]) ? implode(' ', array_slice($title_parts, 1)) : ''; // Join remaining parts or an empty string
+                                                } else {                                                    
+                                                    $pre_title = '';
+                                                    $post_title = '';
+                                                }
+                                            ?>                                                                           
+                                            <div class="btn-radio">
+                                                <input type="radio" 
+                                                    value="<?php echo isset($option['value']) ? esc_attr($option['value']) : ''; ?>" 
+                                                    class="btn-check" 
+                                                    name="btnradio" 
+                                                    id="btnradio-<?php echo $index; ?>" 
+                                                    autocomplete="off">
+                                                <label class="btn" for="btnradio-<?php echo $index; ?>">
+                                                    <div class="col left-col">
+                                                        <span class="number">
+                                                            <?php echo $pre_title; ?>
+                                                        </span>                                                         
+                                                        <span><?php echo $post_title; ?></span>                                                       
+                                                    </div>
+                                                    <div class="col right-col">
+                                                        <div class="price">
+                                                            <?php if (isset($option['old_price'])): ?>
+                                                                <span class="old-price"><?php echo esc_html($option['old_price']); ?></span>
+                                                            <?php endif; ?>
+                                                            <?php echo '$' . esc_html($option['price']); ?>
+                                                        </div>
+                                                        <?php if (isset($option['save'])): ?>
+                                                            <span class="save">save <?php echo esc_html($option['save']); ?></span>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                </label>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                <?php endif; ?>
+                            </form>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </div>
+            <div class="box-footer">
+                <ul>
+                    <?php 
+                    $product_short_description = get_the_excerpt($post->ID);
+                    if (!empty($product_short_description)): ?>
+                        <?php                     
+                        $short_description_items = explode("\n", wp_strip_all_tags($product_short_description)); 
+                        ?>
+                        <?php foreach ($short_description_items as $item): ?>
+                            <li><?php echo esc_html(trim($item)); ?></li>
+                        <?php endforeach; ?>                
+                    <?php endif; ?>
+                </ul>
+            </div>
 
-            echo '</div>'; // End of tab
-        }
-        echo '</div>'; // End of custom product tabs
-    }
+        </div>
+    </div>
+        
+    <?php }
 }
 
 add_action('display_product_detail_tabs', 'kek_display_product_detail_tabs');
