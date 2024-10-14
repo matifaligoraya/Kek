@@ -95,6 +95,14 @@
   color: var(--kek-themecolor);
 }
 
+/* CSS Media Queries */
+
+@media (max-width: 767px) {
+  .banner-box .nav-tabs {
+    padding: 0;
+  }
+}
+
 /* Tab Content */
 
 .banner-box form {
@@ -187,6 +195,14 @@
   padding-top: 5px;
 }
 
+.banner-box .btn-group .btn .old-price {
+  text-decoration: line-through;
+  font-weight: 400;
+  color: #4b4b4b;
+  margin-left: 0.1rem;
+  margin-right: 0.5rem;
+}
+
 .banner-box .btn-group .btn .save {
   background-color: var(--kek-themecolor);
   border-top-left-radius: 0.5rem;
@@ -204,11 +220,22 @@
   justify-content: center;
 }
 
+/* Selected Radio Button Styles */
+
 .banner-box .btn-group .btn-check:checked ~ .btn .right-col {
   background-color: var(--kek-themecolor);
 }
 
 .banner-box .btn-group .btn-check:checked ~ .btn .price {
+  color: #fff;
+}
+
+.banner-box .btn-group .btn-check:checked ~ .btn .old-price {
+  color: #fff;
+}
+
+.banner-box .btn-group .btn-check:checked ~ .btn .save {
+  background-color: black;
   color: #fff;
 }
 
@@ -280,4 +307,39 @@
   top: 0.35rem;
   left: 0.35rem;
   opacity: 1;
+}
+
+/* CSS Media Queries */
+
+@media (max-width: 1439px) {
+  .banner-box .box-footer {
+    padding: 1.9rem 2.5rem 1rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .banner-box .box-footer li,
+  .banner-box .box-footer li:nth-child(2n) {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+@media (max-width: 1439px) {
+  .banner-box .box-footer li {
+    flex: 0 0 56%;
+    max-width: 56%;
+  }
+}
+@media (max-width: 1599px) {
+  .banner-box .box-footer li {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .banner-box .btn-group .btn-radio {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
 }

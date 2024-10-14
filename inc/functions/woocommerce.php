@@ -61,37 +61,60 @@ function kek_custom_product_tabs_callback($post) {
             if (!empty($stored_meta)) {
                 foreach ($stored_meta as $index => $tab) {
                     ?>
-                    <div class="kek_custom_tab">
-                        <h3><?php _e('Tab', 'kek'); ?> <?php echo ($index + 1); ?></h3>
-                        <p>
-                            <label for="kek_custom_product_tabs[<?php echo $index; ?>][title]"><?php _e('Tab Title', 'kek'); ?></label>
-                            <input type="text" name="kek_custom_product_tabs[<?php echo $index; ?>][title]" value="<?php echo esc_attr($tab['title']); ?>" />
-                        </p>
-                        <p>
-                            <label for="kek_custom_product_tabs[<?php echo $index; ?>][description]"><?php _e('Tab Description', 'kek'); ?></label>
-                            <textarea name="kek_custom_product_tabs[<?php echo $index; ?>][description]"><?php echo esc_html($tab['description']); ?></textarea>
-                        </p>
-                        <p>
-                            <label><?php _e('Options', 'kek'); ?></label>
-                            <ul>
+                    <div class="kek_custom_tab mb-4">
+                        <h3 class="h5 mt-3 mb-3"><?php _e('Tab', 'kek'); ?> <?php echo ($index + 1); ?></h3>
+                        
+                        <div class="mb-3">
+                            <label for="kek_custom_product_tabs[<?php echo $index; ?>][title]" class="form-label"><?php _e('Tab Title', 'kek'); ?></label>
+                            <input type="text" name="kek_custom_product_tabs[<?php echo $index; ?>][title]" value="<?php echo esc_attr($tab['title']); ?>" class="form-control" />
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="kek_custom_product_tabs[<?php echo $index; ?>][tab_title_badge]" class="form-label"><?php _e('Tab Title Badge', 'kek'); ?></label>
+                            <input type="text" name="kek_custom_product_tabs[<?php echo $index; ?>][tab_title_badge]" value="<?php echo esc_attr($tab['tab_title_badge']); ?>" class="form-control" />
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="kek_custom_product_tabs[<?php echo $index; ?>][description]" class="form-label"><?php _e('Tab Description', 'kek'); ?></label>
+                            <textarea id="kek_custom_product_tabs[<?php echo $index; ?>][description]" name="kek_custom_product_tabs[<?php echo $index; ?>][description]" class="form-control tinymce-editor"><?php echo esc_html($tab['description']); ?></textarea>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label"><?php _e('Options', 'kek'); ?></label>
+                            <ul class="list-unstyled">
                                 <?php foreach ($tab['options'] as $option_index => $option) { ?>
-                                    <li>
-                                        <input type="text" name="kek_custom_product_tabs[<?php echo $index; ?>][options][<?php echo $option_index; ?>][title]" value="<?php echo esc_attr($option['title']); ?>" placeholder="<?php _e('Option Title', 'kek'); ?>" />
-                                        <input type="number" name="kek_custom_product_tabs[<?php echo $index; ?>][options][<?php echo $option_index; ?>][price]" value="<?php echo esc_attr($option['price']); ?>" placeholder="<?php _e('Option Price', 'kek'); ?>" step="0.01" />
-                                        <a href="#" class="kek_remove_option"><?php _e('Remove', 'kek'); ?></a>
+                                    <li class="list-group-item d-flex align-items-start mb-3">
+                                        <div class="input-group me-2 flex-grow-1">
+                                            <input type="text" name="kek_custom_product_tabs[<?php echo $index; ?>][options][<?php echo $option_index; ?>][title]" value="<?php echo esc_attr($option['title']); ?>" placeholder="<?php _e('Option Title', 'kek'); ?>" class="form-control" />
+                                        </div>
+                                        <div class="input-group me-2 flex-grow-1">
+                                            <input type="number" name="kek_custom_product_tabs[<?php echo $index; ?>][options][<?php echo $option_index; ?>][old_price]" value="<?php echo esc_attr($option['old_price']); ?>" placeholder="<?php _e('Old Price', 'kek'); ?>" step="0.01" class="form-control" />
+                                        </div>
+                                        <div class="input-group me-2 flex-grow-1">
+                                            <input type="number" name="kek_custom_product_tabs[<?php echo $index; ?>][options][<?php echo $option_index; ?>][price]" value="<?php echo esc_attr($option['price']); ?>" placeholder="<?php _e('New Price', 'kek'); ?>" step="0.01" class="form-control" />
+                                        </div>
+                                        <div class="input-group me-2 flex-grow-1">
+                                            <input type="text" name="kek_custom_product_tabs[<?php echo $index; ?>][options][<?php echo $option_index; ?>][badge]" value="<?php echo esc_attr($option['badge']); ?>" placeholder="<?php _e('Badge', 'kek'); ?>" class="form-control" />
+                                        </div>
+                                        <button type="button" class="btn btn-danger btn-sm kek_remove_option">
+                                            <?php _e('Remove', 'kek'); ?>
+                                        </button>
                                     </li>
                                 <?php } ?>
                             </ul>
-                            <button class="kek_add_option button"><?php _e('Add Option', 'kek'); ?></button>
-                        </p>
-                        <a href="#" class="kek_remove_tab"><?php _e('Remove Tab', 'kek'); ?></a>
+                            <button class="kek_add_option btn btn-primary"><?php _e('Add Option', 'kek'); ?></button>
+                        </div>
+
+                        <div class="text-end">
+                            <a href="#" class="kek_remove_tab btn btn-danger"><?php _e('Remove Tab', 'kek'); ?></a>
+                        </div>
                     </div>
                     <?php
                 }
             }
             ?>
         </div>
-        <button id="kek_add_tab" class="button"><?php _e('Add Tab', 'kek'); ?></button>
+        <button id="kek_add_tab" class="btn btn-success"><?php _e('Add Tab', 'kek'); ?></button>
     </div>
 
     <?php
@@ -111,6 +134,7 @@ function kek_save_custom_product_tabs($post_id) {
         foreach ($tabs as $tab) {
             $new_tab = array(
                 'title' => sanitize_text_field($tab['title']),
+                'tab_title_badge' => sanitize_text_field($tab['tab_title_badge']),
                 'description' => sanitize_textarea_field($tab['description']),
                 'options' => array()
             );
@@ -119,7 +143,9 @@ function kek_save_custom_product_tabs($post_id) {
                 foreach ($tab['options'] as $option) {
                     $new_tab['options'][] = array(
                         'title' => sanitize_text_field($option['title']),
-                        'price' => floatval($option['price'])
+                        'old_price' => floatval($option['old_price']),
+                        'price' => floatval($option['price']),
+                        'badge' => sanitize_text_field($option['badge'])
                     );
                 }
             }
@@ -181,28 +207,35 @@ function kek_display_product_detail_tabs() {
                                 </div>
                             <?php } ?>         
                             <form class="wcl-form">                   
-                                <?php if (!empty($tab['options'])): ?>
+                            <?php if (!empty($tab['options'])): ?>
+                                <?php 
+                                    $totalOptions = count($tab['options']);
+                                    $chunkedOptions = array_chunk($tab['options'], 5);
+                                ?>
+                                <?php foreach ($chunkedOptions as $chunkIndex => $chunk): ?>                                    
                                     <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                                        <?php foreach ($tab['options'] as $index => $option): ?>
-                                            <?php                          
-                                                $title = $option['title'];                       
-                                                if (isset($title) && !empty($title)) {
-                                                    $title_parts = explode(' ', $title);
-                                                    $pre_title = $title_parts[0] ?? '';
-                                                    $post_title = isset($title_parts[1]) ? implode(' ', array_slice($title_parts, 1)) : ''; // Join remaining parts or an empty string
-                                                } else {                                                    
-                                                    $pre_title = '';
-                                                    $post_title = '';
-                                                }
-                                            ?>                                                                           
-                                            <div class="btn-radio">
+                                        <?php foreach ($chunk as $index => $option): ?>
+                                            <?php 
+                                            $title = $option['title'];                       
+                                            if (isset($title) && !empty($title)) {
+                                                $title_parts = explode(' ', $title);
+                                                $pre_title = $title_parts[0] ?? '';
+                                                $post_title = isset($title_parts[1]) ? implode(' ', array_slice($title_parts, 1)) : ''; 
+                                            } else {                                                    
+                                                $pre_title = '';
+                                                $post_title = '';
+                                            }
+                                            
+                                            $isBigButton = (count($chunk) === 5 && $index === 0) ? ' wcl-big-btn-radio' : '';
+                                            ?>
+                                            <div class="btn-radio<?php echo $isBigButton; ?>">
                                                 <input type="radio" 
                                                     value="<?php echo isset($option['value']) ? esc_attr($option['value']) : ''; ?>" 
                                                     class="btn-check" 
                                                     name="btnradio" 
-                                                    id="btnradio-<?php echo $index; ?>" 
+                                                    id="btnradio-<?php echo $chunkIndex . '-' . $index; ?>" 
                                                     autocomplete="off">
-                                                <label class="btn" for="btnradio-<?php echo $index; ?>">
+                                                <label class="btn" for="btnradio-<?php echo $chunkIndex . '-' . $index; ?>">
                                                     <div class="col left-col">
                                                         <span class="number">
                                                             <?php echo $pre_title; ?>
@@ -210,21 +243,24 @@ function kek_display_product_detail_tabs() {
                                                         <span><?php echo $post_title; ?></span>                                                       
                                                     </div>
                                                     <div class="col right-col">
-                                                        <div class="price">
+                                                        <div class="price">                                                            
                                                             <?php if (isset($option['old_price'])): ?>
-                                                                <span class="old-price"><?php echo esc_html($option['old_price']); ?></span>
+                                                                <span class="old-price">
+                                                                    <?php echo get_woocommerce_currency_symbol() . ' ' . esc_html($option['old_price']); ?>
+                                                                </span>
                                                             <?php endif; ?>
-                                                            <?php echo '$' . esc_html($option['price']); ?>
+                                                            <?php echo get_woocommerce_currency_symbol() . ' ' . esc_html($option['price']); ?>
                                                         </div>
-                                                        <?php if (isset($option['save'])): ?>
-                                                            <span class="save">save <?php echo esc_html($option['save']); ?></span>
+                                                        <?php if (isset($option['badge'])): ?>
+                                                            <span class="save"><?php echo esc_html($option['badge']); ?></span>
                                                         <?php endif; ?>
                                                     </div>
                                                 </label>
                                             </div>
                                         <?php endforeach; ?>
-                                    </div>
-                                <?php endif; ?>
+                                    </div>                                    
+                                <?php endforeach; ?>
+                            <?php endif; ?>
                             </form>
                         </div>
                     <?php endforeach; ?>
@@ -258,6 +294,13 @@ function kek_custom_product_tabs_admin_script() {
     ?>
     <script type="text/javascript">
         jQuery(document).ready(function($) {
+            tinymce.init({
+                selector: '.tinymce-editor',
+                menubar: false,
+                toolbar: 'bold italic | alignleft aligncenter alignright | bullist numlist outdent indent',
+                branding: false
+            });
+
             function updateTabNames() {
                 $('#kek_custom_tabs .kek_custom_tab').each(function(index) {
                     $(this).find('h3').text('<?php _e('Tab', 'kek'); ?> ' + (index + 1));
@@ -268,18 +311,48 @@ function kek_custom_product_tabs_admin_script() {
                 e.preventDefault();
 
                 var tabCount = $('#kek_custom_tabs .kek_custom_tab').length;
-                var newTab = $('<div class="kek_custom_tab">' +
-                    '<h3><?php _e('Tab', 'kek'); ?> ' + (tabCount + 1) + '</h3>' +
-                    '<p><label><?php _e('Tab Title', 'kek'); ?></label>' +
-                    '<input type="text" name="kek_custom_product_tabs[' + tabCount + '][title]" /></p>' +
-                    '<p><label><?php _e('Tab Description', 'kek'); ?></label>' +
-                    '<textarea name="kek_custom_product_tabs[' + tabCount + '][description]"></textarea></p>' +
-                    '<p><label><?php _e('Options', 'kek'); ?></label>' +
-                    '<ul></ul><button class="kek_add_option button"><?php _e('Add Option', 'kek'); ?></button></p>' +
-                    '<a href="#" class="kek_remove_tab"><?php _e('Remove Tab', 'kek'); ?></a>' +
-                    '</div>');
+                var newTab = $('<div class="kek_custom_tab mb-4">' +
+                    '<h3 class="h5 mt-3 mb-3"><?php _e("Tab", "kek"); ?> ' + (tabCount + 1) + '</h3>' +
 
-                $('#kek_custom_tabs').append(newTab);
+                    // Tab Title
+                    '<div class="mb-3">' +
+                        '<label for="tab-title-' + tabCount + '" class="form-label"><?php _e("Tab Title", "kek"); ?></label>' +
+                        '<input type="text" id="tab-title-' + tabCount + '" name="kek_custom_product_tabs[' + tabCount + '][title]" class="form-control" />' +
+                    '</div>' +
+
+                    // Tab Title
+                    '<div class="mb-3">' +
+                        '<label for="tab-title-badge-' + tabCount + '" class="form-label"><?php _e("Tab Title Badge", "kek"); ?></label>' +
+                        '<input type="text" id="tab-title-badge-' + tabCount + '" name="kek_custom_product_tabs[' + tabCount + '][tab_title_badge]" class="form-control" />' +
+                    '</div>' +
+
+                    // Tab Description with HTML editor
+                    '<div class="mb-3">' +
+                        '<label for="tab-description-' + tabCount + '" class="form-label"><?php _e("Tab Description", "kek"); ?></label>' +
+                        '<textarea id="tab-description-' + tabCount + '" name="kek_custom_product_tabs[' + tabCount + '][description]" class="form-control tinymce-editor"></textarea>' +
+                    '</div>' +
+
+                    // Options Section
+                    '<div class="mb-3">' +
+                        '<label class="form-label"><?php _e("Options", "kek"); ?></label>' +
+                        '<ul class="list-unstyled"></ul>' +
+                        '<button type="button" class="kek_add_option btn btn-primary"><?php _e("Add Option", "kek"); ?></button>' +
+                    '</div>' +
+
+                    // Remove Tab Button
+                    '<div class="text-end">' +
+                        '<a href="#" class="kek_remove_tab btn btn-danger"><?php _e("Remove Tab", "kek"); ?></a>' +
+                    '</div>' +
+                '</div>');
+
+                // After appending the new tab, initialize TinyMCE editor
+                $('#kek_custom_tabs_container').append(newTab);  
+                tinymce.init({
+                    selector: '.tinymce-editor',
+                    menubar: false,
+                    toolbar: 'bold italic | alignleft aligncenter alignright | bullist numlist outdent indent',
+                    branding: false
+                });                          
                 updateTabNames();
             });
 
@@ -288,14 +361,38 @@ function kek_custom_product_tabs_admin_script() {
 
                 var tab = $(this).closest('.kek_custom_tab');
                 var optionCount = tab.find('ul li').length;
-                var newOption = $('<li>' +
-                    '<input type="text" name="kek_custom_product_tabs[' + tab.index() + '][options][' + optionCount + '][title]" placeholder="<?php _e('Option Title', 'kek'); ?>" />' +
-                    '<input type="number" name="kek_custom_product_tabs[' + tab.index() + '][options][' + optionCount + '][price]" placeholder="<?php _e('Option Price', 'kek'); ?>" step="0.01" />' +
-                    '<a href="#" class="kek_remove_option"><?php _e('Remove', 'kek'); ?></a>' +
-                    '</li>');
+
+                var newOption = $(`
+                    <li class="list-group-item d-flex align-items-start mb-3">
+                        <div class="input-group me-2 flex-grow-1">
+                            <input type="text" class="form-control" 
+                                name="kek_custom_product_tabs[${tab.index()}][options][${optionCount}][title]" 
+                                placeholder="<?php _e('Option Title', 'kek'); ?>" />
+                        </div>
+                        <div class="input-group me-2 flex-grow-1">
+                            <input type="number" class="form-control" 
+                                name="kek_custom_product_tabs[${tab.index()}][options][${optionCount}][old_price]" 
+                                placeholder="<?php _e('Old Price', 'kek'); ?>" step="0.01" />
+                        </div>
+                        <div class="input-group me-2 flex-grow-1">
+                            <input type="number" class="form-control" 
+                                name="kek_custom_product_tabs[${tab.index()}][options][${optionCount}][price]" 
+                                placeholder="<?php _e('New Price', 'kek'); ?>" step="0.01" />
+                        </div>
+                        <div class="input-group me-2 flex-grow-1">
+                            <input type="text" class="form-control" 
+                                name="kek_custom_product_tabs[${tab.index()}][options][${optionCount}][badge]" 
+                                placeholder="<?php _e('Badge', 'kek'); ?>" />
+                        </div>
+                        <button type="button" class="btn btn-danger btn-sm kek_remove_option">
+                            <?php _e('Remove', 'kek'); ?>
+                        </button>
+                    </li>
+                `);
 
                 tab.find('ul').append(newOption);
             });
+
 
             $(document).on('click', '.kek_remove_tab', function(e) {
                 e.preventDefault();
