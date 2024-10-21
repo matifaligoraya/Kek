@@ -20,33 +20,36 @@ if ( post_password_required() ) {
 ?>
 
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-content">
+                <h1 class="product_title">
+                    <?php
+                    the_title();
+                    if ($badge_text) {
+                        echo ' <span class="product-title-badge">' . esc_html($badge_text) . '</span>';
+                    }
+                    ?>
+                </h1>
 
-    <div class="row">
-		<div class="col-md-6 col-content">
-			<h1 class="product_title">
-				<?php
-				the_title();
-				if ($badge_text) {
-					echo ' <span class="product-title-badge">' . esc_html($badge_text) . '</span>';
-				}
-				?>
-			</h1>
+                <div class="product-description">
+                    <?php echo apply_filters('the_content', $product->get_description()); ?>
+                </div>
+            </div>
 
-			<div class="product-description">
-				<?php echo apply_filters('the_content', $product->get_description()); ?>
-			</div>
-		</div>
-
-        <!-- Right Column: Custom Tabs with Options -->
-        <div class="col-md-6">
-            <div class="product-tabs">
-                <?php 
-                // Display the custom product tabs created
-                do_action('display_product_detail_tabs'); 
-                ?>
+            <!-- Right Column: Custom Tabs with Options -->
+            <div class="col-md-6">
+                <div class="product-tabs">
+                    <?php 
+                    // Display the custom product tabs created
+                    do_action('display_product_detail_tabs'); 
+                    ?>
+                </div>
             </div>
         </div>
     </div>
+    
+    <?php do_action('display_all_in_one_block'); ?>
 
     <?php
     /**

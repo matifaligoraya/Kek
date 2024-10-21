@@ -23,7 +23,17 @@ function kek_add_custom_product_tabs_meta_box() {
         'product',
         'normal',
         'high'
-    );    
+    );
+
+    // Add meta box for all-time package
+    add_meta_box(
+        'kek_all_time_package',
+        __('All-Time Package', 'kek'),
+        'kek_all_time_package_callback',
+        'product',
+        'normal',
+        'high'
+    );
 }
 
 // Callback function to display the product title badge
@@ -190,23 +200,23 @@ function kek_display_product_detail_tabs() {
                 </ul>
             </div>
             <div class="tab-content" id="myTabContent">
-                <?php if (!empty($custom_tabs)): ?>
-                    <?php foreach ($custom_tabs as $index => $tab): ?>
-                        <div class="tab-pane fade <?php echo ($index === 0) ? 'show active' : ''; ?>" 
-                            id="<?php echo sanitize_title($tab['title']); ?>" 
-                            role="tabpanel" 
-                            aria-labelledby="<?php echo sanitize_title($tab['title']); ?>-tab">                        
-                            
-                            <?php if(!empty($tab['description'])) { ?>
-                                <div class="grey-title">                        
+            <?php if (!empty($custom_tabs)): ?>
+                <?php foreach ($custom_tabs as $index => $tab): ?>
+                    <div class="tab-pane fade <?php echo ($index === 0) ? 'show active' : ''; ?>" 
+                        id="<?php echo sanitize_title($tab['title']); ?>" 
+                        role="tabpanel" 
+                        aria-labelledby="<?php echo sanitize_title($tab['title']); ?>-tab">                        
+                        
+                        <?php if (!empty($tab['description'])): ?>
+                            <div class="grey-title">                        
                                 <p>
                                     <span dir="ltr">
                                         <?php echo esc_html($tab['description']); ?>
                                     </span>
                                 </p>
-                                </div>
-                            <?php } ?>         
-                            <form class="wcl-form">                   
+                            </div>
+                        <?php endif; ?>         
+                        <form class="wcl-form">                   
                             <?php if (!empty($tab['options'])): ?>
                                 <?php 
                                     $totalOptions = count($tab['options']);
@@ -227,29 +237,33 @@ function kek_display_product_detail_tabs() {
                                             }
                                             
                                             $isBigButton = (count($chunk) === 5 && $index === 0) ? ' wcl-big-btn-radio' : '';
+                                            
+                                            // Create a unique ID for the radio buttons
+                                            $unique_id = "btnradio-" . sanitize_title($tab['title']) . "-{$index}-{$chunkIndex}";
                                             ?>
                                             <div class="btn-radio<?php echo $isBigButton; ?>">
                                                 <input type="radio" 
                                                     value="<?php echo isset($option['value']) ? esc_attr($option['value']) : ''; ?>" 
                                                     class="btn-check" 
-                                                    name="btnradio" 
-                                                    id="btnradio-<?php echo $chunkIndex . '-' . $index; ?>" 
-                                                    autocomplete="off">
-                                                <label class="btn" for="btnradio-<?php echo $chunkIndex . '-' . $index; ?>">
+                                                    id="<?php echo $unique_id; ?>"
+                                                    name="single_option">
+                                                <label class="btn" for="<?php echo $unique_id; ?>">
                                                     <div class="col left-col">
                                                         <span class="number">
                                                             <?php echo $pre_title; ?>
-                                                        </span>                                                         
+                                                        </span>
                                                         <span><?php echo $post_title; ?></span>                                                       
                                                     </div>
                                                     <div class="col right-col">
                                                         <div class="price">                                                            
                                                             <?php if (isset($option['old_price'])): ?>
                                                                 <span class="old-price">
-                                                                    <?php echo get_woocommerce_currency_symbol() . ' ' . esc_html($option['old_price']); ?>
+                                                                    <?php echo get_woocommerce_currency_symbol() . '' . esc_html($option['old_price']); ?>
                                                                 </span>
+                                                            <?php endif; ?>                                                            
+                                                            <?php if ($option['price'] > 0): ?>
+                                                                <?php echo get_woocommerce_currency_symbol() . '' . esc_html($option['price']); ?>
                                                             <?php endif; ?>
-                                                            <?php echo get_woocommerce_currency_symbol() . ' ' . esc_html($option['price']); ?>
                                                         </div>
                                                         <?php if (isset($option['badge'])): ?>
                                                             <span class="save"><?php echo esc_html($option['badge']); ?></span>
@@ -260,12 +274,18 @@ function kek_display_product_detail_tabs() {
                                         <?php endforeach; ?>
                                     </div>                                    
                                 <?php endforeach; ?>
+                                <button type="button" class="kek-action-btn btn-black w-100 mt-5 wcl_select_product_btn">
+                                    <span class="btn-circle"></span>
+                                    <span class="btn-circle"></span>
+                                    <span class="btn-circle"></span>
+                                    <strong>Buy now </strong>
+                                </button>                                
                             <?php endif; ?>
-                            </form>
-                        </div>
-                    <?php endforeach; ?>
-                <?php endif; ?>
-            </div>
+                        </form>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
             <div class="box-footer">
                 <ul>
                     <?php 
@@ -448,5 +468,206 @@ function kek_save_custom_product_meta($item, $cart_item_key, $values, $order) {
 }
 add_action('woocommerce_checkout_create_order_line_item', 'kek_save_custom_product_meta', 10, 4);
 
+
+/* All-in one option settings */
+
+function kek_all_time_package_callback($post) {
+    // Retrieve saved values
+    $is_all_time_package = get_post_meta($post->ID, '_kek_all_time_package', true);
+    $package_title = get_post_meta($post->ID, '_kek_package_title', true);
+    $package_price = get_post_meta($post->ID, '_kek_package_price', true);
+    $package_description = get_post_meta($post->ID, '_kek_package_description', true);
+    $package_details = get_post_meta($post->ID, '_kek_package_details', true); // Array of details
+
+    // Use nonce for verification
+    wp_nonce_field('kek_save_all_time_package', 'kek_all_time_package_nonce');
+
+    ?>
+    <p>
+        <label for="kek_all_time_package">
+            <input type="checkbox" id="kek_all_time_package" name="kek_all_time_package" value="yes" <?php checked($is_all_time_package, 'yes'); ?> />
+            <?php _e('Enable All-Time Package', 'kek'); ?>
+        </label>
+    </p>
+
+    <p>
+        <label for="kek_package_title"><?php _e('Title', 'kek'); ?></label>
+        <input type="text" id="kek_package_title" name="kek_package_title" value="<?php echo esc_attr($package_title); ?>" style="width: 100%;" />
+    </p>
+
+    <p>
+        <label for="kek_package_price"><?php _e('Price', 'kek'); ?></label>
+        <input type="number" id="kek_package_price" name="kek_package_price" value="<?php echo esc_attr($package_price); ?>" style="width: 100%;" />
+    </p>
+
+    <p>
+        <label for="kek_package_description"><?php _e('Description', 'kek'); ?></label>
+        <textarea id="kek_package_description" name="kek_package_description" style="width: 100%;" rows="4"><?php echo esc_textarea($package_description); ?></textarea>
+    </p>
+
+    <hr>
+
+    <h4><?php _e('Package Features', 'kek'); ?></h4>
+    <p>
+        <button type="button" class="btn btn-success" id="add-package-detail">
+            <?php _e('Add Package Detail', 'kek'); ?>
+        </button>
+    </p>
+    <div id="package-details-container">
+        <?php
+        if (!empty($package_details)) {
+            foreach ($package_details as $index => $detail) {
+                ?>
+                <div class="package-detail">
+                    <input type="text" name="package_details[<?php echo $index; ?>][title]" value="<?php echo esc_attr($detail['title']); ?>" placeholder="Number" style="width: 20%;" />
+                    <input type="text" name="package_details[<?php echo $index; ?>][description]" value="<?php echo esc_attr($detail['description']); ?>" placeholder="Description" style="width: 75%;" />
+                    <button type="button" class="btn btn-danger mt-3 mb-2 remove-package-detail">Remove</button>
+                </div>
+                <?php
+            }
+        }
+        ?>
+    </div>    
+
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            var detailIndex = <?php echo !empty($package_details) ? count($package_details) : 0; ?>;
+
+            // Add new detail row
+            $('#add-package-detail').on('click', function() {
+                $('#package-details-container').append(
+                    '<div class="package-detail">' +
+                        '<input type="text" name="package_details[' + detailIndex + '][title]" placeholder="Title" style="width: 20%; margin-right: 5px;" />' +
+                        '<input type="text" name="package_details[' + detailIndex + '][description]" placeholder="Description" style="width: 75%;" />' +
+                        '<button type="button" class="btn btn-danger mt-3 mb-2 remove-package-detail">Remove</button>' +
+                    '</div>'
+                );
+                detailIndex++;
+            });
+
+            // Remove detail row
+            $(document).on('click', '.remove-package-detail', function() {
+                $(this).closest('.package-detail').remove();
+            });
+        });
+    </script>
+
+    <?php
+}
+
+// Save the custom fields data
+add_action('save_post', 'kek_save_all_time_package_data');
+function kek_save_all_time_package_data($post_id) {
+    // Check if nonce is set and verify
+    if (!isset($_POST['kek_all_time_package_nonce']) || !wp_verify_nonce($_POST['kek_all_time_package_nonce'], 'kek_save_all_time_package')) {
+        return;
+    }
+
+    // Save the checkbox value
+    $is_all_time_package = isset($_POST['kek_all_time_package']) ? 'yes' : 'no';
+    update_post_meta($post_id, '_kek_all_time_package', $is_all_time_package);
+
+    // Save the title, price, description
+    if (isset($_POST['kek_package_title'])) {
+        update_post_meta($post_id, '_kek_package_title', sanitize_text_field($_POST['kek_package_title']));
+    }
+
+    if (isset($_POST['kek_package_price'])) {
+        update_post_meta($post_id, '_kek_package_price', sanitize_text_field($_POST['kek_package_price']));
+    }
+
+    if (isset($_POST['kek_package_description'])) {
+        update_post_meta($post_id, '_kek_package_description', wp_kses_post($_POST['kek_package_description']));
+    }
+
+    // Save the repeatable package details
+    if (isset($_POST['package_details'])) {
+        $package_details = array();
+        foreach ($_POST['package_details'] as $detail) {
+            $package_details[] = array(
+                'title' => sanitize_text_field($detail['title']),
+                'description'   => sanitize_text_field($detail['description'])
+            );
+        }
+        update_post_meta($post_id, '_kek_package_details', $package_details);
+    }
+}
+
+function kek_display_all_in_one_block() {
+    global $post, $product;
+    $is_all_time_package = get_post_meta($post->ID, '_kek_all_time_package', true);
+    $title = get_post_meta($post->ID, '_kek_package_title', true);
+    $price = get_post_meta($post->ID, '_kek_package_price', true);
+    $description = get_post_meta($post->ID, '_kek_package_description', true);
+    $package_details = get_post_meta($post->ID, '_kek_package_details', true);
+    
+    if(isset($is_all_time_package) && $is_all_time_package == 'yes'): ?>
+    <section class="section-buy wcl-package-section">
+        <div class="container">
+            <div class="content-wrap">
+                <div class="row">
+                <div class="col col-12 col-lg-6">                    
+                    <h2 class="all-in-one-title">All In One YouTube Subscribers Campaign</h2>
+                    <div class="button-wrap">
+                    <div class="label-red"> $68.00 </div>
+                        <button type="button" class="kek-action-btn btn-black wcl_select_product_btn">
+                            <span class="btn-circle"></span>
+                            <span class="btn-circle"></span>
+                            <span class="btn-circle"></span>
+                            <strong>Buy now </strong>
+                        </button> 
+                    </div>
+                    <div class="data-description">
+                    <p data-pm-slice="1 1 []">Buy real YouTube subscribers from Views4You with an exclusive package, including <a href="https://views4you.com/buy-youtube-views/">buy YouTube Views</a> service to add more engagement to your videos. Also, you can <a href="https://views4you.com/buy-youtube-likes/">buy YouTube likes</a> service to increase your channel’s performance instantly. After your purchase, you can benefit from customer service at all hours of the day and night. </p>
+                    </div>
+                </div>
+                <div class="col col-12 col-lg-6">
+                    <div class="infoboxes">
+                    <div class="col col-12 col-md-6">
+                        <div class="infobox">
+                        <div class="number"> 1000 </div>
+                        <p> New active <br> subscribers at once </p>
+                        </div>
+                    </div>
+                    <div class="col col-12 col-md-6">
+                        <div class="infobox">
+                        <div class="number"> 5000 </div>
+                        <p> Views for <br> chosen video </p>
+                        </div>
+                    </div>
+                    <div class="col col-12 col-md-6">
+                        <div class="infobox">
+                        <div class="number"> 500 </div>
+                        <p> Likes for <br> chosen video </p>
+                        </div>
+                    </div>
+                    <div class="col col-12 col-md-6">
+                        <div class="infobox">
+                        <div class="number"> 24/7 </div>
+                        <p> Customers <br> Support </p>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </div>
+                <div class="lines">
+                <div class="line wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.75s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.75s; animation-name: fadeInLeft;">
+                    <span></span>
+                </div>
+                <div class="line wow fadeInRight" data-wow-duration="1s" data-wow-delay="1.25s" style="visibility: visible; animation-duration: 1s; animation-delay: 1.25s; animation-name: fadeInRight;">
+                    <span></span>
+                </div>
+                <div class="line wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.75s" style="visibility: visible; animation-duration: 1s; animation-delay: 0.75s; animation-name: fadeInLeft;">
+                    <span></span>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <?php endif;
+}
+
+add_action('display_all_in_one_block', 'kek_display_all_in_one_block');
 
 ?>
