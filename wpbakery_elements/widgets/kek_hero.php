@@ -366,7 +366,7 @@ class WPBakeryKekHeroElement {
 }
 .kek-hero {
   width: 100%;
-  min-height: calc(100vh - 152px);
+  min-height: calc(100vh - 112px);
  
   display: flex;
   align-items: center;
