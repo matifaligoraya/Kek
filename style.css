@@ -14045,7 +14045,7 @@ fieldset:disabled .btn {
   --kek-topbar-bg: var(--kek-golden-100);
   --kek-topbar-color: var(--kek-contrast-0);
   --kek-topbar-border-color: rgba(var(--kek-contrast-rgb), 0.1);
-  --kek-topbar-social-icon-color: var(--kek-contrast-600);
+  --kek-topbar-social-icon-color: var(--kek-contrast-0);
   --kek-header-bg: var(--kek-contrast-0);
   --kek-header-sticky-bg: var(--kek-header-bg);
   --kek-side-header-bg: var(--kek-contrast-0);
