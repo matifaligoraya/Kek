@@ -14042,8 +14042,8 @@ fieldset:disabled .btn {
   --kek-invert-contrast-rgb: 255, 255, 255;
   --kek-contrast-bg: #fff;
   --kek-contrast-bg-offset: #f8f9fa;
-  --kek-topbar-bg: var(--kek-golden-100);
-  --kek-topbar-color: var(--kek-contrast-0);
+  --kek-topbar-bg: var(--kek-golden-40);
+  --kek-topbar-color: var(--kek-black);
   --kek-topbar-border-color: rgba(var(--kek-contrast-rgb), 0.1);
   --kek-topbar-social-icon-color: var(--kek-contrast-0);
   --kek-header-bg: var(--kek-contrast-0);
@@ -17637,7 +17637,7 @@ img.lazy:not([src]) {
   --kek-topbar-font-size: 0.875rem;
   --kek-topbar-font-weight: 500;
   --kek-topbar-font-transform: none;
-  --kek-topbar-color: var(--kek-contrast-0);
+  --kek-topbar-color: var(--kek-black);
   --kek-topbar-border-size: 1px;
   --kek-topbar-border-color: rgba(var(--kek-contrast-rgb), 0.1);
   --kek-topbar-social-icon-color: var(--kek-contrast-600);

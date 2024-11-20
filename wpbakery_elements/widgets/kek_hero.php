@@ -406,7 +406,7 @@ class WPBakeryKekHeroElement {
 
 .kek-hero .content .why-box {
   color: var(--kek-contrast-300);
-  background: var(--kek-themecolor);
+  background: var(--kek-golden-50);
   padding: 30px;
   border-radius: 4px;
 }
@@ -479,8 +479,7 @@ img.box-image {
 }
 section.kek-hero {
   background-color: transparent;
-  padding-top: 0px !important;
-  margin-top: 0px;
+ 
 }
             </style>
         <?php
