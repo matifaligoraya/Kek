@@ -13786,6 +13786,7 @@ fieldset:disabled .btn {
   }
 }
 :root {
+  --surface-color: #fff;
   --kek-themecolor: #1db954;
   --kek-themecolor-rgb: 29, 185, 84;
   --bs-link-color: var(--kek-themecolor);
@@ -14013,6 +14014,14 @@ fieldset:disabled .btn {
   --kek-contrast-700: #495057;
   --kek-contrast-800: #343a40;
   --kek-contrast-900: #212529;
+  --kek-golden-100: #d18e3b;
+  --kek-golden-10: #faf3ea;
+  --kek-golden-20:#f0dbc1;
+  --kek-golden-30:#e7c398;
+
+   --kek-golden-40: #ddac6e;
+   --kek-golden-50:#d39445;
+ 
   --kek-contrast-1000: #000;
   --kek-invert-contrast-0: #000;
   --kek-invert-contrast-100: #212529;
@@ -14033,8 +14042,8 @@ fieldset:disabled .btn {
   --kek-invert-contrast-rgb: 255, 255, 255;
   --kek-contrast-bg: #fff;
   --kek-contrast-bg-offset: #f8f9fa;
-  --kek-topbar-bg: var(--kek-contrast-0);
-  --kek-topbar-color: var(--kek-contrast-700);
+  --kek-topbar-bg: var(--kek-golden-100);
+  --kek-topbar-color: var(--kek-contrast-0);
   --kek-topbar-border-color: rgba(var(--kek-contrast-rgb), 0.1);
   --kek-topbar-social-icon-color: var(--kek-contrast-600);
   --kek-header-bg: var(--kek-contrast-0);
@@ -14280,30 +14289,6 @@ em {
   line-height: 0;
   width: 100%;
   overflow: hidden;
-}
-
-::-moz-selection {
-  background: var(--kek-themecolor);
-  color: var(--kek-body-bg);
-  text-shadow: none;
-}
-
-::selection {
-  background: var(--kek-themecolor);
-  color: var(--kek-body-bg);
-  text-shadow: none;
-}
-
-::-moz-selection {
-  background: var(--kek-themecolor);
-  color: var(--kek-body-bg);
-  text-shadow: none;
-}
-
-::-webkit-selection {
-  background: var(--kek-themecolor);
-  color: var(--kek-body-bg);
-  text-shadow: none;
 }
 
 :active,
@@ -17652,7 +17637,7 @@ img.lazy:not([src]) {
   --kek-topbar-font-size: 0.875rem;
   --kek-topbar-font-weight: 500;
   --kek-topbar-font-transform: none;
-  --kek-topbar-color: var(--kek-contrast-700);
+  --kek-topbar-color: var(--kek-contrast-0);
   --kek-topbar-border-size: 1px;
   --kek-topbar-border-color: rgba(var(--kek-contrast-rgb), 0.1);
   --kek-topbar-social-icon-color: var(--kek-contrast-600);
@@ -35088,7 +35073,8 @@ body.dark {
 }
 
 .content-tabs .tabs li.active a {
-  background: #007bff;
+  background: var(--kek-color-call) ;
   color: #fff;
   border-radius: 4px;
 }
+
