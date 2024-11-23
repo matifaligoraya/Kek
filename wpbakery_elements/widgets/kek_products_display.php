@@ -65,7 +65,7 @@ class WPBakeryKekProductDisplayElement {
                         $product = wc_get_product(get_the_ID());
                        // print_r(get_post_meta(get_the_ID()));
                         $image_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
-                        $description = wp_trim_words(get_the_excerpt(), 20, '...');
+                        $description = wp_trim_words(get_the_content(), 30, '...');
                         $custom_tabs = get_post_meta(get_the_ID(), '_kek_custom_product_tabs', true);
                        // print_r(value: $custom_tabs);
                         // Calculate the minimum "New Price" from options
