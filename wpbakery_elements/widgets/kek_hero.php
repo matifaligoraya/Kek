@@ -211,22 +211,6 @@ class WPBakeryKekHeroElement {
   z-index: -1;
 }
 
-@keyframes RotateMoveHeader {
-    0% {
-        -webkit-transform: rotateZ(0deg) rotate(0deg) translate3d(0, 1%, 0) rotateZ(0deg);
-        transform: rotateZ(0deg) rotate(0deg) translate3d(0, 1%, 0) rotateZ(0deg);
-    }
-      100% {
-        -webkit-transform: rotateZ(360deg) rotate(360deg) translate3d(0, 1%, 0) rotateZ(-360deg);
-        transform: rotateZ(360deg) rotate(360deg) translate3d(0, 1%, 0) rotateZ(-360deg);
-    }
-
-
-    0% {bottom: 0px;}
-    50%   {left: -10px;}
-    75%   {bottom: 9%;}
-    100%  {bottom: 0px;}
-}
 .kek-hero::before {
     content: "";
     position: absolute;
@@ -253,11 +237,6 @@ class WPBakeryKekHeroElement {
   border-radius: 32% 78% 33% 67% / 32% 0% 100% 68%;
   animation: bgMove 5s linear infinite;
   z-index: 1 !important;
-}
-@keyframes bgMove {
-    0%   {right: 0px;}
-    50%   {right: 20px;}
-    100%  {right: 0px;}
 }
 .header-row::before {
     content: "";
@@ -315,55 +294,6 @@ class WPBakeryKekHeroElement {
     animation: RotateMoveSty-5 20s linear infinite;
 }
 
-/* Keyframes for animations */
-@keyframes RotateMoveSty-3 {
-    0% { left: 100px; bottom: 100px; }
-    40% { bottom: 0px; left: 300px; }
-    70% { bottom: 300px; left: 500px; }
-    100% { bottom: 100px; left: 100px; }
-}
-
-@keyframes RotateMoveSty-4 {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-@keyframes RotateMoveSty-2 {
-    0% { left: 0px; top: 0px; }
-    50% { left: 200px; top: -30px; }
-    100% { left: 0px; top: 0px; }
-}
-@keyframes RotateMoveSty-6 {
-    0% { right: 40%; top: 0px; }
-    50% { left: 200px; top: -30px; }
-    100% { left: 0px; top: 0px; }
-}
-@keyframes RotateMoveSty-5 {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Rotating movement */
-@keyframes BottomRightToTopLeft {
-    0% {
-        bottom: 0px; /* Start at the bottom */
-        right: 0px;  /* Start at the right */
-    }
-    50% {
-        bottom: 50%; /* Move upward */
-        right: 50%;  /* Move leftward */
-    }
-    100% {
-        bottom: 100%; /* End at the top */
-        right: 100%;  /* End at the left */
-    }
-}
-
-@keyframes RotateMove {
-    0% { left: 0px; }
-    50% { left: 200px; }
-    100% { left: 0px; }
-}
 .kek-hero {
   width: 100%;
   min-height: calc(100vh - 102px);
