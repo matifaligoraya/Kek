@@ -87,11 +87,8 @@ class WPBakeryKekProductDisplayElement {
                 <div class="col-md-<?php echo ($display_style === 'grid') ? '3' : '12'; ?> pricing-table">
                     
             <div class="card shadow kek-info-box">
-                <h7 class="text-uppercase ls-1 mb-2">
-                    <i class="  text-kek"></i>
-                    <?php //echo esc_html($atts['pre_title']); ?>
-                </h7>
-                <h3 class="ls-0 fw-bold mb-3"><?php the_title(); ?></h3>
+                
+                <h4 class="ls-0 fw-bold mb-3"><?php the_title(); ?></h4>
                 <p class="mb-5 text-black-50"><?php echo $description; ?></p>                
 
                 <a href="<?php the_permalink(); ?>"  Style="margin-bottom: 15px;"
