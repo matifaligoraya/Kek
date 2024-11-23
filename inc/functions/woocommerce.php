@@ -242,19 +242,20 @@ function kek_display_product_detail_tabs() {
                                             $unique_id = "btnradio-" . sanitize_title($tab['title']) . "-{$index}-{$chunkIndex}";
                                             ?>
                                             <div class="btn-radio<?php echo $isBigButton; ?>">
+                                                <span class="radio">
                                                 <input type="radio" 
                                                     value="<?php echo isset($option['value']) ? esc_attr($option['value']) : ''; ?>" 
-                                                    class="btn-check" 
+                                                  
                                                     id="<?php echo $unique_id; ?>"
-                                                    name="single_option">
-                                                <label class="btn" for="<?php echo $unique_id; ?>">
+                                                    name="single_option"> </span>
+                                                <label class="btn" for="<?php echo $unique_id; ?>" data-after-text="<?php echo get_save_percentage_label($option['old_price'],$option['price'])?>" data-after-type="badge top right">
                                                     <div class="col left-col">
+                                                    <div class="skew-wrapper"  >
                                                         <span class="number">
                                                             <?php echo $pre_title; ?>
                                                         </span>
-                                                        <span><?php echo $post_title; ?></span>                                                       
-                                                    </div>
-                                                    <div class="col right-col">
+                                                        <span><?php echo $post_title; ?></span>           
+                                                         
                                                         <div class="price">                                                            
                                                             <?php if (isset($option['old_price'])): ?>
                                                                 <span class="old-price">
@@ -264,11 +265,10 @@ function kek_display_product_detail_tabs() {
                                                             <?php if ($option['price'] > 0): ?>
                                                                 <?php echo get_woocommerce_currency_symbol() . '' . esc_html($option['price']); ?>
                                                             <?php endif; ?>
-                                                        </div>
-                                                        <?php if (isset($option['badge'])): ?>
-                                                            <span class="save"><?php echo esc_html($option['badge']); ?></span>
-                                                        <?php endif; ?>
-                                                    </div>
+                                                       </div>
+                                                    </div>                                     
+                                                </div>
+                                               
                                                 </label>
                                             </div>
                                         <?php endforeach; ?>
@@ -308,7 +308,19 @@ function kek_display_product_detail_tabs() {
 }
 
 add_action('display_product_detail_tabs', 'kek_display_product_detail_tabs');
+function get_save_percentage_label($old_price, $price) {
+    // Check if both prices are set, numeric, and valid.
+    if (isset($old_price, $price) && is_numeric($old_price) && is_numeric($price) && $old_price > $price && $price > 0) {
+        // Calculate the percentage saved.
+        $percentage_saved = (($old_price - $price) / $old_price) * 100;
 
+        // Return the "Save X%" label, rounded to 2 decimal places.
+        return 'Save ' . round($percentage_saved, 2) . '%';
+    }
+
+    // Return an empty string if conditions are not met.
+    return '';
+}
 // Admin scripts to manage the tabs and options in the backend
 function kek_custom_product_tabs_admin_script() {
     ?>
