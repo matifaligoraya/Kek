@@ -192,4 +192,4 @@
                     ?>
                 </div>
             <?php endif; ?>
-            <div class="container">
+            <div class=" ">
