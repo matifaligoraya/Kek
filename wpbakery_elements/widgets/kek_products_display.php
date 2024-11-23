@@ -63,10 +63,11 @@ class WPBakeryKekProductDisplayElement {
                 <?php while ($products->have_posts()): $products->the_post(); ?>
                     <?php 
                         $product = wc_get_product(get_the_ID());
+                       // print_r(get_post_meta(get_the_ID()));
                         $image_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
                         $description = wp_trim_words(get_the_excerpt(), 20, '...');
-                        $custom_tabs = get_post_meta(get_the_ID(), 'kek_custom_product_tabs', true);
-    
+                        $custom_tabs = get_post_meta(get_the_ID(), '_kek_custom_product_tabs', true);
+                       // print_r(value: $custom_tabs);
                         // Calculate the minimum "New Price" from options
                         $min_price = null;
                         if (!empty($custom_tabs)) {
@@ -81,36 +82,40 @@ class WPBakeryKekProductDisplayElement {
                                 }
                             }
                         }
+                       // echo  $min_price ;
                     ?>
-                    <div class="col-md-<?php echo ($display_style === 'grid') ? '3' : '12'; ?> product-item">
-                        <div class="card shadow kek-info-box">
-                            <?php if ($image_url): ?>
-                                <img src="<?php echo esc_url($image_url); ?>" alt="<?php the_title(); ?>" class="card-img-top">
-                            <?php endif; ?>
-                            <div class="card-body">
-                                <h3 class="ls-0 fw-bold mb-3"><?php the_title(); ?></h3>
-                                <p class="mb-5 text-black-50"><?php echo $description; ?></p>
-                                <a href="<?php the_permalink(); ?>" class="btn w-100 text-white bg-color rounded-3 p-3 fw-bold animation-cloud-btn">                    
-                                    <span class="cloud-button-content">
-                                        <i class="fab fa-youtube cloud-button-icon mx-2"></i> 
-                                        Buy Now
-                                    </span>
-                                    <span class="animation-cloud-btn-inner">
-                                        <span class="animation-cloud-parts">
-                                            <span class="animation-cloud-part"></span>
-                                            <span class="animation-cloud-part"></span>
-                                            <span class="animation-cloud-part"></span>
-                                            <span class="animation-cloud-part"></span>
-                                        </span>
-                                    </span>
-                                </a>
-                                <br>
-                                <div class="row">
+                <div class="col-md-<?php echo ($display_style === 'grid') ? '3' : '12'; ?> pricing-table">
+                    
+            <div class="card shadow kek-info-box">
+                <h7 class="text-uppercase ls-1 mb-2">
+                    <i class="  text-kek"></i>
+                    <?php //echo esc_html($atts['pre_title']); ?>
+                </h7>
+                <h3 class="ls-0 fw-bold mb-3"><?php the_title(); ?></h3>
+                <p class="mb-5 text-black-50"><?php echo $description; ?></p>                
+
+                <a href="<?php the_permalink(); ?>"  Style="margin-bottom: 15px;"
+                class="btn w-100 text-white bg-color rounded-3 p-3 fw-bold animation-cloud-btn">                    
+                 <span class="cloud-button-content">
+                 Buy Now
+
+                    </span>
+                    <span class="animation-cloud-btn-inner">
+                        <span class="animation-cloud-parts">
+                            <span class="animation-cloud-part"></span>
+                            <span class="animation-cloud-part"></span>
+                            <span class="animation-cloud-part"></span>
+                            <span class="animation-cloud-part"></span>
+                        </span>
+                    </span>
+                </a>
+                <br />
+                <div class="row" >
                                     <div class="col-md-6">
                                         <?php if (!is_null($min_price)): ?>
                                             <span>Starting at <b class="text-kek"><?php echo wc_price($min_price); ?></b></span>
                                         <?php else: ?>
-                                            <span>Price not available</span>
+                                            <span> </span>
                                         <?php endif; ?>
                                     </div>
                                     <div class="col-md-6 stars">
@@ -119,9 +124,9 @@ class WPBakeryKekProductDisplayElement {
                                         <?php endfor; ?>
                                     </div>
                                 </div>    
-                            </div>
-                        </div>
-                    </div>
+
+            </div>
+        </div>
                 <?php endwhile; ?>
             </div>
         </div>
