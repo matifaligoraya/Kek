@@ -69,7 +69,7 @@ class WPBakeryKekHeadingElement {
                 letter-spacing: 1px;
                 text-transform: uppercase;
                 text-align: center;
-                margin: auto;
+              
                 white-space: nowrap;
                 padding-bottom: 13px;
                 position: relative;
