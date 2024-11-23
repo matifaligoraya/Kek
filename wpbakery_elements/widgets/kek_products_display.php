@@ -58,6 +58,12 @@ class WPBakeryKekProductDisplayElement
                     ),
                     'description' => __('Choose how to display the products.', 'kek'),
                 ),
+                array(
+                    'type' => 'checkbox',
+                    'heading' => __('Enable Overlay on Images', 'kek'),
+                    'param_name' => 'enable_overlay',
+                    'description' => __('Check to enable an overlay effect on product images.', 'kek'),
+                ),
             ),
         ));
     }
@@ -70,9 +76,10 @@ class WPBakeryKekProductDisplayElement
             'description' => '4',
             'product_count' => '4',
             'display_style' => 'grid',
+            'enable_overlay' => '',     
         ), $atts);
         $categories = explode(',', $atts['categories']);
-
+        $enable_overlay = $atts['enable_overlay'] === 'true'; // Checkbox returns 'true' if checked
         $product_count = (int)$atts['product_count'];
         $display_style = esc_attr($atts['display_style']);
 
@@ -98,12 +105,14 @@ class WPBakeryKekProductDisplayElement
         ob_start();
 ?>
         <section class="kek-product-display <?php echo $display_style; ?>">
+        <?php if ($enable_overlay): ?>
             <div class="overlay"></div>
             <div class="rotate-img">
             <img src="<?php echo kek_URI ?>assets/images/info-box-bg-light.svg" style="width: 32px;" >
 
                   <div class="rotate-sty-2"></div>
               </div>
+              <?php endif; ?>
             <div class="row">
                 <div class="col">
                     <div class="twelve">
