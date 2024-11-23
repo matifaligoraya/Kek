@@ -6,42 +6,109 @@ class WPBakeryKekHeadingElement {
     }
 
     public function register_elements() {
-        // Register the Heading Element
         vc_map(array(
-            'name' => __('Kek Main Heading', 'kek'),
+            'name' => __('Kek Heading', 'kek'),
             'base' => 'kek_heading',
             'category' => __('Kek Essentials', 'kek'),
-            'params' => array(                
+            'params' => array(
+                array(
+                    'type' => 'dropdown',
+                    'heading' => __('Heading Level', 'kek'),
+                    'param_name' => 'heading_level',
+                    'value' => array(
+                        __('H1', 'kek') => 'h1',
+                        __('H2', 'kek') => 'h2',
+                        __('H3', 'kek') => 'h3',
+                        __('H4', 'kek') => 'h4',
+                        __('H5', 'kek') => 'h5',
+                        __('H6', 'kek') => 'h6',
+                    ),
+                    'description' => __('Select the heading level.', 'kek'),
+                ),
                 array(
                     'type' => 'textfield',
-                    'heading' => __('Main Title', 'kek'),
-                    'param_name' => 'main_title',
-                    'description' => __('Enter the main title for the heading.', 'kek'),
-                ),
-                array(
-                    'type' => 'colorpicker',
-                    'heading' => __('Heading Color', 'kek'),
-                    'param_name' => 'heading_color',
-                    'description' => __('Choose a color for the heading text.', 'kek'),
-                    'value' => '#ffffff', // Default color
-                ),
+                    'heading' => __('Heading Text', 'kek'),
+                    'param_name' => 'heading_text',
+                    'value' => __('Your Heading', 'kek'),
+                    'description' => __('Enter the heading text.', 'kek'),
+                )
+              
             ),
         ));
     }
 
     public function render_kek_heading($atts) {
-        $atts = shortcode_atts(array(            
-            'main_title' => 'Our Design<br>Your Business.',            
-            'heading_color' => '#ffffff', // Default color
+        $atts = shortcode_atts(array(
+            'heading_level' => 'h1',
+            'heading_text' => 'Your Heading',
+            'text_color' => '#000000',
         ), $atts);
+
+        $heading_level = esc_attr($atts['heading_level']);
+        $heading_text = esc_html($atts['heading_text']);
+        $text_color = esc_attr($atts['text_color']);
 
         ob_start();
         ?>
-        
-        <h2 class="display-3 fw-bold" style="color: <?php echo esc_attr($atts['heading_color']); ?>; padding-left: 100px;">
-            <?php echo wp_kses_post($atts['main_title']); ?>
-        </h2>
-        
+        <div class="twelve">
+            <<?php echo $heading_level; ?> >
+                <?php echo $heading_text; ?>
+            </<?php echo $heading_level; ?>>
+        </div>
+        <style>
+            <?php 
+            $options = get_option(kek_SETTINGS_KEY);    
+           // print_r($options );
+            // Get the colors from theme options
+            $main_color = esc_attr($options['main_color'] ?? '#1db954');    
+            
+            ?>
+            .twelve <?php echo $heading_level; ?> {
+                font-size: 26px;
+                font-weight: 700;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                text-align: center;
+                margin: auto;
+                white-space: nowrap;
+                padding-bottom: 13px;
+                position: relative;
+            }
+
+            .twelve {
+                width: 100%;
+            }
+
+            .twelve h1 {
+                width: max-content;
+            }
+
+            /* Before pseudo-element (left line) */
+            .twelve <?php echo $heading_level; ?>:before {
+                background-color: <?php echo $main_color; ?>;
+                content: '';
+                display: block;
+                height: 3px;
+                width: 75px;
+                position: absolute;
+                left: 0;
+                top: -2%;
+                transform: translateY(-50%);
+            }
+
+            /* After pseudo-element (right line) */
+            .twelve <?php echo $heading_level; ?>:after {
+                background-color: <?php echo $main_color; ?>;
+                content: '';
+                display: block;
+                height: 3px;
+                width: 75px;
+                position: absolute;
+                right: 0;
+                top: 80%;
+                transform: translateY(-50%);
+            }
+        </style>
         <?php
         return ob_get_clean();
     }
@@ -49,4 +116,3 @@ class WPBakeryKekHeadingElement {
 
 // Instantiate the class
 new WPBakeryKekHeadingElement();
-?>
