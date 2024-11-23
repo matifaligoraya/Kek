@@ -31,6 +31,17 @@ class WPBakeryKekProductDisplayElement
                     'description' => __('Enter a brief description to display before the product list.', 'kek'),
                 ),
                 array(
+                    'type' => 'autocomplete',
+                    'heading' => __('Categories', 'kek'),
+                    'param_name' => 'categories',
+                    'description' => __('Select WooCommerce product categories.', 'kek'),
+                    'settings' => array(
+                        'multiple' => true,
+                        'sortable' => true,
+                        'unique_values' => true,
+                    ),
+                ),
+                array(
                     'type' => 'textfield',
                     'heading' => __('Number of Products', 'kek'),
                     'param_name' => 'product_count',
@@ -54,11 +65,13 @@ class WPBakeryKekProductDisplayElement
     public function render_kek_product_display($atts)
     {
         $atts = shortcode_atts(array(
+            'categories' => '',
             'heading' => '4',
             'description' => '4',
             'product_count' => '4',
             'display_style' => 'grid',
         ), $atts);
+        $categories = explode(',', $atts['categories']);
 
         $product_count = (int)$atts['product_count'];
         $display_style = esc_attr($atts['display_style']);
@@ -67,6 +80,14 @@ class WPBakeryKekProductDisplayElement
         $args = array(
             'post_type' => 'product',
             'posts_per_page' => $product_count,
+            'tax_query' => array(
+                array(
+                    'taxonomy' => 'product_cat',
+                    'field' => 'slug',
+                    'terms' => $categories,
+                ),
+            ),
+
         );
         $products = new WP_Query($args);
 
@@ -168,6 +189,39 @@ class WPBakeryKekProductDisplayElement
 
         return ob_get_clean();
     }
+
+
+    public function render_category_for_autocomplete($query) {
+        $term = get_term_by('slug', $query['value'], 'product_cat');
+
+        if ($term) {
+            return array(
+                'value' => $term->slug,
+                'label' => $term->name,
+            );
+        }
+
+        return false;
+    }
+    public function get_categories_for_autocomplete($query) {
+        $categories = get_terms(array(
+            'taxonomy' => 'product_cat',
+            'name__like' => $query,
+            'hide_empty' => false,
+        ));
+
+        $suggestions = array();
+
+        foreach ($categories as $category) {
+            $suggestions[] = array(
+                'value' => $category->slug,
+                'label' => $category->name,
+            );
+        }
+
+        return $suggestions;
+    }
+
 }
 
 // Instantiate the class
