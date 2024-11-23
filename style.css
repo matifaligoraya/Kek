@@ -29722,8 +29722,8 @@ h3.titular-title,
 blockquote {
   padding: 10px 20px;
   margin: 0 0 20px;
-  font-size: var(--kek-font-size-h4);
-  border-left: 5px solid var(--kek-contrast-200);
+  font-size: 16px;
+  border-left: 2px solid var(--kek-contrast-200);
 }
 blockquote.float-start {
   max-width: 300px;

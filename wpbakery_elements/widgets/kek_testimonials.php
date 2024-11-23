@@ -57,8 +57,7 @@ class WPBakeryKekTestimonialsElement {
                         ?>
                         <div class="t-bq-wrapper t-bq-wrapper-boxed">
                             <div class="t-bq-quote t-bq-quote-kek-testimonial-1">                                    
-                                <div class="t-bq-quote-kek-testimonial-1-userpic" <?php echo $style; ?>>
-                                </div>
+                               
                                 <div class="t-bq-quote-kek-testimonial-1-qmark">&#10077;</div>                         
                                 <div class="t-bq-quote-kek-testimonial-1-pattern"></div>       
                                 <div class="t-bq-quote-kek-testimonial-1-base">
