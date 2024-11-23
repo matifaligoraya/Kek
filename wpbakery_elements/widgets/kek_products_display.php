@@ -41,21 +41,21 @@ class WPBakeryKekProductDisplayElement {
             'product_count' => '4',
             'display_style' => 'grid',
         ), $atts);
-
+    
         $product_count = (int)$atts['product_count'];
         $display_style = esc_attr($atts['display_style']);
-
+    
         // Query WooCommerce products
         $args = array(
             'post_type' => 'product',
             'posts_per_page' => $product_count,
         );
         $products = new WP_Query($args);
-
+    
         if (!$products->have_posts()) {
             return '<p>' . __('No products found.', 'kek') . '</p>';
         }
-
+    
         ob_start();
         ?>
         <div class="kek-product-display <?php echo $display_style; ?>">
@@ -64,8 +64,23 @@ class WPBakeryKekProductDisplayElement {
                     <?php 
                         $product = wc_get_product(get_the_ID());
                         $image_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
-                        $price = $product->get_price_html();
                         $description = wp_trim_words(get_the_excerpt(), 20, '...');
+                        $custom_tabs = get_post_meta(get_the_ID(), 'kek_custom_product_tabs', true);
+    
+                        // Calculate the minimum "New Price" from options
+                        $min_price = null;
+                        if (!empty($custom_tabs)) {
+                            foreach ($custom_tabs as $tab) {
+                                if (!empty($tab['options'])) {
+                                    foreach ($tab['options'] as $option) {
+                                        if (isset($option['price']) && is_numeric($option['price'])) {
+                                            $price = (float)$option['price'];
+                                            $min_price = is_null($min_price) ? $price : min($min_price, $price);
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     ?>
                     <div class="col-md-<?php echo ($display_style === 'grid') ? '3' : '12'; ?> product-item">
                         <div class="card shadow kek-info-box">
@@ -92,7 +107,11 @@ class WPBakeryKekProductDisplayElement {
                                 <br>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <span>Starting at <b class="text-kek"><?php echo $price; ?></b></span>
+                                        <?php if (!is_null($min_price)): ?>
+                                            <span>Starting at <b class="text-kek"><?php echo wc_price($min_price); ?></b></span>
+                                        <?php else: ?>
+                                            <span>Price not available</span>
+                                        <?php endif; ?>
                                     </div>
                                     <div class="col-md-6 stars">
                                         <?php for ($i = 0; $i < 5; $i++) : ?>
@@ -108,9 +127,10 @@ class WPBakeryKekProductDisplayElement {
         </div>
         <?php
         wp_reset_postdata();
-
+    
         return ob_get_clean();
     }
+    
 }
 
 // Instantiate the class
