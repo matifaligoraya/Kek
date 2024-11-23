@@ -234,24 +234,37 @@ section.t-bq-section {
 .t-bq-quote-kek-testimonial-1 .t-bq-quote-kek-testimonial-1-base {
   flex-basis: calc(100% - 80px);
   background: #ffffff;
-  padding: 40px 30px 50px 80px;
-  font-size: 11pt;
-  font-weight: bold;
-  line-height: 1.62em;
+  padding: 2% 10px 10px 7px;
+  font-size: 10pt;
+  font-weight: normal;
   border-radius: 0 10px 10px 0;
+}
+
+blockquote {
+  padding: 10px 5px !important;
+
+  margin: 0 0 10px !important;
+
+  font-size: 14px !important;
+
+  border-left: none !important;
+
+  font-weight: normal !important;
+
 }
 
 .t-bq-quote-kek-testimonial-1 .t-bq-quote-kek-testimonial-1-qmark {
   position: absolute;
   top: 50px;
-  left: 105px;
+  left: 25px;
   font-family: Garamond, Georgia, "Times New Roman", serif;
   font-size: 42pt;
-  color: var(--kek-themecolor);
+  color: #fff ;
   -moz-user-select: none;
   -ms-user-select: none;
   -webkit-user-select: none;
   user-select: none;
+  z-index: 111 !important;
 }
 
 .t-bq-quote-kek-testimonial-1 .t-bq-quote-kek-testimonial-1-userpic {
