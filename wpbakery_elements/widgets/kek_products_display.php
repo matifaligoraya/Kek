@@ -78,26 +78,22 @@ class WPBakeryKekProductDisplayElement
 ?>
         <section class="kek-product-display <?php echo $display_style; ?>">
             <div class="overlay"></div>
-  
+            <div class="rotate-img">
+            <img src="<?php echo kek_URI ?>assets/images/info-box-bg-light.svg" style="width: 32px;" >
+
+                  <div class="rotate-sty-2"></div>
+              </div>
             <div class="row">
                 <div class="col">
                     <div class="twelve">
                         <h3><?php echo $atts['heading']; ?></h3>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                <div class="rotate-img">
-            <img src="<?php echo kek_URI ?>assets/images/info-box-bg-light.svg" style="width: 32px;" >
-
-                  <div class="rotate-sty-2"></div>
-              </div>
                     <p >
                        <?php echo $atts['description']; ?>
                     </p>
                 </div>
             </div>
+          
             <div class="row">
                 <?php while ($products->have_posts()): $products->the_post(); ?>
                     <?php
@@ -123,7 +119,7 @@ class WPBakeryKekProductDisplayElement
                     }
                     // echo  $min_price ;
                     ?>
-                    <div class="col-md-<?php echo ($display_style === 'grid') ? '3' : '12'; ?> pricing-table">
+                    <div class="col-md-<?php echo ($display_style === 'grid') ? '4' : '12'; ?> pricing-table">
 
                         <div class="card shadow kek-info-box">
 
