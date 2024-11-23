@@ -18,17 +18,7 @@
                             <?php echo get_theme_mod('kek_footer_highlight', ''); ?>
                             <div class="line" style="margin: 30px 0;"></div>
 
-                            <div class="row col-mb-30">
-                                <?php
-                                wp_nav_menu(array(
-                                    'theme_location' => 'footer-menu',
-                                    'container' => 'div',
-                                    'container_class' => 'col-6 col-lg-3 widget_links',
-                                    'menu_class' => 'footer-menu',
-                                    'depth' => 1,
-                                ));
-                                ?>
-                            </div>
+                           
                         </div>
                     </div>
 
@@ -39,7 +29,7 @@
                                     <div class="counter counter-small">                                        
                                         <span data-from="50" data-to="<?php echo $downloads ?>" data-refresh-interval="80" data-speed="3000" data-comma="true"></span>
                                     </div>
-                                    <h5 class="mb-0">Total Downloads</h5>
+                                    <h5 class="mb-0">YouTube Views</h5>
                                 </div>
 
                                 <div class="col-lg-6">
@@ -114,7 +104,22 @@
                         Copyrights © <?php echo date("Y"); ?> All Rights Reserved by <a href="https://bitandbytelab.com/">Bit & Byte Lab</a>
                     </div>                    
                 </div>
-            </div>
+           <div class="row justify-content-between col-mb-30">
+                    <div class="col-12 col-lg-auto text-center text-lg-start">                        
+                    <div class="row col-mb-30">
+                                <?php
+                                wp_nav_menu(array(
+                                    'theme_location' => 'footer-menu',
+                                    'container' => 'div',
+                                    'container_class' => 'col-6 col-lg-3 widget_links',
+                                    'menu_class' => 'footer-menu',
+                                    'depth' => 1,
+                                ));
+                                ?>
+                            </div>
+                    </div>                    
+                </div>
+             </div>
         </div>
     </footer>
 
