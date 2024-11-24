@@ -13788,6 +13788,7 @@ fieldset:disabled .btn {
 :root {
   --surface-color: #fff;
   --kek-themecolor: #1db954;
+  --kek-button-bg: #ec3454;
   --kek-themecolor-rgb: 29, 185, 84;
   --bs-link-color: var(--kek-themecolor);
   --bs-link-color-rgb: var(--kek-themecolor-rgb);
@@ -14014,14 +14015,14 @@ fieldset:disabled .btn {
   --kek-contrast-700: #495057;
   --kek-contrast-800: #343a40;
   --kek-contrast-900: #212529;
-  --kek-golden-100: #d18e3b;
-  --kek-golden-10: #faf3ea;
-  --kek-golden-20:#f0dbc1;
-  --kek-golden-30:#e7c398;
-
-   --kek-golden-40: #ddac6e;
-   --kek-golden-50:#d39445;
- 
+  
+  --kek-purple-10: #60015F;
+  --kek-purple-20:#6B016A;
+  --kek-purple-30:#4B014A;
+   --kek-purple-40: #460145;
+   --kek-purple-50:#3B013A;
+   --kek-purple-100: #300030;
+  --kek-redish-100: #CE0A62;
   --kek-contrast-1000: #000;
   --kek-invert-contrast-0: #000;
   --kek-invert-contrast-100: #212529;
@@ -14042,10 +14043,10 @@ fieldset:disabled .btn {
   --kek-invert-contrast-rgb: 255, 255, 255;
   --kek-contrast-bg: #fff;
   --kek-contrast-bg-offset: #f8f9fa;
-  --kek-topbar-bg: var(--kek-golden-40);
-  --kek-topbar-color: var(--kek-black);
+  --kek-topbar-bg: var(--kek-redish-100);
+  --kek-topbar-color: var(--kek-white);
   --kek-topbar-border-color: rgba(var(--kek-contrast-rgb), 0.1);
-  --kek-topbar-social-icon-color: var(--kek-contrast-0);
+  --kek-topbar-social-icon-color:#fff;
   --kek-header-bg: var(--kek-contrast-0);
   --kek-header-sticky-bg: var(--kek-header-bg);
   --kek-side-header-bg: var(--kek-contrast-0);
@@ -17637,10 +17638,10 @@ img.lazy:not([src]) {
   --kek-topbar-font-size: 0.875rem;
   --kek-topbar-font-weight: 500;
   --kek-topbar-font-transform: none;
-  --kek-topbar-color: var(--kek-black);
+  --kek-topbar-color: var(--kek-white);
   --kek-topbar-border-size: 1px;
   --kek-topbar-border-color: rgba(var(--kek-contrast-rgb), 0.1);
-  --kek-topbar-social-icon-color: var(--kek-contrast-600);
+
   --kek-topbar-submenu-padding: 0.625rem;
   --kek-topbar-submenu-font-size: 0.75rem;
   position: relative;
@@ -17870,7 +17871,7 @@ img.lazy:not([src]) {
   --kek-header-border-color: rgba(var(--kek-contrast-rgb), 0.1);
   --kek-header-transparent-border-color: rgba(var(--kek-contrast-rgb), 0.1);
   --kek-header-floating-bg: var(--kek-contrast-0);
-  --kek-primary-menu-color: var(--kek-contrast-900);
+  --kek-primary-menu-color: var(--kek-white);
   --kek-primary-menu-submenu-bg: var(--kek-contrast-0);
   --kek-primary-menu-submenu-color: var(--kek-contrast-900);
   --kek-primary-menu-submenu-border: 1px solid
@@ -18031,7 +18032,7 @@ body:not(.is-expanded-menu)
 }
 .is-expanded-menu #header.transparent-header.floating-header .container {
   padding: 0 var(--kek-header-floating-padding);
-  background-color: var(--kek-header-floating-bg);
+  background-color: hsla(0,0%,100%,.08);
 }
 .is-expanded-menu
   #header.transparent-header.floating-header:not(.sticky-header)
@@ -23885,7 +23886,7 @@ td.actions {
   --kek-btn-padding-x: 1.375rem;
   --kek-btn-padding-y: 0.5rem;
   --kek-btn-fontsize: 1rem;
-  --kek-btn-color: var(--kek-themecolor);
+  --kek-btn-color: var(--kek-button-bg);
   --kek-btn-color-dark: var(--bs-gray-900);
   --kek-btn-color-light: #e9ecef;
   --kek-btn-color-hover: var(--kek-btn-color-dark);
@@ -23906,7 +23907,7 @@ td.actions {
   background-color: var(--kek-btn-color);
   color: #fff;
   font-weight: 500;
-  border: var(--kek-btn-border-width) solid transparent;
+ 
   transition: all 0.2s ease-in-out;
   /* Buttons - Border
   -----------------------------------------------------------------*/

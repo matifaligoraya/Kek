@@ -123,9 +123,9 @@ class WPBakeryKekHeroElement {
         ?>
         <section id="hero" class="kek-hero section light-background">
                 
-            <?php if ($hero_bg_url): ?>
+            <!-- <?php if ($hero_bg_url): ?>
                 <img src="<?php echo esc_url($hero_bg_url); ?>" alt="" data-aos="fade-in">
-            <?php endif; ?>
+            <?php endif; ?> -->
             <div class="rotate-img">
             <img src="<?php echo kek_URI ?>assets/images/info-box-bg-light.svg" style="width: 32px;" >
 
@@ -197,102 +197,6 @@ class WPBakeryKekHeroElement {
             /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
-.header-row::before {
-  content: "";
-  position: absolute;
-  bottom: -9%;
-  left: -7%;
-  width: 400px;
-  height: 400px;
-  border-radius: 200px;
-  border: 30px solid rgba(247, 71, 128, 0.05);
-  background: transparent;
-  animation: RotateMoveHeader 5s linear infinite;
-  z-index: -1;
-}
-
-.kek-hero::before {
-    content: "";
-    position: absolute;
-    left: 100px;
-    bottom: 100px;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    border: 100px solid rgba(102, 16, 242, 0.05);
-    background: transparent;
-    animation: RotateMoveSty-4 45s linear infinite;
-    transition: 0.5s;
-    z-index: -1;
-}
-
-.kek-hero::after {
-  position: absolute;
-  content: "";
-  top: 0;
-  right: 0;
-  width: 20%;
-  height: 40%;
-  background: var(--kek-golden-10);
-  border-radius: 32% 78% 33% 67% / 32% 0% 100% 68%;
-  animation: bgMove 5s linear infinite;
-  z-index: 1 !important;
-}
-.header-row::before {
-    content: "";
-    position: absolute;
-    bottom: -9%;
-    left: -7%;
-    width: 400px;
-    height: 400px;
-    border-radius: 200px;
-    border: 30px solid rgba(247, 71, 128, 0.05);
-    background: transparent;
-    animation: RotateMoveHeader 5s linear infinite;
-    z-index: -1;
-
-}
-/* Smaller rotating circles with borders */
-.kek-hero .rotate-img .rotate-sty-2 {
-    position: absolute;
-    top: 100px;
-    left: 50px;
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    border: 1px solid rgba(247, 71, 128, 0.1);
-    background: transparent;
-    animation: RotateMoveSty-2 45s linear infinite;
-    transition: 0.5s;
-}
-
-/* Rotating image (example: share icon) */
-.kek-hero .rotate-img img {
-    position: relative;
-    animation: RotateMoveSty-6  40s linear infinite;
-    z-index: 1 !important;
-}
-
-/* Shape with Share Icon */
-.kek-hero .rotate-icon {
-    position: absolute;
-    top: 50%;
-    left: 30%;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background-color: rgba(221, 172, 110, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: RotateMoveSty-5 40s linear infinite;
-}
-
-.kek-hero .rotate-icon i {
-    font-size: 24px;
-    color: #ddac6e;
-    animation: RotateMoveSty-5 20s linear infinite;
-}
 
 .kek-hero {
   width: 100%;
@@ -323,11 +227,13 @@ class WPBakeryKekHeroElement {
   margin: 0;
   font-size: 48px;
   font-weight: 700;
+  color: #fff;
 }
 
 .kek-hero .welcome p {
-  font-size: 24px;
+  font-size: 18px;
   margin: 0;
+  color: #fff;
 }
 
 .kek-hero .content {
@@ -336,7 +242,7 @@ class WPBakeryKekHeroElement {
 
 .kek-hero .content .why-box {
   color: var(--kek-contrast-300);
-  background: var(--kek-golden-50);
+  background: var(--kek-redish-100);
   padding: 30px;
   border-radius: 4px;
 }

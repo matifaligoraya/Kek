@@ -247,6 +247,15 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--kek-golden-20);
-  opacity: 0.5;
+  
+  background-color: rgba(0, 0, 0, 0);
+background-position-x: 0%;
+background-position-y: 0%;
+background-repeat: repeat;
+background-attachment: scroll;
+background-image: linear-gradient(rgb(134, 12, 134),#c83a8a);
+background-size: auto;
+background-origin: padding-box;
+background-clip: border-box;
+  opacity: 0.8;
 }
