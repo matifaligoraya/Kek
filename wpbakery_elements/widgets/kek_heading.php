@@ -45,7 +45,7 @@ class WPBakeryKekHeadingElement {
         ), $atts);
 
         $heading_level = esc_attr($atts['heading_level']);
-        $heading_text = wp_kses_post(rawurldecode(base64_decode($atts['heading_text'])));
+        $heading_text = wp_kses_post($atts['heading_text']);
         $text_color = esc_attr($atts['text_color']);
         // Split the first word from the rest of the text
 $words = explode(' ', $heading_text, 2); // Limit to 2 parts
