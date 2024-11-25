@@ -248,14 +248,29 @@
   right: 0;
   bottom: 0;
   
-  background-color: rgba(0, 0, 0, 0);
+  background-color: rgba(255, 255, 255, 0);
 background-position-x: 0%;
 background-position-y: 0%;
 background-repeat: repeat;
 background-attachment: scroll;
-background-image: linear-gradient(rgb(134, 12, 134),#c83a8a);
+/** background-image: linear-gradient(#1d1a54,var(--kek-dark-blue)); **/
+background:linear-gradient(45deg,#040041,#0000A6);
 background-size: auto;
 background-origin: padding-box;
 background-clip: border-box;
   opacity: 0.8;
 }
+
+/* .overlay #splash-background {
+  background:radial-gradient(ellipse at top,#f80666,transparent);
+  height:100%;
+  left:0;
+  pointer-events:none;
+  position:absolute;
+  top:0;
+  -webkit-user-select:none;
+  -moz-user-select:none;
+  user-select:none;
+  width:100%;
+  z-index:0
+} */

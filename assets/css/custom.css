@@ -838,3 +838,88 @@ span.cloud-button-content {
     max-width: 300px;
   }
 }
+
+
+/* Header and sub header */
+
+
+
+
+.kektag-list {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  gap: 2rem 0;
+  position: relative;
+  padding: 1.3rem 0;
+  overflow: hidden;
+  z-index: -1;
+  position: absolute;
+
+}
+
+.loop-slider .inner {
+  display: flex;
+  width: fit-content;
+  animation-name: loop;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-direction: var(--direction);
+  animation-duration: var(--duration);
+}
+
+.kektag {
+  display: flex;
+  align-items: center;
+  gap: 0 0.1rem;
+  color: #1a1a1a; /* Dark text to contrast with bright background */
+  font-size: 0.9rem;
+  background-color: #fff; /* Vibrant orange */
+  border-radius: 0.4rem;
+  padding: 0.5rem 1rem;
+  margin-right: 1rem;
+  box-shadow: -7px 5px 8px -8px rgba(0,0,0,0.57);
+  -webkit-box-shadow: -7px 5px 8px -8px rgba(0,0,0,0.57);
+  -moz-box-shadow: -7px 5px 8px -8px rgba(0,0,0,0.57);
+   transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  width: max-content;
+}
+.kektag .fab, .kektag .fas {
+  color: var(--kek-button-bg);
+  font-size: 1.3rem;
+  margin-right: 12px;
+}
+.kektag:hover {
+  background-color: #fff; /* Slightly darker orange */
+  color: #ffffff; /* Bright white text for contrast */
+  box-shadow: 0 0.2rem 0.5rem rgba(255, 255, 255, 0.6),
+    0 0.5rem 1rem rgba(255, 255, 255, 0.5), 0 0.8rem 2rem rgba(255, 255, 255, 0.4);
+}
+
+.kektag span {
+  font-size: 1.2rem;
+  color: #000;
+  font-weight: bold;
+}
+
+.fade {
+  pointer-events: none;
+  
+  position: absolute;
+  inset: 0;
+}
+
+@keyframes loop {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+
+
+/* header hero ended */

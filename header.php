@@ -21,65 +21,18 @@
     <div id="wrapper">
         <?php if (is_front_page()) : ?>
             <?php
-            $background_image_url = isset($settings['home_page_background']) ? $settings['home_page_background'] : '';
+           // $background_image_url = isset($settings['home_page_background']) ? $settings['home_page_background'] : '';
 
-            if (!empty($background_image_url)) : ?>
+           // if (!empty($background_image_url)) : style="background-image: url('<?php echo get_stylesheet_directory_uri();/assets/images/main-background.svg" ?>
                 <div class="position-absolute vh-100 w-100 top-0 start-0 overflow-hidden"
-                    style="background-image: url('<?php echo esc_url($background_image_url); ?>">
+                    >
                     <div class="overlay"></div>
-                <?php endif; ?>
+                    <div id="splash-background"></div>
+                <?php //endif; ?>
                 </div>
             <?php endif; ?>
 
-            <div id="top-bar" class="transparent-topbar">
-                <div class="container">
-                    <div class="row justify-content-between">
-                        <div class="col-12 col-md-auto">
-                            <div class="top-links">
-                                <?php
-                                wp_nav_menu(array(
-                                    'menu_class' => 'top-links-container',
-                                    'theme_location' => 'top-menu',
-                                    'container' => true,
-                                    'fallback_cb' => false,
-                                    'add_li_class'  => 'top-links-item'
-                                ));
-                                ?>
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-auto dark" data-bs-theme="dark">
-                            <ul id="top-social">
-                                <?php
-
-                                $socials = isset($settings['social_links']) ? $settings['social_links'] : array();
-
-                                if ($socials) {
-                                    for ($i = 0; $i < count($socials['icon']); $i++) {
-                                        $social_icon = !empty($socials['icon'][$i]) ? $socials['icon'][$i] : '';
-                                        $url = !empty($socials['url'][$i]) ? $socials['url'][$i] : '#';
-                                        $container_class = !empty($socials['container_class'][$i]) ? $socials['container_class'][$i] : '';
-                                        $icon_text = !empty($socials['icon_text'][$i]) ? $socials['icon_text'][$i] : '';
-                                        $custom_icon_class = !empty($socials['custom_icon_class'][$i]) ? $socials['custom_icon_class'][$i] : '';
-
-                                        $icon = $custom_icon_class == '' ? esc_attr($icon) : esc_attr($custom_icon_class);
-
-                                        echo '<li>
-                                                <a href="' . esc_url($url) . '" class="' . $container_class . '" target="_blank">
-                                                    <span class="ts-icon">
-                                                        <i class="' . $icon . '"></i>
-                                                    </span>
-                                                    <span class="ts-text">' . $icon_text . '</span>
-                                                </a>
-                                            </li>';
-                                    }
-                                }
-                                ?>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+          
             <header id="header" class="transparent-header floating-header header-size-md">
                 <div id="header-wrap" class="">
                     <div class="container">
