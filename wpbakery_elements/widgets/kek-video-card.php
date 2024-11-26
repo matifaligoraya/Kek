@@ -154,7 +154,7 @@ class WPBakeryKekVideoCard {
     font-size: 24px;
 }
 .video-card__metric-cell .counter {
-  
+    color: #000 !important;
   font-size: 16px ;
   font-weight: normal;
 }
