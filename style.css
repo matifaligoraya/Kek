@@ -14450,7 +14450,23 @@ h6 > span:not(.nocolor):not(.badge),
   padding: 1px 15px;
   margin: 0px 10px;
 }
-
+h1 > strong:not(.nocolor):not(.badge),
+.h1 > strong:not(.nocolor):not(.badge),
+h2 > strong:not(.nocolor):not(.badge),
+.h2 > strong:not(.nocolor):not(.badge),
+h3 > strong:not(.nocolor):not(.badge),
+.h3 > strong:not(.nocolor):not(.badge),
+h4 > strong:not(.nocolor):not(.badge),
+.h4 > strong:not(.nocolor):not(.badge),
+h5 > strong:not(.nocolor):not(.badge),
+.h5 > strong:not(.nocolor):not(.badge),
+h6 > strong:not(.nocolor):not(.badge),
+.h6 > strong:not(.nocolor):not(.badge) {
+  background-color: var(--kek-button-bg);
+  color: #fff;
+  padding: 1px 15px;
+  margin: 0px 10px;
+}
 p,
 pre,
 ul,
@@ -35207,7 +35223,32 @@ body.dark {
   75%   {bottom: 9%;}
   100%  {bottom: 0px;}
 }
+@keyframes slide-left-to-right {
+  0% {
+      transform: translateX(-100%);
+  }
+  50% {
+      transform: translateX(0);
+  }
+  100% {
+      transform: translateX(100%);
+  }
+}
 
+@keyframes float {
+	0% {
+		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+		transform: translatey(0px);
+	}
+	50% {
+		box-shadow: 0 25px 15px 0px rgba(0,0,0,0.2);
+		transform: translatey(-20px);
+	}
+	100% {
+		box-shadow: 0 5px 15px 0px rgba(0,0,0,0.6);
+		transform: translatey(0px);
+	}
+}
 /* Smaller rotating circles with borders */
 .rotate-img .rotate-sty-2 {
   position: absolute;
@@ -35225,8 +35266,8 @@ body.dark {
 /* Rotating image (example: share icon) */
 .rotate-img img {
   position: relative;
-  animation: RotateMoveSty-6  40s linear infinite;
-  z-index: 1 !important;
+  animation: slide-left-to-right  8s linear infinite;
+  z-index: 11 !important;
 }
 
 /* Shape with Share Icon */

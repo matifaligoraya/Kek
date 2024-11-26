@@ -43,50 +43,61 @@ class WPBakeryKekHeadingElement {
             'heading_text' => 'Your Heading',
             'text_color' => '#000000',
         ), $atts);
-
-        $heading_level = esc_attr($atts['heading_level']);
-        $heading_text = wp_kses_post($atts['heading_text']);
-        $text_color = esc_attr($atts['text_color']);
-        
-
+    
+        $heading_level = esc_attr($atts['heading_level']); // Escape HTML-sensitive attributes
+        $heading_text = $atts['heading_text']; // Trust content; sanitize selectively
+    
+    
+        // Define allowed HTML tags
+        $allowed_html = array(
+            'span' => array('class' => array()),
+            'i' => array('class' => array()),
+            'b' => array(),
+            'strong' => array(),
+            'em' => array(),
+            'u' => array(),
+            'a' => array(
+                'href' => array(),
+                'target' => array(),
+                'rel' => array(),
+            ),
+        );
+    
         ob_start();
         ?>
         <div class="twelve">
             <<?php echo $heading_level; ?> >
-                <?php echo $heading_text; ?>
+                <?php echo wp_kses($heading_text, $allowed_html); ?>
             </<?php echo $heading_level; ?>>
         </div>
         <style>
             <?php 
             $options = get_option(kek_SETTINGS_KEY);    
-           // print_r($options );
-            // Get the colors from theme options
             $main_color = esc_attr($options['main_color'] ?? '#1db954');    
-            
             ?>
             .twelve <?php echo $heading_level; ?> {
-                font-size: 26px;
+                font-size: 28px;
                 font-weight: 700;
                 letter-spacing: 1px;
                 text-transform: uppercase;
                 text-align: center;
-              
                 white-space: nowrap;
                 padding-bottom: 13px;
                 position: relative;
+                color: <?php echo $main_color; ?>;
             }
-
+    
             .twelve {
                 width: 100%;
             }
-
+    
             .twelve h1 {
                 width: max-content;
             }
-
+    
             /* Before pseudo-element (left line) */
             .twelve <?php echo $heading_level; ?>:before {
-                background-color: <?php echo $main_color; ?>;
+                background-color: var(--kek-button-bg);
                 content: '';
                 display: block;
                 height: 3px;
@@ -96,14 +107,14 @@ class WPBakeryKekHeadingElement {
                 top: -2%;
                 transform: translateY(-50%);
             }
-
+    
             /* After pseudo-element (right line) */
             .twelve <?php echo $heading_level; ?>:after {
                 background-color: <?php echo $main_color; ?>;
                 content: '';
                 display: block;
                 height: 3px;
-                width: 75px;
+                width: 15px;
                 position: absolute;
                 right: 0;
                 top: 80%;
@@ -113,6 +124,7 @@ class WPBakeryKekHeadingElement {
         <?php
         return ob_get_clean();
     }
+    
 }
 
 // Instantiate the class

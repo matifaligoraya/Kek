@@ -240,6 +240,7 @@ class WPBakeryKekHeroElement
                     <source type="video/mp4" data-src="<?php echo get_stylesheet_directory_uri(); ?>/clipdog_x180.webm" 
                     src="<?php echo get_stylesheet_directory_uri(); ?>/assets/clip/dog_x180.webm">
                 </video> -->
+                
           </div>
 
         </div><!-- End Content -->
