@@ -115,10 +115,10 @@ class WPBakeryKekProductDisplayElement
               <?php endif; ?>
             <div class="row">
                 <div class="col">
-                    <div class="twelve">
+                    <div class="twelve <?php echo $enable_overlay;?>">
                         <h3><?php echo $atts['heading']; ?></h3>
                     </div>
-                    <p >
+                    <p class="<?php echo $enable_overlay;?>">
                        <?php echo $atts['description']; ?>
                     </p>
                 </div>

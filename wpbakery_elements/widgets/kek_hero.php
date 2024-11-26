@@ -313,7 +313,7 @@ class WPBakeryKekHeroElement
       #splash-illustration-top-left.splash-illustration-canvas {
         background-color: #d1ced4;
         left: 50px;
-        top: -40px;
+        top: 10px;
 
       }
 

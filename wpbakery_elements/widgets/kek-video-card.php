@@ -144,7 +144,7 @@ class WPBakeryKekVideoCard {
   box-shadow: 0px 1px 8px 0px rgba(0, 0, 0, 0.4);
   display: flex;
   flex-direction: column;
-  font-family: Arial, sans-serif;
+
   padding: 12px;
   width: 400px;
   transition: all 0.7s ease-out;
