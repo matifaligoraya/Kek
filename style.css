@@ -35292,16 +35292,3 @@ body.dark {
 }
 
 
-
-.vc_row[data-vc-full-width] {
- 
-  max-width: 100% !important;
-}
-.vc_row  {
- 
-  max-width: 1320px;
-  margin: 0 auto;
-}
-.vc_row[data-vc-full-width] .wpb_wrapper {
-  padding: 5% 10% !important;
-}
