@@ -930,7 +930,13 @@ span.cloud-button-content {
   background-size: 300% 300%;
   animation: gradientAnimation 5s ease infinite;
 }
-.instagram.vc_row[data-vc-full-width] > div, .instagram.vc_row[data-vc-full-width] > h1, .instagram .twelve h1 {
+.tiktok.vc_row[data-vc-full-width] {
+  background: linear-gradient(45deg, #040041, #69C9D0, #E1306C);
+  background-size: 300% 300%;
+  animation: gradientAnimation 5s ease infinite;
+}
+.instagram.vc_row[data-vc-full-width] > div, .instagram.vc_row[data-vc-full-width] > h1, .instagram .twelve h1,
+.tiktok.vc_row[data-vc-full-width] > div, .tiktok.vc_row[data-vc-full-width] > h1, .tiktok .twelve h1 {
   color: #fff !important;
 }
 .vc_row[data-vc-full-width] {
