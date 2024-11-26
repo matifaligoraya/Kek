@@ -31,7 +31,13 @@ class WPBakeryKekHeadingElement {
                     'param_name' => 'heading_text',
                     'value' => __('Your Heading', 'kek'),
                     'description' => __('Enter the heading text.', 'kek'),
-                )
+                ), array(
+                    'type' => 'colorpicker',
+                    'heading' => __('Heading Color', 'kek'),
+                    'param_name' => 'heading_color',
+                    'description' => __('Choose a color for the heading text.', 'kek'),
+                    'value' => '#ffffff', // Default color
+                ),
               
             ),
         ));
@@ -41,12 +47,12 @@ class WPBakeryKekHeadingElement {
         $atts = shortcode_atts(array(
             'heading_level' => 'h1',
             'heading_text' => 'Your Heading',
-            'text_color' => '#000000',
+            'heading_color' => '#000000',
         ), $atts);
     
         $heading_level = esc_attr($atts['heading_level']); // Escape HTML-sensitive attributes
         $heading_text = $atts['heading_text']; // Trust content; sanitize selectively
-    
+        $heading_color = $atts['heading_color'];
     
         // Define allowed HTML tags
         $allowed_html = array(
@@ -84,15 +90,13 @@ class WPBakeryKekHeadingElement {
                 white-space: nowrap;
                 padding-bottom: 13px;
                 position: relative;
-                color: <?php echo $main_color; ?>;
+                color:  <?php echo !empty($heading_color) ? esc_attr($heading_color) : esc_attr($main_color); ?>;
             }
     
             .twelve {
                 width: 100%;
             }
-            .twelve.\31 {
-  color: #fff !important;
-}
+           
             .twelve h1 {
                 width: max-content;
             }
