@@ -90,7 +90,9 @@ class WPBakeryKekHeadingElement {
             .twelve {
                 width: 100%;
             }
-    
+            .twelve.\31 {
+  color: #fff !important;
+}
             .twelve h1 {
                 width: max-content;
             }
