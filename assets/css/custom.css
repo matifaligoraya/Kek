@@ -923,3 +923,20 @@ span.cloud-button-content {
 
 
 /* header hero ended */
+
+.instagram.vc_row[data-vc-full-width] {
+  background: linear-gradient(45deg, #8E44AD, #E1306C);
+
+  background-size: 300% 300%;
+  animation: gradientAnimation 5s ease infinite;
+}
+
+.vc_row[data-vc-full-width] {
+  padding: 5% 10% !important;
+  max-width: 100% !important;
+}
+.vc_row  {
+ 
+  max-width: 1320px;
+  margin: 0 auto;
+}

@@ -260,21 +260,7 @@ background-origin: padding-box;
 background-clip: border-box;
   opacity: 0.8;
 }
-.instagram.vc_row[data-vc-full-width] {
-  background: linear-gradient(45deg, #040041, #0000A6, #8E44AD, #E1306C, #FCAF45);
-  background-size: 300% 300%;
-  animation: gradientAnimation 5s ease infinite;
-}
 
-.vc_row[data-vc-full-width] {
-  padding: 5% 10% !important;
-  max-width: 100% !important;
-}
-.vc_row  {
- 
-  max-width: 1320px;
-  margin: 0 auto;
-}
 
 /* .overlay #splash-background {
   background:radial-gradient(ellipse at top,#f80666,transparent);
