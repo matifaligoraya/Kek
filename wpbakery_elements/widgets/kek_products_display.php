@@ -18,18 +18,7 @@ class WPBakeryKekProductDisplayElement
             'base' => 'kek_product_display',
             'category' => __('Kek Essentials', 'kek'),
             'params' => array(
-                array(
-                    'type' => 'textfield',
-                    'heading' => __('Heading', 'kek'),
-                    'param_name' => 'heading',
-                    'description' => __('Enter the heading to display before the product list.', 'kek'),
-                ),
-                array(
-                    'type' => 'textarea',
-                    'heading' => __('Description', 'kek'),
-                    'param_name' => 'description',
-                    'description' => __('Enter a brief description to display before the product list.', 'kek'),
-                ),
+             
                 array(
                     'type' => 'autocomplete',
                     'heading' => __('Categories', 'kek'),
@@ -73,7 +62,7 @@ class WPBakeryKekProductDisplayElement
         $atts = shortcode_atts(array(
             'categories' => '',
             'heading' => '4',
-            'description' => '4',
+           
             'product_count' => '4',
             'display_style' => 'grid',
             'enable_overlay' => '',     
@@ -108,22 +97,11 @@ class WPBakeryKekProductDisplayElement
         <?php if ($enable_overlay): ?>
             <div class="overlay"></div>
             <div class="rotate-img">
-            <img src="<?php echo kek_URI ?>assets/images/info-box-bg-light.svg" style="width: 32px;" >
-
+           
                   <div class="rotate-sty-2"></div>
               </div>
               <?php endif; ?>
-            <div class="row">
-                <div class="col">
-                    <div class="twelve <?php echo $enable_overlay;?>">
-                        <h3><?php echo $atts['heading']; ?></h3>
-                    
-                    <p >
-                       <?php echo $atts['description']; ?>
-                    </p>
-                    </div>
-                </div>
-            </div>
+       
           
             <div class="row">
                 <?php while ($products->have_posts()): $products->the_post(); ?>
