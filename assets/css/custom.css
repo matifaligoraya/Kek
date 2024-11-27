@@ -612,11 +612,12 @@ span.cloud-button-content {
 .pricing-table .card {
   border-radius: 20px;
   padding: 30px 10px;
-  margin: 50px 0px;
   background-color: #fff;
   background-repeat: no-repeat;
   background-position: -1px -1px;
   background-size: 102% 160px;
+   border-width: 1px;
+   border-style: dotted;
   border-color: rgba(255, 255, 255, 0.3);
 }
 .pricing-table .card h2 {
