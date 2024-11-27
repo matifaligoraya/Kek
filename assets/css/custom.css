@@ -948,3 +948,170 @@ span.cloud-button-content {
   max-width: 1320px;
   margin: 0 auto;
 }
+
+
+.icon-position {
+  position: absolute;
+  top: var(--icon-top, auto); /* Default to 'auto' if not set */
+  right: var(--icon-right, auto);
+  bottom: var(--icon-bottom, auto);
+  left: var(--icon-left, auto);
+  transform: translate(var(--icon-translate-x, 0%), var(--icon-translate-y, 0%));
+}
+
+/* Wrapper for the video card */
+.video-card-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+
+  margin: 20px auto;
+  height: 500px;
+
+}
+
+
+/* Floating Icons */
+.floating-icon {
+  position: absolute;
+  font-size: 24px;
+  animation: floatAround 12s ease-in-out infinite, fadeInOut 6s ease-in-out infinite alternate;
+  opacity: 0.8;
+  will-change: transform, opacity;
+}
+.icon-position {
+  position: absolute;
+  top: var(--icon-top, auto); /* Default to 'auto' if not set */
+  right: var(--icon-right, auto);
+  bottom: var(--icon-bottom, auto);
+  left: var(--icon-left, auto);
+  transform: translate(var(--icon-translate-x, 0%), var(--icon-translate-y, 0%));
+}
+.dynamic-animation {
+  animation: var(--animation-name, none) var(--animation-duration, 1s) ease-in-out;
+  animation-delay: var(--animation-delay, 0s);
+  animation-iteration-count: var(--animation-iterations, 1);
+}
+/* Floating Animation */
+@keyframes floatAround {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(30px, -20px); }
+  50% { transform: translate(-40px, 30px); }
+  75% { transform: translate(20px, -10px); }
+  100% { transform: translate(0, 0); }
+}
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+  }
+  40% {
+      transform: translateY(-20px);
+  }
+  60% {
+      transform: translateY(-10px);
+  }
+}
+/* Fade In/Out Animation */
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* Main Video Card Styling */
+.video-card {
+  align-items: center;
+  background: #fff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+
+  width: 400px;
+  box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.4);
+  margin: 20px auto;
+  transition: all 0.7s ease-out;
+  animation: float 6s ease-in-out infinite;
+  position: absolute;
+  top:80%;
+}
+/* Metric Cell Styling */
+.video-card__metric-cell {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100px;
+  border-right: 1px solid #eee;
+}
+
+.video-card__metric-cell:last-child {
+  border-right: 0;
+}
+
+/* Icon and Counter Styling */
+.video-card__metric-cell i {
+  font-size: 24px;
+}
+
+.video-card__metric-cell .counter {
+  color: #000 !important;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+/* Thumbnail Styling */
+.video-card__metric-cell img {
+  border-radius: 6px;
+  flex-shrink: 0;
+  height: 80px;
+  width: 80px;
+}
+
+/* Metrics Row */
+.video-card__metrics {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: center;
+  padding-top: 3px;
+}
+
+/* Animation for Card Floating */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+
+
+i.tiktok{
+  font-size: 2rem;
+  line-height: 6rem;
+  animation: shaking 3s steps(6, end) infinite;
+  white-space: nowrap;
+  mix-blend-mode: screen;
+}
+
+
+@keyframes shaking{
+  0%{
+    /* Using filter cause text-shadow doesn't support svgs */
+    filter: drop-shadow(3px 3px 0px #0ff) drop-shadow(-3px -3px 0px #f00);
+    transform: translate(1px, 1px);}
+  20%{
+    filter: drop-shadow(-3px 3px 0px #0ff) drop-shadow(3px -3px 0px #f00);
+    transform: translate(-2px, 1px);}
+  40%{
+    filter: drop-shadow(3px -3px 0px #0ff) drop-shadow(3px -3px 0px #f00);
+    transform: translate(1px, -1px);}
+  60%{
+    filter: drop-shadow(-3px -3px 0px #0ff) drop-shadow(3px 3px 0px #f00);
+    transform: translate(-1px, -1px);}
+  80%{
+    filter: drop-shadow(-2px 3px 0px #0ff) drop-shadow(-3px 2px 0px #f00);
+    transform: translate(2px, 0px);}
+  100%{
+    filter: drop-shadow(-3px 1px 0px #0ff) drop-shadow(1px -3px 0px #f00);
+    transform: translate(1px, 1px);}
+}
