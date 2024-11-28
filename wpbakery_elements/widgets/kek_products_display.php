@@ -93,24 +93,18 @@ class WPBakeryKekProductDisplayElement
 
         ob_start();
 ?>
-        <section class="kek-product-display <?php echo $display_style; ?>">
-        <?php if ($enable_overlay): ?>
-            <div class="overlay"></div>
-            <div class="rotate-img">
-           
-                  <div class="rotate-sty-2"></div>
-              </div>
-              <?php endif; ?>
-       
-          
-            <div class="row">
-                <?php while ($products->have_posts()): $products->the_post(); ?>
-                    <?php
+      <section class="kek-product-display <?php echo $display_style; ?>">
+    <div class="container">
+        <div class="row">
+            <?php
+            if ($products->have_posts()):
+                while ($products->have_posts()): $products->the_post();
                     $product = wc_get_product(get_the_ID());
-                    // print_r(get_post_meta(get_the_ID()));
                     $image_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
+                    $title = get_the_title();
                     $description = wp_trim_words(get_the_content(), 20, '...');
                     $custom_tabs = get_post_meta(get_the_ID(), '_kek_custom_product_tabs', true);
+                    $features = get_post_meta(get_the_ID(), '_product_features', true);
                     // print_r(value: $custom_tabs);
                     // Calculate the minimum "New Price" from options
                     $min_price = null;
@@ -126,52 +120,63 @@ class WPBakeryKekProductDisplayElement
                             }
                         }
                     }
-                    // echo  $min_price ;
+                    $price = $product->get_price_html();
+                    $permalink = get_permalink();
                     ?>
-                    <div class="col-md-<?php echo ($display_style === 'grid') ? '4' : '12'; ?> pricing-table">
-
-                        <div class="card shadow kek-info-box">
-
-                            <h4 class="ls-0 fw-bold mb-3"><?php the_title(); ?></h4>
-                            <p class="mb-5 text-black-50"><?php echo $description; ?></p>
-
-                            <a href="<?php the_permalink(); ?>" Style="margin-bottom: 15px;"
-                                class="btn w-100 text-white bg-color rounded-3 p-3 fw-bold animation-cloud-btn">
-                                <span class="cloud-button-content">
-                                    <i class="fa-solid fa-cart-shopping"></i>
-                                    Buy Now
-
-                                </span>
-                                <span class="animation-cloud-btn-inner">
-                                    <span class="animation-cloud-parts">
-                                        <span class="animation-cloud-part"></span>
-                                        <span class="animation-cloud-part"></span>
-                                        <span class="animation-cloud-part"></span>
-                                        <span class="animation-cloud-part"></span>
-                                    </span>
-                                </span>
-                            </a>
-                            <br />
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <?php if (!is_null($min_price)): ?>
-                                        <span>Starting at <b class="text-kek"><?php echo wc_price($min_price); ?></b></span>
+                    <div class="col">
+                        <div class="product-container">
+                            <a href="<?php echo esc_url($permalink); ?>">
+                            <div class="product-image">
+                                <span class="hover-link"></span>
+                                <span class="product-link">Buy</span>
+                                <?php if (!empty($features)): ?>
+                                    <div class="product-features">
+                                        <?php foreach ($features as $feature): ?>
+                                            <div class="feature">
+                                                <i class="<?php echo esc_attr($feature['icon']); ?>"></i>
+                                                <p><?php echo esc_html($feature['text']); ?></p>
+                                            </div>
+                                        <?php endforeach; ?>
+                                    </div>
+                                <?php endif; ?>
+                                <p class="price"> <?php if (!is_null($min_price)): ?>
+                                        <span>Starting from <b ><?php echo wc_price($min_price); ?></b></span>
                                     <?php else: ?>
                                         <span> </span>
-                                    <?php endif; ?>
-                                </div>
-                                <div class="col-md-6 stars">
+                                    <?php endif; ?></p>
+                            </div>
+                            <div class="product-description">
+                            <div class="stars"  style="width: 100%;display: flex;font-size: 8px;">
                                     <?php for ($i = 0; $i < 5; $i++) : ?>
-                                        <i class="fa fa-star float-end text-kek"></i>
+                                        <i class="fa fa-star float-end text-kek" style="margin-right: 3px; color: #d6bf04 !important;"></i>
                                     <?php endfor; ?>
                                 </div>
+                                <div class="product-label">
+                                
+                                    <div class="product-name">
+                                        <h1 style="font-size: 100%;"><?php echo esc_html($title); ?></h1>
+                                        
+                                      
+                                    </div>
+                                </div>
+                                <div class="product-option">
+                                    <div class="product-size">
+                                 <p style="font-size: 14px;"> <?php echo $description; ?></p> 
+                                    </div>
+                                </div>
                             </div>
-
+                            </a>
                         </div>
                     </div>
-                <?php endwhile; ?>
-            </div>
-        </section>
+                <?php endwhile;
+                wp_reset_postdata();
+            else: ?>
+                <p class="col-12">No products found.</p>
+            <?php endif; ?>
+        </div>
+    </div>
+</section>
+
 <?php
         wp_reset_postdata();
 

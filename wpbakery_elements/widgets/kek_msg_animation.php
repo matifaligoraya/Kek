@@ -59,7 +59,13 @@ class WPBakeryKEKMsgAnimation {
     <i class="fas fa-heart heart-icon"></i>
 </div>
         <section class="chat">
-     
+        <div class="circle border-instagram-glow" style="animation-delay: -14s"></div>
+        <div class="circle border-instagram-rounded" style="animation-delay: -13s"></div>
+        <div class="circle border-instagram-glow" style="animation-delay: -12s"></div>
+        <div class="circle d1" style="animation-delay: -11s"></div>
+    <div class="circle d2" style="animation-delay: -10s"></div>
+    <div class="circle d3" style="animation-delay: -9s"></div>
+
             <div class="chat__inner">
                 <?php 
                 if (!empty($messages)) {
@@ -150,8 +156,8 @@ class WPBakeryKEKMsgAnimation {
    display: flex;
    flex-direction: column-reverse;
    height: 8rem;
-   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23000066' d='M51.3,-59.7C65.8,-60,76.5,-44.2,77.9,-28.1C79.2,-12.1,71.2,4.2,60.4,14.2C49.7,24.2,36.3,27.8,25.8,38.4C15.2,49,7.6,66.5,-1.7,68.7C-10.9,71,-21.9,58.1,-33.5,47.9C-45.2,37.7,-57.6,30.2,-65.4,18.4C-73.2,6.5,-76.4,-9.7,-69.3,-19.8C-62.2,-29.9,-44.9,-34,-31.7,-34.1C-18.4,-34.3,-9.2,-30.5,4.6,-36.8C18.4,-43.1,36.7,-59.5,51.3,-59.7Z' transform='translate(100 100)'/%3E%3C/svg%3E");
-   font: 1rem/1.5 "Open Sans", Arial;
+   /* background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23000066' d='M51.3,-59.7C65.8,-60,76.5,-44.2,77.9,-28.1C79.2,-12.1,71.2,4.2,60.4,14.2C49.7,24.2,36.3,27.8,25.8,38.4C15.2,49,7.6,66.5,-1.7,68.7C-10.9,71,-21.9,58.1,-33.5,47.9C-45.2,37.7,-57.6,30.2,-65.4,18.4C-73.2,6.5,-76.4,-9.7,-69.3,-19.8C-62.2,-29.9,-44.9,-34,-31.7,-34.1C-18.4,-34.3,-9.2,-30.5,4.6,-36.8C18.4,-43.1,36.7,-59.5,51.3,-59.7Z' transform='translate(100 100)'/%3E%3C/svg%3E");
+   font: 1rem/1.5 "Open Sans", Arial; */
    color: #313131;   
    background-size: cover;
     background-position: center;

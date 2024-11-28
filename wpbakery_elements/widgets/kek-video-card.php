@@ -120,11 +120,13 @@ class WPBakeryKekVideoCard {
         ob_start();
         ?>
         <div class="video-card-wrapper" 
-             style="background-image: url('<?php echo esc_url($background_image); ?>');
+           <?php if($background_image) { ?>  style="background-image: url('<?php echo esc_url($background_image); ?>');
               background-size: contain;
   background-position: center;
   position: relative;
-  background-repeat: no-repeat;">
+  background-repeat: no-repeat; height: 500px;"
+    <?php }?>
+  >
              <?php if ($atts['show_icons'] === 'yes'): ?>
             <!-- Floating Icons -->
             <?php foreach ($floating_icons as $index => $icon_class): 

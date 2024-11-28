@@ -682,4 +682,72 @@ function kek_display_all_in_one_block() {
 
 add_action('display_all_in_one_block', 'kek_display_all_in_one_block');
 
-?>
+
+function add_product_feature_meta_box() {
+    add_meta_box(
+        'product_feature_meta_box',
+        __('Product Features', 'kek'),
+        'render_product_feature_meta_box',
+        'product',
+        'normal',
+        'high'
+    );
+}
+add_action('add_meta_boxes', 'add_product_feature_meta_box');
+
+function render_product_feature_meta_box($post) {
+    $product_features = get_post_meta($post->ID, '_product_features', true) ?: [];
+    wp_nonce_field('save_product_features', 'product_features_nonce');
+    ?>
+    <div id="product-feature-list">
+        <?php foreach ($product_features as $index => $feature): ?>
+            <div class="feature-item">
+                <input type="text" name="product_features[<?php echo $index; ?>][icon]" value="<?php echo esc_attr($feature['icon']); ?>" placeholder="Icon class (e.g., fa fa-star)" />
+                <input type="text" name="product_features[<?php echo $index; ?>][text]" value="<?php echo esc_attr($feature['text']); ?>" placeholder="Feature text" />
+                <button type="button" class="remove-feature">Remove</button>
+            </div>
+        <?php endforeach; ?>
+    </div>
+    <button type="button" id="add-feature">Add Feature</button>
+    <script>
+        document.getElementById('add-feature').addEventListener('click', function () {
+            const container = document.getElementById('product-feature-list');
+            const index = container.children.length;
+            const item = document.createElement('div');
+            item.className = 'feature-item';
+            item.innerHTML = `
+                <input type="text" name="product_features[${index}][icon]" placeholder="Icon class (e.g., fa fa-star)" />
+                <input type="text" name="product_features[${index}][text]" placeholder="Feature text" />
+                <button type="button" class="remove-feature">Remove</button>
+            `;
+            item.querySelector('.remove-feature').addEventListener('click', () => item.remove());
+            container.appendChild(item);
+        });
+        document.querySelectorAll('.remove-feature').forEach(button => button.addEventListener('click', function () {
+            this.parentElement.remove();
+        }));
+    </script>
+    <style>
+        .feature-item {
+            margin-bottom: 10px;
+        }
+        .feature-item input {
+            margin-right: 10px;
+        }
+        .remove-feature {
+            color: red;
+            cursor: pointer;
+        }
+    </style>
+    <?php
+}
+
+function save_product_features($post_id) {
+    if (!isset($_POST['product_features_nonce']) || !wp_verify_nonce($_POST['product_features_nonce'], 'save_product_features')) {
+        return;
+    }
+
+    $features = $_POST['product_features'] ?? [];
+    update_post_meta($post_id, '_product_features', array_values($features));
+}
+add_action('save_post', 'save_product_features');
