@@ -5,12 +5,7 @@
 	Overwriting Default Theme Styles for Better Handling Updates
 -----------------------------------------------------------------*/
 
-#copyrights {
-  background: url("https://canvastemplate.com/demos/seo/images/hero/footer.svg")
-    no-repeat top center;
-  background-size: cover;
-  padding-top: 70px;
-}
+
 
 .slick-slider {
   width: 90% !important;

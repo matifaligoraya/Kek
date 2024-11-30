@@ -8,55 +8,35 @@
         $stripe_enabled = get_theme_mod('kek_stripe_enabled', false);        
     ?>
     </div>
-    <footer id="footer" style="background: url('<?php echo esc_url(get_theme_mod('kek_footer_bg_image', '')); ?>') repeat; background-size: cover;">
-        <div class="container">
+    <footer id="footer" class="background-image">
+        <div class="container content">
             <div class="footer-widgets-wrap">
-                <div class="row col-mb-50">
-                    <div class="col-md-8">
-                        <div class="widget">
-                            <img src="<?php echo get_theme_mod('kek_footer_image', ''); ?>" alt=" " class="alignleft" style="margin-top: 8px; padding-right: 18px; border-right: 1px solid #4A4A4A;">
+                <div class="row ">
+                    <div class="col">
+                        <div class="widget" style="text-align: center;">
+                           
                             <?php echo get_theme_mod('kek_footer_highlight', ''); ?>
-                            <div class="line" style="margin: 30px 0;"></div>
+                           
 
                            
                         </div>
                     </div>
 
-                    <div class="col-md-4">
-                        <div class="widget">
-                            <div class="row col-mb-30">
-                                <div class="col-lg-6">
-                                    <div class="counter counter-small">                                        
-                                        <span data-from="50" data-to="<?php echo $downloads ?>" data-refresh-interval="80" data-speed="3000" data-comma="true"></span>
-                                    </div>
-                                    <h5 class="mb-0">YouTube Views</h5>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="counter counter-small">                                                                                
-                                        <span data-from="50" data-to="<?php echo $clients ?>" data-refresh-interval="50" data-speed="2000" data-comma="true"></span>
-                                    </div>
-                                    <h5 class="mb-0">Clients</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <br />
-                      
-                    </div>
+              
                 </div>
             </div>
         </div>
 
-        <div id="copyrights">
+        <div id="copyrights" class="content">
             <div class="container">
                 <div class="row justify-content-between col-mb-30">
-                    <div class="col-12 col-lg-auto text-center text-lg-start">                        
+                    <div class="col-6 col-lg-auto text-center text-lg-start">                        
                         Copyrights © <?php echo date("Y"); ?> All Rights Reserved by <a href="https://bitandbytelab.com/">Bit & Byte Lab</a>
                     </div>                    
-                </div>
-           <div class="row justify-content-between col-mb-30">
-                    <div class="col-12 col-lg-auto text-center text-lg-start">                        
-                    <div class="row col-mb-30">
+               
+
+                    <div class="col-6 col-lg-auto text-center text-lg-start">                        
+                
                                 <?php
                                 wp_nav_menu(array(
                                     'theme_location' => 'footer-menu',
@@ -66,13 +46,37 @@
                                     'depth' => 1,
                                 ));
                                 ?>
-                            </div>
+                            
                     </div>                    
                 </div>
              </div>
         </div>
     </footer>
+<style>
 
+.background-image {
+    position: relative;
+    background: url('<?php echo get_stylesheet_directory_uri(); ?>/assets/images/footer.png') no-repeat bottom center;
+    background-size: cover;
+}
+
+.background-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8); /* Adjust the opacity here (0.5 = 50% opacity) */
+    z-index: 1;
+}
+
+.content {
+    position: relative;
+    z-index: 2; /* Keep content above the overlay */
+    color: #000 !important; /* Ensure text is visible */
+}
+</style>
 	<!-- Go To Top
 	============================================= -->
 	<div id="gotoTop" class="uil uil-angle-up"></div>

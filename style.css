@@ -31258,13 +31258,7 @@ input[type="checkbox"]:not(:checked) + label.error {
 /* ----------------------------------------------------------------
 	Footer
 -----------------------------------------------------------------*/
-#footer {
-  --kek-footer-top-border: 5px solid rgba(var(--kek-contrast-rgb), 0.15);
-  --kek-copyrights-link-color: var(--kek-contrast-500);
-  position: relative;
-  background-color: var(--kek-footer-bg);
-  border-top: var(--kek-footer-top-border);
-}
+
 
 @media (min-width: 992px) {
   .sticky-footer #slider:not(.slider-parallax-invisible),
@@ -31285,12 +31279,6 @@ input[type="checkbox"]:not(:checked) + label.error {
   padding: var(--kek-content-padding) 0;
 }
 
-#copyrights {
-  padding: calc(var(--kek-content-padding) * 0.5) 0;
-  background-color: var(--kek-contrast-300);
-  font-size: var(--kek-copyrights-font-size);
-  line-height: var(--kek-line-height-content);
-}
 #copyrights i.footer-icon {
   position: relative;
   top: 1px;
