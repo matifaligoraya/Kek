@@ -588,3 +588,173 @@
   background-clip: border-box;
     opacity: 0.8;
   }
+
+
+  
+.footer-back {
+    background-image: linear-gradient(45deg, #8E44AD, #E1306C);
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    color: white;
+    font-family: sans-serif;
+    font-weight: 200;
+    z-index: 1;
+  }
+  
+  .footer-back * {
+    z-index: 2;
+  }
+  
+  
+.circles{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.circles li{
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.2);
+    animation: animate 25s linear infinite;
+    bottom: -150px;
+    
+}
+  ul.circles li i {
+            color: #ec3454;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateY(0) rotate(0);
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+            }
+        }
+
+        /* Specific Sizes and Animations */
+        .circles li:nth-child(1) {
+            left: 25%;
+            font-size: 80px; /* Large icon */
+          }
+          
+          .circles li:nth-child(2) {
+            left: 10%;
+            font-size: 20px; /* Small icon */
+          }
+          
+          .circles li:nth-child(3) {
+            left: 70%;
+            font-size: 30px; /* Medium-small icon */
+          }
+          
+          .circles li:nth-child(4) {
+            left: 40%;
+            font-size: 60px; /* Medium-large icon */
+          }
+          
+          .circles li:nth-child(5) {
+            left: 65%;
+            font-size: 25px; /* Small-medium icon */
+          }
+          
+          .circles li:nth-child(6) {
+            left: 75%;
+            font-size: 110px; /* Extra-large icon */
+          }
+          
+          .circles li:nth-child(7) {
+            left: 35%;
+            font-size: 150px; /* Huge icon */
+          }
+          
+          .circles li:nth-child(8) {
+            left: 50%;
+            font-size: 25px; /* Small icon */
+          }
+          
+          .circles li:nth-child(9) {
+            left: 20%;
+            font-size: 15px; /* Very small icon */
+          }
+          
+          .circles li:nth-child(10) {
+            left: 85%;
+            font-size: 100px; /* Large icon */
+          }
+          
+
+        /* Randomize Icon Sizes */
+        ul.circles li i {
+            font-size: calc(0.5rem + 0.1 * var(--circle-size));
+        }
+
+
+@keyframes animate {
+
+    0%{
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+        border-radius: 0;
+    }
+
+    100%{
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 0;
+        border-radius: 50%;
+    }
+
+}
+
+  .background-shapes {
+    content: "";
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 5076px;
+    background-size: 100%;
+    animation: 120s infiniteScroll linear infinite;
+    background-repeat-x: repeat;
+    background-image: url(https://cdn2.hubspot.net/hubfs/53/Pricing%202017%20Assets/marketing/Header_Circles-1.svg);
+  }
+  
+  @-webkit-keyframes infiniteScroll {
+    0% {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+  
+    100% {
+      -webkit-transform: translate3d(0, -1692px, 0);
+      transform: translate3d(0, -1692px, 0);
+    }
+  }
+  
+  @keyframes infiniteScroll {
+    0% {
+      -webkit-transform: translate3d(0, 0, 0);
+      transform: translate3d(0, 0, 0);
+    }
+  
+    100% {
+      -webkit-transform: translate3d(0, -1692px, 0);
+      transform: translate3d(0, -1692px, 0);
+    }
+  }
+  
