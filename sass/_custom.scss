@@ -628,13 +628,12 @@
     list-style: none;
     width: 10px;
     height: 10px;
-    background: rgba(255, 255, 255, 0.2);
     animation: animate 25s linear infinite;
     bottom: -150px;
     
 }
   ul.circles li i {
-            color: #ec3454;
+            color: #fff;
         }
 
         @keyframes move {
