@@ -79,7 +79,7 @@ class WPBakeryKekHeadingElement {
         <style>
             <?php 
             $options = get_option(kek_SETTINGS_KEY);    
-            $main_color = esc_attr($options['main_color'] ?? '#1db954');    
+            $main_color = esc_attr($options['main_color'] ?? '#ec3454');    
             ?>
             .twelve <?php echo $heading_level; ?> {
                 font-size: 28px;
@@ -103,7 +103,7 @@ class WPBakeryKekHeadingElement {
     
             /* Before pseudo-element (left line) */
             .twelve <?php echo $heading_level; ?>:before {
-                background-color: var(--kek-button-bg);
+                background-color: #ec3454;
                 content: '';
                 display: block;
                 height: 3px;
@@ -116,7 +116,7 @@ class WPBakeryKekHeadingElement {
     
             /* After pseudo-element (right line) */
             .twelve <?php echo $heading_level; ?>:after {
-                background-color: <?php echo $main_color; ?>;
+                background-color: #ec3454;  
                 content: '';
                 display: block;
                 height: 3px;

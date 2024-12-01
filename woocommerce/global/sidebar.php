@@ -10,7 +10,7 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see         https://woocommerce.com/document/template-structure/
+ * @see         https://docs.woocommerce.com/document/template-structure/
  * @package     WooCommerce\Templates
  * @version     1.6.4
  */
@@ -19,6 +19,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
-get_sidebar( 'shop' );
+//get_sidebar( 'shop' ); //this did originally wc
 
+if (!is_single() && is_active_sidebar( 'wc-sidebar' )): ?>
+
+    <div class="wrapper bg-light p-3" id="wrapper-main-sidebar-widgets">
+    
+        <?php dynamic_sidebar( 'wc-sidebar' ); ?>
+    
+    </div>
+
+<?php endif;
+		
 /* Omit closing PHP tag at the end of PHP files to avoid "headers already sent" issues. */
+         

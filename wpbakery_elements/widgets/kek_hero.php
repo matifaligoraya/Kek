@@ -360,13 +360,13 @@ class WPBakeryKekHeroElement
         margin: 0;
         font-size: 48px;
         font-weight: 700;
-        color: var(--kek-dark-blue);
+        color: #040041;
       }
 
       .kek-hero .welcome p {
         font-size: 18px;
         margin: 0;
-        color: var(--kek-dark-blue);
+        color: #040041;
       }
 
       .kek-hero .content {
@@ -374,14 +374,14 @@ class WPBakeryKekHeroElement
       }
 
       .kek-hero .content .why-box {
-        color: var(--kek-contrast-300);
-        background: var(--kek-dark-blue);
+        color: #fff;
+        background: #040041;
         padding: 30px;
         border-radius: 4px;
       }
 
       .kek-hero .content .why-box h3 {
-        color: var(--kek-contrast-300);
+        color: #fff;
         font-weight: 700;
         font-size: 34px;
         margin-bottom: 30px;
@@ -392,8 +392,8 @@ class WPBakeryKekHeroElement
       }
 
       .kek-hero .content .why-box .more-btn {
-        color: var(--kek-contrast-300);
-        background: color-mix(in srgb, var(--kek-contrast-300), transparent 80%);
+        color: #fff;
+        background: color-mix(in srgb, #fff, transparent 80%);
         display: inline-block;
         padding: 6px 30px 8px 30px;
         border-radius: 50px;

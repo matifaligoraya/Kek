@@ -1,61 +1,45 @@
 <?php
-/**
- * The template for displaying archive pages.
- *
- * @package     KeK
- * @version     1.0.0
- * @author      KeK
- * @link     https://bitandbytelab.com/
- * @copyright   Copyright (c) 2020 KeK
- 
- */
+
+// Exit if accessed directly.
+defined( 'ABSPATH' ) || exit;
 
 get_header();
-
-/**
- * Zoo Before Main Content
- *
- * @hooked kek_breadcrumb - 10
- * @hooked kek_blog_cover - 20
- */
-do_action('kek_before_main_content');
 ?>
-    <main id="site-main-content" class="asd asd<?php echo esc_attr(kek_main_content_css()) ?>">
-        <div class="container">
-            <div class="row">
-                <div class="<?php echo esc_attr(kek_loop_content_css()) ?>">
-                    <?php
-                    /**
-                     * Zoo Before Loop Blog Content
-                     *
-                     */
-                    do_action('kek_before_loop_content');
-                    ?>
-                    <div class="row">
-                        <?php if (have_posts()) :
-                            while (have_posts()) : the_post();
-                                get_template_part('inc/templates/posts/loop/post', 'item');
-                            endwhile;
-                        else :
-                            get_template_part('content', 'none');
-                        endif; ?>
-                    </div>
-                    <?php
-                    /**
-                     * Zoo After Loop Blog Content
-                     *@hooked kek_post_pagination - 10
-                     */
-                    do_action('kek_after_loop_content');
-                    ?>
-                </div>
-                <?php get_sidebar();?>
-            </div>
-        </div>
-    </main>
-<?php
-/**
- * Zoo After Main Content
- *
- */
-do_action('kek_after_main_content');
-get_footer();
+  
+ 
+
+<section class="py-5 py-xl-6 bg-light-subtle text-dark-emphasis">
+  <div class="container text-center">
+    <h1><?php the_archive_title() ?></h1>
+    <div class="lead text-muted col-md-8 offset-md-2 archive-description"><?php echo category_description(); ?></div> 
+ 
+    <!-- <p>
+      <a href="#" class="btn btn-primary my-2">Action</a>
+      <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+    </p> -->
+  </div>
+</section>
+
+<section class="album py-5">
+  <div id="container-content-archive" class="container">
+    <div class="row">
+    <?php 
+        if ( have_posts() ) : 
+            while ( have_posts() ) : the_post();
+              get_template_part('loops/cards');
+            endwhile;
+        else :
+            _e( 'Sorry, no posts matched your criteria.', 'textdomain' );
+        endif;
+        ?>
+    </div>
+
+    <div class="row">
+      <div class="col lead text-center w-100">
+        <div class="d-inline-block"><?php picostrap_pagination() ?></div>
+      </div><!-- /col -->
+    </div> <!-- /row -->
+  </div>
+</section>
+ 
+<?php get_footer();

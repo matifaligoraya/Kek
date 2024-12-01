@@ -10,9 +10,10 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see     https://woocommerce.com/document/template-structure/
- * @package WooCommerce\Templates
- * @version 9.0.0
+ * @see     https://docs.woocommerce.com/document/template-structure/
+ * @author  WooThemes
+ * @package WooCommerce/Templates
+ * @version 2.6.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -22,14 +23,14 @@ if ( ! defined( 'ABSPATH' ) ) {
 do_action( 'woocommerce_before_account_navigation' );
 ?>
 
-<nav class="woocommerce-MyAccount-navigation" aria-label="<?php esc_html_e( 'Account pages', 'woocommerce' ); ?>">
-	<ul>
-		<?php foreach ( wc_get_account_menu_items() as $endpoint => $label ) : ?>
-			<li class="<?php echo wc_get_account_menu_item_classes( $endpoint ); ?>">
-				<a href="<?php echo esc_url( wc_get_account_endpoint_url( $endpoint ) ); ?>"><?php echo esc_html( $label ); ?></a>
-			</li>
-		<?php endforeach; ?>
-	</ul>
+<nav class="woocommerce-MyAccount-navigation" role="navigation">
+	<div class="list-group">
+			<?php foreach ( wc_get_account_menu_items() as $endpoint => $label ) : ?>
+				<a href="<?php echo esc_url( wc_get_account_endpoint_url( $endpoint ) ); ?>"
+					class="list-group-item list-group-item-action"><?php echo esc_html( $label ); ?></a>
+			<?php endforeach; ?>
+	</div>
 </nav>
 
-<?php do_action( 'woocommerce_after_account_navigation' ); ?>
+<?php
+do_action( 'woocommerce_after_account_navigation' );

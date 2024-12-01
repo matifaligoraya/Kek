@@ -1,0 +1,590 @@
+//DO NOT EDIT HERE
+
+// PLEASE WRITE YOUR CODE ON THE CHILD THEME FOLDER 
+.instagram.vc_row[data-vc-full-width] {
+    background: linear-gradient(45deg, #8E44AD, #E1306C);
+  
+    background-size: 300% 300%;
+    animation: gradientAnimation 5s ease infinite;
+  }
+  .tiktok.vc_row[data-vc-full-width] {
+    background: linear-gradient(45deg, #040041, #69C9D0, #E1306C);
+    background-size: 300% 300%;
+    animation: gradientAnimation 5s ease infinite;
+  }
+  .instagram.vc_row[data-vc-full-width] > div, .instagram.vc_row[data-vc-full-width] > h1, .instagram .twelve h1,
+  .tiktok.vc_row[data-vc-full-width] > div, .tiktok.vc_row[data-vc-full-width] > h1, .tiktok .twelve h1 {
+    color: #fff !important;
+  }
+  .vc_row[data-vc-full-width] {
+    padding: 5% 10% ;
+   
+  }
+  .vc_row  {
+   
+    max-width: 1320px;
+    margin: 0 auto;
+  }
+  
+  
+  .icon-position {
+    position: absolute;
+    top: var(--icon-top, auto); /* Default to 'auto' if not set */
+    right: var(--icon-right, auto);
+    bottom: var(--icon-bottom, auto);
+    left: var(--icon-left, auto);
+    transform: translate(var(--icon-translate-x, 0%), var(--icon-translate-y, 0%));
+  }
+  
+  /* Wrapper for the video card */
+  .video-card-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+  
+    margin: 20px auto;
+  
+  }
+  
+  
+  /* Floating Icons */
+  .floating-icon {
+    position: absolute;
+    font-size: 24px;
+    animation: floatAround 12s ease-in-out infinite, fadeInOut 6s ease-in-out infinite alternate;
+    opacity: 0.8;
+    will-change: transform, opacity;
+  }
+  .icon-position {
+    position: absolute;
+    top: var(--icon-top, auto); /* Default to 'auto' if not set */
+    right: var(--icon-right, auto);
+    bottom: var(--icon-bottom, auto);
+    left: var(--icon-left, auto);
+    transform: translate(var(--icon-translate-x, 0%), var(--icon-translate-y, 0%));
+  }
+  .dynamic-animation {
+    animation: var(--animation-name, none) var(--animation-duration, 1s) ease-in-out;
+    animation-delay: var(--animation-delay, 0s);
+    animation-iteration-count: var(--animation-iterations, 1);
+  }
+  /* Floating Animation */
+  @keyframes floatAround {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(30px, -20px); }
+    50% { transform: translate(-40px, 30px); }
+    75% { transform: translate(20px, -10px); }
+    100% { transform: translate(0, 0); }
+  }
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-20px);
+    }
+    60% {
+        transform: translateY(-10px);
+    }
+  }
+  /* Fade In/Out Animation */
+  @keyframes fadeInOut {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 1; }
+  }
+  
+  /* Main Video Card Styling */
+  .video-card {
+    align-items: center;
+    background: #fff;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+  
+    width: 400px;
+    box-shadow: 0px 1px 8px rgba(0, 0, 0, 0.4);
+    margin: 20px auto;
+    transition: all 0.7s ease-out;
+    animation: float 6s ease-in-out infinite;
+    position: absolute;
+    top:80%;
+  }
+  /* Metric Cell Styling */
+  .video-card__metric-cell {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100px;
+    border-right: 1px solid #eee;
+  }
+  
+  .video-card__metric-cell:last-child {
+    border-right: 0;
+  }
+  
+  /* Icon and Counter Styling */
+  .video-card__metric-cell i {
+    font-size: 24px;
+  }
+  
+  .video-card__metric-cell .counter {
+    color: #000 !important;
+    font-size: 16px;
+    font-weight: normal;
+  }
+  
+  /* Thumbnail Styling */
+  .video-card__metric-cell img {
+    border-radius: 6px;
+    flex-shrink: 0;
+    height: 80px;
+    width: 80px;
+  }
+  
+  /* Metrics Row */
+  .video-card__metrics {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: center;
+    padding-top: 3px;
+  }
+  
+  /* Animation for Card Floating */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  
+  
+  i.tiktok{
+    font-size: 2rem;
+    line-height: 6rem;
+    animation: shaking 3s steps(6, end) infinite;
+    white-space: nowrap;
+    mix-blend-mode: screen;
+  }
+  
+  
+  @keyframes shaking{
+    0%{
+      /* Using filter cause text-shadow doesn't support svgs */
+      filter: drop-shadow(3px 3px 0px #0ff) drop-shadow(-3px -3px 0px #f00);
+      transform: translate(1px, 1px);}
+    20%{
+      filter: drop-shadow(-3px 3px 0px #0ff) drop-shadow(3px -3px 0px #f00);
+      transform: translate(-2px, 1px);}
+    40%{
+      filter: drop-shadow(3px -3px 0px #0ff) drop-shadow(3px -3px 0px #f00);
+      transform: translate(1px, -1px);}
+    60%{
+      filter: drop-shadow(-3px -3px 0px #0ff) drop-shadow(3px 3px 0px #f00);
+      transform: translate(-1px, -1px);}
+    80%{
+      filter: drop-shadow(-2px 3px 0px #0ff) drop-shadow(-3px 2px 0px #f00);
+      transform: translate(2px, 0px);}
+    100%{
+      filter: drop-shadow(-3px 1px 0px #0ff) drop-shadow(1px -3px 0px #f00);
+      transform: translate(1px, 1px);}
+  }
+  
+  /* General Styling */
+  .page-title h1 {
+    margin-top: 70px;
+    margin-bottom: 70px;
+    color: #485a64;
+    font-weight: bold;
+  }
+  
+  .container.spc {
+    margin-bottom: 20px;
+  }
+  
+  /* Product Container */
+  .product-container {
+    background-color: #fff;
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 20px;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .product-container:hover {
+    box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
+  }
+  
+  .product-image {
+    height: 323px;
+    position: relative;
+    overflow: hidden;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .product-container:hover .product-image {
+    height: 240px;
+  }
+  
+  .product-image img {
+    width: 100%;
+  }
+  
+  .product-link {
+    position: absolute;
+    background: #fff;
+    width: 100px;
+    height: 100px;
+    color: var(--kek-themecolor);
+    border-radius: 50%;
+    font-size: 25px;
+    text-align: center;
+    line-height: 100px;
+    left: calc(50% - 50px);
+    top: calc(50% - 50px);
+    opacity: 0;
+    transition: 0.5s;
+  }
+  
+  .product-container:hover .product-link {
+    opacity: 1;
+  }
+  
+  .product-link:hover {
+    text-decoration: none;
+    color: #4FDAA4;
+  }
+  
+  .hover-link {
+    background-color:rgba(4, 0, 65, 0.8);
+    
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    transition: 0.5s;
+  }
+  
+  .product-container:hover .hover-link {
+    opacity: 1;
+  }
+  
+  /* Product Description */
+  .product-description {
+    background-color: #f7f7f7;
+    border-top: 1px solid #efefef;
+    padding: 10px ;
+    color: #797979;
+  }
+  
+  .product-description h1 {
+    font-size: 23px;
+    margin: 0 0 5px;
+    font-weight: bold;
+    color: #333;
+    height: 45px;
+  }
+  
+  .product-description .price {
+    font-size: 23px;
+    font-weight: bold;
+    color: #2DD493;
+    text-align: right;
+  }
+  
+  .product-description p {
+    color: #c4c4c4;
+    margin: 0;
+  }
+  
+  .product-option {
+    border-top: 1px solid #d2d2d2;
+    padding: 10px 0;
+  }
+  
+  .product-option h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .product-option .product-color ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .product-option .product-color li {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin: 0 5px;
+    border-radius: 50%;
+  }
+  
+  
+  
+  /* Hover Effect */
+  .hovereffect {
+    width: 100%;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+  }
+  
+  .hovereffect img {
+    display: block;
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+    transition: 0.3s ease-in-out;
+  }
+  
+  .hovereffect:hover img {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  
+  .hovereffect .overlay {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: 0.3s ease-in-out;
+  }
+  
+  .hovereffect:hover .overlay {
+    opacity: 1;
+  }
+  
+  .hovereffect h2 {
+    text-transform: uppercase;
+    font-size: 17px;
+    color: black;
+    font-weight: bold;
+  }
+  
+  .hovereffect a.info {
+    display: inline-block;
+    text-transform: uppercase;
+    color: #fff;
+    border: 1px solid #fff;
+    padding: 7px 14px;
+    margin: 20px 0 0;
+    text-decoration: none;
+  }
+  
+  .hovereffect a.info:hover {
+    box-shadow: 0 0 5px #fff;
+  }
+  .product-features
+  {
+    margin-top: 25px;
+  }
+  .feature p ,.feature i {
+    color: #000;
+    font-size: 14px;
+    margin: 5px;
+  }
+  .feature {
+    width: 100%;
+    display: flex;
+    padding: 0px 10px;
+  }
+  
+  .product-image .price {
+    position: absolute;
+    bottom: 0px;
+    color: red;
+    width: 100%;
+    display: flex;
+    padding: 10px;
+    margin: 0px;
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+  .tiktok .product-features i {
+    color: #3b737d;
+  }
+  .tiktok .product-features p {
+    color: #3b737d;
+  }
+  
+  .border-instagram-gradient {
+    border: 3px solid;
+    border-image: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4) 1;
+    border-radius: 12px;
+  }
+  .border-instagram-rounded {
+    border: 2px solid #DD2A7B;
+    border-radius: 50px;
+    box-shadow: 0 4px 10px rgba(221, 42, 123, 0.3);
+  }
+  .border-instagram-glow {
+    border: 2px solid transparent;
+    border-radius: 12px;
+    background: linear-gradient(#fff, #fff) padding-box,
+                linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4) border-box;
+    box-shadow: inset 0 0 10px rgba(245, 133, 41, 0.8);
+  }
+  
+  .circle {
+    background: none;
+    border-width: 3px;
+    border-style: solid;
+    width: 200px;
+    height: 200px;
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    overflow: hidden;
+    animation: morph 4s linear infinite,
+        scaleIn 15s infinite cubic-bezier(0.36, 0.11, 0.89, 0.32);
+    position: absolute;
+  }
+  
+  @keyframes morph {
+    0%,
+    100% {
+        border-radius: 40% 70% 80% 30% / 40% 40% 60% 50%;
+    }
+    34% {
+        border-radius: 65% 30% 60% 50% / 30% 30% 70% 70%;
+    }
+    67% {
+        border-radius: 100% 70% 50% 100% / 100% 100% 60% 60%;
+    }
+  }
+  @keyframes scaleIn {
+    from {
+        transform: scale(0.25, 0.25);
+    }
+    to {
+        transform: scale(4.5, 4.5);
+    }
+  }
+  .d1 {
+    opacity: 0.5;
+    border-color: red;
+  }
+  .d2 {
+    opacity: 1;
+    border-color: red;
+  }
+  .d3 {
+    opacity: 0.7;
+    border-color: yellow;
+    border-width: 1px;
+  }
+
+  h1 > strong:not(.nocolor):not(.badge), .h1 > strong:not(.nocolor):not(.badge), h2 > strong:not(.nocolor):not(.badge), .h2 > strong:not(.nocolor):not(.badge), h3 > strong:not(.nocolor):not(.badge), .h3 > strong:not(.nocolor):not(.badge), h4 > strong:not(.nocolor):not(.badge), .h4 > strong:not(.nocolor):not(.badge), h5 > strong:not(.nocolor):not(.badge), .h5 > strong:not(.nocolor):not(.badge), h6 > strong:not(.nocolor):not(.badge), .h6 > strong:not(.nocolor):not(.badge) {
+    background-color: #ec3454;
+    color: #fff;
+    padding: 1px 15px;
+    margin: 0px 10px;
+  }
+  a {
+    text-decoration: none !important;
+  }
+
+
+.kektag-list {
+    width: 100%;
+    max-width: 100%;
+    display: flex;
+    flex-shrink: 0;
+    flex-direction: column;
+    gap: 2rem 0;
+    position: relative;
+    padding: 1.3rem 0;
+    overflow: hidden;
+    z-index: -1;
+    position: absolute;
+  
+  }
+  
+  .loop-slider .inner {
+    display: flex;
+    width: fit-content;
+    animation-name: loop;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: var(--direction);
+    animation-duration: var(--duration);
+  }
+  
+  .kektag {
+    display: flex;
+    align-items: center;
+    gap: 0 0.1rem;
+    color: #1a1a1a; /* Dark text to contrast with bright background */
+    font-size: 0.9rem;
+    background-color: #fff; /* Vibrant orange */
+    border-radius: 0.4rem;
+    padding: 0.5rem 1rem;
+    margin-right: 1rem;
+    box-shadow: -7px 5px 8px -8px rgba(0,0,0,0.57);
+    -webkit-box-shadow: -7px 5px 8px -8px rgba(0,0,0,0.57);
+    -moz-box-shadow: -7px 5px 8px -8px rgba(0,0,0,0.57);
+     transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    width: max-content;
+  }
+  .kektag .fab, .kektag .fas {
+    color: #ec3454;
+    font-size: 1.3rem;
+    margin-right: 12px;
+  }
+  .kektag:hover {
+    background-color: #fff; /* Slightly darker orange */
+    color: #ffffff; /* Bright white text for contrast */
+    box-shadow: 0 0.2rem 0.5rem rgba(255, 255, 255, 0.6),
+      0 0.5rem 1rem rgba(255, 255, 255, 0.5), 0 0.8rem 2rem rgba(255, 255, 255, 0.4);
+  }
+  
+  .kektag span {
+    font-size: 1.2rem;
+    color: #000;
+    font-weight: bold;
+  }
+  
+  .fade {
+    pointer-events: none;
+    
+    position: absolute;
+    inset: 0;
+  }
+  
+  @keyframes loop {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  .main-hero
+  {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    
+    background-color: rgba(255, 255, 255, 0);
+  background-position-x: 0%;
+  background-position-y: 0%;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  /** background-image: linear-gradient(#1d1a54,var(--kek-dark-blue)); **/
+  background:linear-gradient(45deg,#040041,#0000A6);
+  background-size: auto;
+  background-origin: padding-box;
+  background-clip: border-box;
+    opacity: 0.8;
+  }

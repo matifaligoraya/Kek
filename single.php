@@ -1,198 +1,104 @@
 <?php
-/**
- * The template for displaying all single posts.
- *
- * @package     KeK
- * @version     1.0.0
- * @author      KeK
- * @link     https://bitandbytelab.com/
- * @copyright   Copyright (c) 2020 KeK
- */
 
+// Exit if accessed directly.
+defined( 'ABSPATH' ) || exit;
 
 get_header();
 
-$settings = get_option(kek_SETTINGS_KEY);
 
-    // Retrieve the blog title from theme settings
-    $blog_title = isset($settings['blog_title']) ? $settings['blog_title'] : '';
-$show_subheader = get_post_meta(get_the_ID(), '_sublime_page_show_subheader', true);
-$show_subheader =  $show_subheader == "" ? 'on' : $show_subheader;
-$subheader_style = get_post_meta(get_the_ID(), '_sublime_page_subheader_style', true);
-$subheader_style = $subheader_style == "" ? 'simple_left_aligned' : $subheader_style;
-if ('on' === $show_subheader) {
-  $subheader_title = get_post_meta(get_the_ID(), '_sublime_page_subheader_title', true);
-  //print_r( $subheader_title);
-  $subheader_title = $subheader_title == ""? $blog_title :  $subheader_title;
-  $subheader_subtitle = get_post_meta(get_the_ID(), '_sublime_page_subheader_subtitle', true);
-  
-  $subheader_image = get_post_meta(get_the_ID(), '_sublime_page_subheader_image', true);
-  $subheader_cssclass = get_post_meta(get_the_ID(), '_sublime_page_subheader_cssclass', true) == "" ? '' : get_post_meta(get_the_ID(), '_sublime_page_subheader_cssclass', true);
-  $subheader_image = $subheader_image == ""? the_title() :  $subheader_image;
-  // Render the subheader if checkbox is checked
+// Loop through posts if there are any
+if (have_posts()):
+    while (have_posts()): the_post();
 
-  if($subheader_style == 'fancy_left_aligned')
-  {
-  ?>
-
-  <article class="banner banner--big <?= $subheader_cssclass; ?>">
-  <div class="container container--big">
-      <div class="row">
-          <div class="col-lg-5 text-left">
-          <h1><?php echo $subheader_title; ?></h1>
-            <p> <?= $subheader_subtitle  ?></p>
-          </div>
-      </div>
-  </div>
-  <div class="shapes">
-      <div class="shapes-base shapes-base--one"></div>
-      <div class="shapes-base shapes-base--two d-none d-md-block"></div>
-      <div class="decor">
-          <span class="top_left"></span>
-          <img src="/img/circle-stripe-1.png" alt="">
-      </div>
-      <div class="circles d-none d-md-block">
-          <div class="circles-item circles-item--1"><div></div></div>
-          <div class="circles-item circles-item--2"><div></div></div>
-          <div class="circles-item circles-item--3"><div></div></div>
-          <div class="circles-item circles-item--4"><div></div></div>
-          <div class="circles-item circles-item--5"><div></div></div>
-          <div class="circles-item circles-item--6"><div></div></div>
-          <div class="circles-item circles-item--7"><div></div></div>
-          <div class="circles-item circles-item--8"><div></div></div>
-          <span class="top_right blue"></span>
-          <span class="bottom_left red"></span>
-      </div>
-  </div>
-  </article>
-]
-  <?php
-  }else if($subheader_style == 'fancy_center_aligned')
-  {
-  ?>
-  <article class="banner banner--big <?= $subheader_cssclass; ?>">
-  <div class="container container--big">
-      <div class="row justify-content-center">
-          <div class="col-sm-7 col-lg-6">
-           <h1><?php echo $subheader_title; ?></h1>
-            <p> <?= $subheader_subtitle  ?></p>
-          </div>
-      </div>
-  </div>
-  <div class="shapes">
-      <div class="shapes-base shapes-base--one"></div>
-      <div class="shapes-base shapes-base--two d-none d-md-block"></div>
-      <div class="decor">
-          <span class="top_left"></span>
-          <img src="/img/circle-stripe-1.png" alt="">
-      </div>
-      <div class="circles d-none d-md-block">
-          <div class="circles-item circles-item--1"><div></div></div>
-          <div class="circles-item circles-item--2"><div></div></div>
-          <div class="circles-item circles-item--3"><div></div></div>
-          <div class="circles-item circles-item--4"><div></div></div>
-          <div class="circles-item circles-item--5"><div></div></div>
-          <div class="circles-item circles-item--6"><div></div></div>
-          <div class="circles-item circles-item--7"><div></div></div>
-          <div class="circles-item circles-item--8"><div></div></div>
-          <span class="top_right blue"></span>
-          <span class="bottom_left red"></span>
-      </div>
-  </div>
-</article>
-<?php
-  }else  if($subheader_style == 'simple_left_aligned'){
-  ?>
-
-
-<article class="banner banner--page">
-  <div class="container">
-      <h1><?php echo $subheader_title; ?></h1>
-      <p> <?= $subheader_subtitle  ?></p>
-      <?php if (function_exists('yoast_breadcrumb')) {
-          yoast_breadcrumb('<p id="breadcrumbs">', '</p>');
-      } ?>
-  </div>
-</article>
-
-  <?php
-  }
-   $main_class = get_post_meta(get_the_ID(), '_sublime_page_main_css_class', true);
-   if($main_class == "" )
-   {
-      $main_class = 'news news--inner';
-   }
-}
-
-if (is_home() || is_front_page()) { ?>
-
-
-<main class="home">
-  <?php }else{
-  ?>
-  
-  <main class="<?php echo $main_class; ?>">
-      <div class="container container--big">
-          <?php
-}  
-if (have_posts()) :
-    while (have_posts()) : the_post();
-        /**
-         * Zoo Before Main Content
-         *
-         * @hooked kek_breadcrumb - 10
-         * @hooked kek_blog_cover - 20
-         */
-        do_action('kek_before_main_content');
-        ?>
-      
-    
-            <?php
-            /**
-             * Zoo Before Single Blog Content
-             *
-             */
-            do_action('kek_before_single_main_content');
+        // Check if the post has a featured image
+        if (has_post_thumbnail()) {  
             ?>
-            <div class="container--big">
-                <div class="row justify-content-center">
-                    <div class="col-lg-8 <?php //echo esc_attr(kek_single_content_css()) ?>">
-                        <?php
-                        get_template_part('content', 'single');
-                        ?>
-                    </div>
-                    <div class="col-sm-6 col-md-5 col-lg-4">
-                    <?php
-                    //get_sidebar('ewf-post-sidebar');
-
-                        // Sidebar
-                        if ( is_active_sidebar('ewf-post-sidebar')) {
-                           // echo '<div class="col-sm-6 col-md-5 col-lg-4">';
-                            echo '<aside class="sidebar wow fadeInRight pl-xl-4" data-wow-duration="1.5s">';
-                            dynamic_sidebar('ewf-post-sidebar');
-                            echo '</aside>';
-                            //</div>';
-                        }
-                       
-                    ?>
-                    </div>
-                </div>
+            <div class="container-fluid d-flex p-0 bg-body" style="height:50vh;">
+                <?php
+                // Output the featured image with custom classes and styles
+                the_post_thumbnail('full', [
+                    'class' => 'img-fluid w-100 h-100',
+                    'style' => 'object-fit:cover;',
+                    'alt' => esc_attr(get_post_meta(get_post_thumbnail_id() , '_wp_attachment_image_alt', true)), 
+                ]);
+                ?>
             </div>
-            <?php
-            /**
-             * Zoo After Loop Single Content
-             *
-             */
-            do_action('kek_after_single_main_content');
-            ?>
-        </main>
         <?php
+        } else {
+            // Default block if no featured image is found
+            ?>
+            <div class="container-fluid d-flex py-6"></div>
+        <?php
+        }
+        ?>
+    
+    <div id="container-content-single" class="container position-relative p-5 bg-body text-body-emphasis shadow mt-lg-n7 rounded" >
+        <div class="row text-center mb-2">
+            
+            <div class="col-md-12">
+                <?php 
+                //CATS
+                if (!get_theme_mod("singlepost_disable_entry_cats") &&  has_category() ) {
+                        ?>
+                        <div class="entry-categories">
+                            <span class="screen-reader-text"><?php _e( 'Categories', 'picostrap5' ); ?></span>
+                            <div class="entry-categories-inner">
+                                <?php the_category( ' ' ); ?>
+                            </div><!-- .entry-categories-inner -->
+                        </div><!-- .entry-categories -->
+                        <?php
+                }
+                
+                ?>
 
-        /**
-         * Zoo After Main Content
-         *
-         */
-        do_action('kek_after_main_content');
+            
+                
+                <?php if (!get_theme_mod("singlepost_disable_date") OR !get_theme_mod("singlepost_disable_author")  ): ?>
+                    <div class="post-meta" id="single-post-meta">
+                        <p class="lead opacity-75">
+                            
+                            <?php if (!get_theme_mod("singlepost_disable_date") ): ?>
+                                <span class="post-date"><?php the_date(); ?> </span>
+                            <?php endif; ?>
+
+                            <?php if (!get_theme_mod("singlepost_disable_author") ): ?>
+                                <span class="post-author"> <?php _e( 'by', 'picostrap5' ) ?> <?php the_author(); ?></span>
+                            <?php endif; ?>
+                        </p>
+                    </div> 
+                <?php endif; ?>
+
+            </div><!-- /col -->
+        </div>
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <?php 
+                
+                the_content();
+                
+                if( get_theme_mod("enable_sharing_buttons")) picostrap_the_sharing_buttons();
+                
+                edit_post_link( __( 'Edit this post', 'picostrap5' ), '<p class="text-end">', '</p>' );
+                
+                // If comments are open or we have at least one comment, load up the comment template.
+                if (!get_theme_mod("singlepost_disable_comments")) if ( comments_open() || get_comments_number() ) {
+                    comments_template();
+                }
+                
+                ?>
+
+            </div><!-- /col -->
+        </div>
+    </div>
+
+<?php
     endwhile;
-endif;
-get_footer();
+ else :
+     _e( 'Sorry, no posts matched your criteria.', 'picostrap5' );
+ endif;
+ ?>
+
+
+ 
+
+<?php get_footer();
