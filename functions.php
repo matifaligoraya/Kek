@@ -309,7 +309,9 @@ function custom_product_page_left_end() {
 
 // Add product features to the left column under the title
 //add_action( 'woocommerce_single_product_summary', 'custom_product_features', 20 );
-
+// <div class="feature-icon">
+// <i class="<?php echo esc_attr($feature['icon']); ?>"></i>
+// </div>
 function custom_product_features() {
     global $product;
     $features = get_post_meta($product->get_id(), '_product_features', true);
@@ -320,9 +322,7 @@ function custom_product_features() {
         <div class="product-features sublimegrid">
             <?php foreach ($features as $index => $feature): ?>
                 <div class="sublimecard <?php echo ($index % 3 == 0) ? 'wide' : (($index % 2 == 0) ? 'tall' : 'wide'); ?>">
-                    <div class="feature-icon">
-                        <i class="<?php echo esc_attr($feature['icon']); ?>"></i>
-                    </div>
+                   
                     <div class="feature-text">
                         <p><?php echo esc_html($feature['text']); ?></p>
                     </div>
