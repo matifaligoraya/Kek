@@ -95,8 +95,20 @@ add_action('add_meta_boxes', 'add_product_feature_meta_box');
 
 function render_product_feature_meta_box($post) {
     $product_features = get_post_meta($post->ID, '_product_features', true) ?: [];
+	$platform = get_post_meta($post->ID, '_product_platform', true) ?: '';
+    $type = get_post_meta($post->ID, '_product_type', true) ?: '';
+
     wp_nonce_field('save_product_features', 'product_features_nonce');
     ?>
+	 <div>
+        <label for="product_platform">Platform:</label>
+        <input type="text" id="product_platform" name="product_platform" value="<?php echo esc_attr($platform); ?>" placeholder="Platform (e.g., Instagram)" />
+    </div>
+    <div>
+        <label for="product_type">Type:</label>
+        <input type="text" id="product_type" name="product_type" value="<?php echo esc_attr($type); ?>" placeholder="Type (e.g., Design)" />
+    </div>
+    <hr />
     <div id="product-feature-list">
         <?php foreach ($product_features as $index => $feature): ?>
             <div class="feature-item">
@@ -140,6 +152,24 @@ function render_product_feature_meta_box($post) {
     <?php
 }
 
+
+function save_product_features($post_id) {
+    if (!isset($_POST['product_features_nonce']) || !wp_verify_nonce($_POST['product_features_nonce'], 'save_product_features')) {
+        return;
+    }
+
+    $features = $_POST['product_features'] ?? [];
+    update_post_meta($post_id, '_product_features', array_values($features));
+
+	 // Save Platform
+	 $platform = isset($_POST['product_platform']) ? sanitize_text_field($_POST['product_platform']) : '';
+	 update_post_meta($post_id, '_product_platform', $platform);
+ 
+	 // Save Type
+	 $type = isset($_POST['product_type']) ? sanitize_text_field($_POST['product_type']) : '';
+	 update_post_meta($post_id, '_product_type', $type);
+}
+add_action('save_post', 'save_product_features');
 
 
 
@@ -281,22 +311,28 @@ function custom_product_page_left_end() {
 //add_action( 'woocommerce_single_product_summary', 'custom_product_features', 20 );
 
 function custom_product_features() {
-	//echo 'asdasdasd';
     global $product;
-	//print_r($product);
-    $features = get_post_meta( $product->get_id(), '_product_features', true );
-
-	 if (!empty($features)): ?>
-		<div class="product-features">
-			<?php foreach ($features as $feature): ?>
-				<div class="feature">
-					<i class="<?php echo esc_attr($feature['icon']); ?>"></i>
-					<p><?php echo esc_html($feature['text']); ?></p>
-				</div>
-			<?php endforeach; ?>
+    $features = get_post_meta($product->get_id(), '_product_features', true);
+	$platform = get_post_meta($product->get_id(), '_product_platform', true) ?: '';
+    $type = get_post_meta($product->get_id(), '_product_type', true) ?: '';
+    if (!empty($features)): ?>
+	<div class="sublime-custom <?php echo $platform; ?> <?php echo $type; ?>">
+        <div class="product-features sublimegrid">
+            <?php foreach ($features as $index => $feature): ?>
+                <div class="sublimecard <?php echo ($index % 3 == 0) ? 'wide' : (($index % 2 == 0) ? 'tall' : 'wide'); ?>">
+                    <div class="feature-icon">
+                        <i class="<?php echo esc_attr($feature['icon']); ?>"></i>
+                    </div>
+                    <div class="feature-text">
+                        <p><?php echo esc_html($feature['text']); ?></p>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
 		</div>
-	<?php endif; 
+    <?php endif;
 }
+
 
 // Move tabs and related products to a new row below
 add_action( 'woocommerce_after_single_product', 'custom_product_page_additional_content', 30 );
@@ -308,3 +344,6 @@ function custom_product_page_additional_content() {
     // woocommerce_output_related_products();
     echo '</div></div>';
 }
+
+
+

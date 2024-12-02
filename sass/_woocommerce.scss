@@ -1,5 +1,5 @@
 ///////// PARAMETERS //////////////
-$wc_color1: $primary;
+$wc_color1:  #dc2265 !default;;
 $wc_color2: $secondary;
 $wc_color1_lighter: tint-color($primary, 80%) !default;
 $wc_color2_lighter: tint-color($secondary, 80%) !default;
@@ -34,7 +34,7 @@ $wc_color2_stronger: shade-color($secondary, 60%) !default;
 
 //ALTERNATE BUTTONS : FULL BUTTONS
 .woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt {
-  padding: $btn-padding-y $btn-padding-x;
+  padding: 10px 20px;
   font-family: $btn-font-family;
   font-size: $btn-font-size;
   line-height: $btn-line-height;
@@ -44,7 +44,7 @@ $wc_color2_stronger: shade-color($secondary, 60%) !default;
   box-shadow:  inset 0 1px 0 rgba($white, .15), 0 1px 1px rgba($black, .075);
   color: color-contrast($wc_color1);  
   background-color: $wc_color1;
-  border-radius: $btn-border-radius;
+  border-radius: 0px;
   transition: $btn-transition;
 }
 
