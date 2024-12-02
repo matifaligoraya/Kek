@@ -345,3 +345,135 @@ function custom_product_page_additional_content() {
 
 
 
+add_filter('woocommerce_product_tabs', 'remove_reviews_and_additional_information_tabs', 98);
+
+function remove_reviews_and_additional_information_tabs($tabs) {
+    // Remove the Reviews tab
+    if (isset($tabs['reviews'])) {
+        unset($tabs['reviews']);
+    }
+
+    // Remove the Additional Information tab
+    if (isset($tabs['additional_information'])) {
+        unset($tabs['additional_information']);
+    }
+
+    return $tabs;
+}
+
+add_action('init', 'remove_product_meta_section');
+
+function remove_product_meta_section() {
+    // Remove the product meta section (SKU, Categories, Tags)
+    remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_meta', 40);
+	remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30);
+
+}
+
+add_action('woocommerce_after_single_product_summary', 'custom_add_to_cart_row', 5);
+
+
+function custom_add_to_cart_row() {
+    global $product;
+    $platform = get_post_meta($product->get_id(), '_product_platform', true) ?: '';
+    $type = get_post_meta($product->get_id(), '_product_type', true) ?: '';
+
+    echo '<div class="add-to-cart-row ' . esc_attr($platform) . ' ' . esc_attr($type) . '" style="padding-top: 45px !important;text-align: center;">';
+
+    if ($product->is_type('variable')) {
+        // Get variation attributes and available variations
+        $attributes = $product->get_variation_attributes();
+        $available_variations = $product->get_available_variations();
+
+        // Render variations as radio buttons
+        foreach ($attributes as $attribute_name => $options) {
+            $attribute_label = wc_attribute_label($attribute_name);
+            $attribute_name_cleaned = sanitize_title($attribute_name);
+            $data_values = json_encode(array_values($options));
+
+            echo '<div class="custom-variations-wrapper">';
+            echo '<h3>' . esc_html($attribute_label) . '</h3>';
+            echo '<ul class="variable-items-wrapper button-variable-items-wrapper wvs-style-squared" role="radiogroup" data-attribute_name="attribute_' . esc_attr($attribute_name_cleaned) . '" data-attribute_values="' . esc_attr($data_values) . '">';
+
+            foreach ($options as $option_value) {
+                // Find the matching variation for this option
+                $matching_variation = array_filter($available_variations, function ($variation) use ($attribute_name_cleaned, $option_value) {
+                    return isset($variation['attributes']['attribute_' . $attribute_name_cleaned]) && $variation['attributes']['attribute_' . $attribute_name_cleaned] === $option_value;
+                });
+
+                if (!empty($matching_variation)) {
+                    $variation = reset($matching_variation); // Get the first matching variation
+                    $price = wc_price($variation['display_price']);
+                    $regular_price = wc_price($variation['display_regular_price']);
+                    $is_on_sale = $variation['display_regular_price'] > $variation['display_price'];
+
+                    // Render as a radio button with price
+                    echo '<li class="variable-item button-variable-item button-variable-item-' . esc_attr(sanitize_title($option_value)) . '">';
+					echo '<label>';echo '<div class="product-content">';
+                    echo '<input type="radio" name="selected_variation" style="visibility: hidden; display: none;" value="' . esc_attr($option_value) . '" class="variation-radio">';
+                    echo '<div class="variable-item-contents">';
+                    echo '<span class="variable-item-span variable-item-span-button">' . esc_html($option_value) . '</span>';
+					echo '</div>';
+					echo '<span class="price">';
+					if ($is_on_sale) {
+						echo '<del aria-hidden="true"><span class="woocommerce-Price-amount amount">' . $regular_price . '</span> </del>' . $price;
+					} else {
+						echo $price;
+					}
+					echo '</span>';
+					echo '</div>';
+					echo '</label>';
+                    echo '</li>';
+                }
+            }
+
+            echo '</ul>';
+            echo '</div>';
+        }
+
+       
+    }
+
+    echo '</div>';
+
+	echo '<div class="add-to-cart-row ' . esc_attr($platform) . ' ' . esc_attr($type) . '" style="padding-top: 45px !important;text-align: center;">';
+ // Add the sign-up button (initially disabled)
+ $redirect_url = 'https://panel.buyyoutubviews.com/signup'; // The URL to redirect to
+ echo '<a href="' . esc_url($redirect_url) . '" class="button custom-redirect-button" disabled>' . __('Sign Up Now', 'woocommerce') . '</a>';
+ echo '</div>';
+
+	echo "<script>jQuery(document).ready(function ($) {
+		// Get the Sign Up button
+		const signUpButton = $('.custom-redirect-button');
+	signUpButton.attr('disabled', 'disabled');
+				signUpButton.attr('aria-disabled', 'true');
+				alert('asdasd');
+		// Enable or disable the button based on variation selection
+		$('input.variation-radio').on('change', function () {
+			const selected = $('input.variation-radio:checked').val();
+			        $('.variable-item').removeClass('selected');
+	        $(this).closest('.variable-item').addClass('selected');
+			if (selected) {
+				signUpButton.removeAttr('disabled');
+				signUpButton.attr('aria-disabled', 'false');
+			} else {
+				signUpButton.attr('disabled', 'disabled');
+				signUpButton.attr('aria-disabled', 'true');
+			}
+		});
+
+		signUpButton.on('click', function (e) {
+        const selectedVariation = $('input.variation-radio:checked').val();
+
+        // If no variation is selected, show an alert and prevent default behavior
+        if (!selectedVariation) {
+            e.preventDefault(); // Prevent the redirection
+            alert('Please select a variation before proceeding.');
+        }
+    });
+	});
+	
+	</script>";
+}
+
+
