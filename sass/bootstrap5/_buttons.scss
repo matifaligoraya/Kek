@@ -167,6 +167,7 @@
 //
 
 // Make a button look and behave like a link
+$btn-link-color: red;
 .btn-link {
   --#{$prefix}btn-font-weight: #{$font-weight-normal};
   --#{$prefix}btn-color: #{$btn-link-color};

@@ -79,3 +79,232 @@ function enqueue_font_awesome() {
     wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css', array(), '6.5.0');
 }
 add_action('wp_enqueue_scripts', 'enqueue_font_awesome');
+
+
+function add_product_feature_meta_box() {
+    add_meta_box(
+        'product_feature_meta_box',
+        __('Product Features', 'kek'),
+        'render_product_feature_meta_box',
+        'product',
+        'normal',
+        'high'
+    );
+}
+add_action('add_meta_boxes', 'add_product_feature_meta_box');
+
+function render_product_feature_meta_box($post) {
+    $product_features = get_post_meta($post->ID, '_product_features', true) ?: [];
+    wp_nonce_field('save_product_features', 'product_features_nonce');
+    ?>
+    <div id="product-feature-list">
+        <?php foreach ($product_features as $index => $feature): ?>
+            <div class="feature-item">
+                <input type="text" name="product_features[<?php echo $index; ?>][icon]" value="<?php echo esc_attr($feature['icon']); ?>" placeholder="Icon class (e.g., fa fa-star)" />
+                <input type="text" name="product_features[<?php echo $index; ?>][text]" value="<?php echo esc_attr($feature['text']); ?>" placeholder="Feature text" />
+                <button type="button" class="remove-feature">Remove</button>
+            </div>
+        <?php endforeach; ?>
+    </div>
+    <button type="button" id="add-feature">Add Feature</button>
+    <script>
+        document.getElementById('add-feature').addEventListener('click', function () {
+            const container = document.getElementById('product-feature-list');
+            const index = container.children.length;
+            const item = document.createElement('div');
+            item.className = 'feature-item';
+            item.innerHTML = `
+                <input type="text" name="product_features[${index}][icon]" placeholder="Icon class (e.g., fa fa-star)" />
+                <input type="text" name="product_features[${index}][text]" placeholder="Feature text" />
+                <button type="button" class="remove-feature">Remove</button>
+            `;
+            item.querySelector('.remove-feature').addEventListener('click', () => item.remove());
+            container.appendChild(item);
+        });
+        document.querySelectorAll('.remove-feature').forEach(button => button.addEventListener('click', function () {
+            this.parentElement.remove();
+        }));
+    </script>
+    <style>
+        .feature-item {
+            margin-bottom: 10px;
+        }
+        .feature-item input {
+            margin-right: 10px;
+        }
+        .remove-feature {
+            color: red;
+            cursor: pointer;
+        }
+    </style>
+    <?php
+}
+
+
+
+
+/**
+ * Return SVG markup.
+ *
+ * @param array $args {
+ *     Parameters needed to display an SVG.
+ *
+ *     @type string $icon  Required SVG icon filename.
+ *     @type string $title Optional SVG title.
+ *     @type string $desc  Optional SVG description.
+ * }
+ * @return string SVG markup.
+ */
+function starter_get_svg( $args = array() ) {
+	// Make sure $args are an array.
+	if ( empty( $args ) ) {
+		return __( 'Please define default parameters in the form of an array.', 'starter' );
+	}
+
+	// Define an icon.
+	if ( false === array_key_exists( 'icon', $args ) ) {
+		return __( 'Please define an SVG icon filename.', 'starter' );
+	}
+
+	// Set defaults.
+	$defaults = array(
+		'icon'     => '',
+		'title'    => '',
+		'desc'     => '',
+		'fallback' => false,
+		'class'    => '',
+	);
+
+	// Parse args.
+	$args = wp_parse_args( $args, $defaults );
+
+	// Set aria hidden.
+	$aria_hidden = ' aria-hidden="true"';
+
+	// Set ARIA.
+	$aria_labelledby = '';
+
+	/*
+	 * starter doesn't use the SVG title or description attributes; non-decorative icons are described with .screen-reader-text.
+	 *
+	 * However, child themes can use the title and description to add information to non-decorative SVG icons to improve accessibility.
+	 *
+	 * Example 1 with title: <?php starter_get_svg( array( 'icon' => 'arrow-up', 'title' => __( 'This is the title', 'textdomain' ) ) ); ?>
+	 *
+	 * Example 2 with title and description: <?php starter_get_svg( array( 'icon' => 'arrow-up', 'title' => __( 'This is the title', 'textdomain' ), 'desc' => __( 'This is the description', 'textdomain' ) ) ); ?>
+	 *
+	 * See https://www.paciellogroup.com/blog/2013/12/using-aria-enhance-svg-accessibility/.
+	 */
+	if ( $args['title'] ) {
+		$aria_hidden     = '';
+		$unique_id       = starter_unique_id();
+		$aria_labelledby = ' aria-labelledby="title-' . $unique_id . '"';
+
+		if ( $args['desc'] ) {
+			$aria_labelledby = ' aria-labelledby="title-' . $unique_id . ' desc-' . $unique_id . '"';
+		}
+	}
+
+	// Begin SVG markup.
+	$svg = '<svg class="icon-' . esc_attr( $args['icon'] ) . ' ' . esc_attr( $args['class'] ) . '"' . $aria_hidden . $aria_labelledby . ' role="img">';
+
+	// Display the title.
+	if ( $args['title'] ) {
+		$svg .= '<title id="title-' . $unique_id . '">' . esc_html( $args['title'] ) . '</title>';
+
+		// Display the desc only if the title is already set.
+		if ( $args['desc'] ) {
+			$svg .= '<desc id="desc-' . $unique_id . '">' . esc_html( $args['desc'] ) . '</desc>';
+		}
+	}
+
+	/*
+	 * Display the icon.
+	 *
+	 * The whitespace around `<use>` is intentional - it is a work around to a keyboard navigation bug in Safari 10.
+	 *
+	 * See https://core.trac.wordpress.org/ticket/38387.
+	 */
+	$svg .= ' <use href="#' . esc_html( $args['icon'] ) . '" xlink:href="#' . esc_html( $args['icon'] ) . '"></use> ';
+
+	// Add some markup to use as a fallback for browsers that do not support SVGs.
+	if ( $args['fallback'] ) {
+		$svg .= '<span class="svg-fallback icon-' . esc_attr( $args['icon'] ) . '"></span>';
+	}
+
+	$svg .= '</svg>';
+
+	return $svg;
+}
+
+add_action( 'init', 'remove_woocommerce_product_images' );
+function remove_woocommerce_product_images() {
+    // Remove product images and sale badges
+    remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_images', 20 );
+    remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10 );
+    remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_show_product_loop_sale_flash', 10 );
+    remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10 );
+}
+
+// Wrap main content with Bootstrap layout
+add_action( 'woocommerce_before_main_content', 'custom_product_page_layout_start', 5 );
+add_action( 'woocommerce_after_main_content', 'custom_product_page_layout_end', 15 );
+
+function custom_product_page_layout_start() {
+    echo '<div class="content_wrapper pt-5 pb-5"><div class="container"><div class="row">';
+}
+
+function custom_product_page_layout_end() {
+    echo '</div></div></div>';
+}
+
+// Add custom layout for product page
+add_action( 'woocommerce_before_single_product_summary', 'custom_product_page_left_start', 5 );
+add_action( 'woocommerce_after_single_product_summary', 'custom_product_page_left_end', 5 );
+
+function custom_product_page_left_start() {
+    echo '<div class="row">';
+    echo '<div class="col-md-6">';
+    echo '<div class="product-left">';
+}
+
+function custom_product_page_left_end() {
+    echo '</div></div>'; // Close left column
+    echo '<div class="col-md-6">';
+    echo '<div class="product-right">';
+	custom_product_features();
+    echo '</div></div>'; // Close right column
+    echo '</div>'; // Close row
+}
+
+// Add product features to the left column under the title
+//add_action( 'woocommerce_single_product_summary', 'custom_product_features', 20 );
+
+function custom_product_features() {
+	//echo 'asdasdasd';
+    global $product;
+	//print_r($product);
+    $features = get_post_meta( $product->get_id(), '_product_features', true );
+
+	 if (!empty($features)): ?>
+		<div class="product-features">
+			<?php foreach ($features as $feature): ?>
+				<div class="feature">
+					<i class="<?php echo esc_attr($feature['icon']); ?>"></i>
+					<p><?php echo esc_html($feature['text']); ?></p>
+				</div>
+			<?php endforeach; ?>
+		</div>
+	<?php endif; 
+}
+
+// Move tabs and related products to a new row below
+add_action( 'woocommerce_after_single_product', 'custom_product_page_additional_content', 30 );
+
+function custom_product_page_additional_content() {
+    echo '<div class="row mt-5"><div class="col-12">';
+    // You can enable these when needed:
+    // woocommerce_output_product_data_tabs();
+    // woocommerce_output_related_products();
+    echo '</div></div>';
+}
