@@ -821,14 +821,16 @@
   }
   .sublimecard {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    text-align: center; /* Ensures the text is also centered */
     width: 100%;
     height: 100%;
-    background-color: #333333;
+    background-color: #333333;  
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     color: #FFFFFF;
-    font-family: 'Helvetica Neue';
+   
     font-size: 1rem;
     border-radius: 0.5rem;
     animation: cardAnim 900ms ease-out;
@@ -838,6 +840,36 @@
     background-repeat: no-repeat;
     transition: transform .5s;
   }
+
+
+  .sublimecard.tall .feature-text {
+    transform: rotate(-15deg); /* Rotate the text */
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-15deg); /* Centered and angled */
+    width: 100%;
+    text-align: center;
+    font-size: 1.2rem; /* Slightly larger font */
+    color: #444; /* Adjusted text color */
+    opacity: 0.9; /* Slight transparency */
+    letter-spacing: 1px; /* Add some letter spacing for style */
+}
+
+
+  /* Icon styling */
+.feature-icon {
+    font-size: 1.2rem; /* Adjust size of the icon */
+    
+    margin-bottom: 5px; /* Spacing between icon and text */
+}
+
+/* Text styling */
+.feature-text p {
+    font-size: 0.8rem; /* Text size */
+  
+    margin: 0; /* Remove default margin */
+}
   .sublimecard:hover{
     transform: scale(1.03);
   }
@@ -926,6 +958,7 @@
     animation: gradientAnimation 5s ease infinite;
 }
 
+
 .woocommerce:where(body:not(.woocommerce-uses-block-theme)) div.product p.price, .woocommerce:where(body:not(.woocommerce-uses-block-theme)) div.product span.price {
     color: green;
     font-size: .7em;
@@ -955,4 +988,103 @@
   .variable-item.selected {
     border: 2px solid #0071a1; /* Bold border for selected items */
     background-color: #e6f7ff; /* Optional: Slightly different background color */
+}
+
+/* TikTok styles */
+.tiktok .variable-item-contents,
+.tiktok .sublimecard {
+    background: linear-gradient(45deg, #25F4EE, #FF004F);
+    background-size: 300% 300%;
+    animation: gradientAnimation 5s ease infinite;
+}
+
+/* YouTube styles */
+.youtube .variable-item-contents,
+.youtube .sublimecard {
+    background: linear-gradient(45deg, #FF0000, #282828);
+    background-size: 300% 300%;
+    animation: gradientAnimation 5s ease infinite;
+}
+
+/* Instagram Comments */
+.instagram .comments .variable-item-contents::before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f086"; /* FA comment icon */
+    font-weight: 900;
+    margin-right: 5px;
+    display: flex;
+    position: absolute;
+    left: 5px;
+}
+
+/* TikTok Comments */
+.tiktok .comments .variable-item-contents::before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f086"; /* FA comment icon */
+    font-weight: 900;
+    margin-right: 5px;
+    display: flex;
+    position: absolute;
+    left: 5px;
+    color: #25F4EE; /* TikTok primary color */
+}
+
+/* YouTube Comments */
+.youtube .comments .variable-item-contents::before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f086"; /* FA comment icon */
+    font-weight: 900;
+    margin-right: 5px;
+    display: flex;
+    position: absolute;
+    left: 5px;
+    color: #FF0000; /* YouTube primary color */
+}
+
+/* TikTok Views */
+.tiktok .views .variable-item-contents::before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f06e"; /* FA eye icon for views */
+    font-weight: 900;
+    margin-right: 5px;
+    display: flex;
+    position: absolute;
+    left: 5px;
+    color: #25F4EE; /* TikTok primary color */
+}
+
+/* YouTube Views */
+.youtube .views .variable-item-contents::before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f06e"; /* FA eye icon for views */
+    font-weight: 900;
+    margin-right: 5px;
+    display: flex;
+    position: absolute;
+    left: 5px;
+    color: #FF0000; /* YouTube primary color */
+}
+
+/* TikTok Likes */
+.tiktok .likes .variable-item-contents::before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f164"; /* FA thumbs-up icon */
+    font-weight: 900;
+    margin-right: 5px;
+    display: flex;
+    position: absolute;
+    left: 5px;
+    color: #25F4EE; /* TikTok primary color */
+}
+
+/* YouTube Likes */
+.youtube .likes .variable-item-contents::before {
+    font-family: "Font Awesome 5 Free";
+    content: "\f164"; /* FA thumbs-up icon */
+    font-weight: 900;
+    margin-right: 5px;
+    display: flex;
+    position: absolute;
+    left: 5px;
+    color: #FF0000; /* YouTube primary color */
 }

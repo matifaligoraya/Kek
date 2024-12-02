@@ -141,6 +141,7 @@
 .navbar-collapse {
   flex-basis: 100%;
   flex-grow: 1;
+  justify-content: flex-end;
   // For always expanded or extra full navbars, ensure content aligns itself
   // properly vertically. Can be easily overridden with flex utilities.
   align-items: center;
@@ -220,6 +221,7 @@
         .navbar-collapse {
           display: flex !important; // stylelint-disable-line declaration-no-important
           flex-basis: auto;
+          justify-content: flex-end;
         }
 
         .navbar-toggler {

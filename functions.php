@@ -320,7 +320,9 @@ function custom_product_features() {
         <div class="product-features sublimegrid">
             <?php foreach ($features as $index => $feature): ?>
                 <div class="sublimecard <?php echo ($index % 3 == 0) ? 'wide' : (($index % 2 == 0) ? 'tall' : 'wide'); ?>">
-                   
+				<div class="feature-icon">
+                        <i class="<?php echo esc_attr($feature['icon']); ?>"></i>
+                    </div>
                     <div class="feature-text">
                         <p><?php echo esc_html($feature['text']); ?></p>
                     </div>
@@ -447,7 +449,7 @@ function custom_add_to_cart_row() {
 		const signUpButton = $('.custom-redirect-button');
 	signUpButton.attr('disabled', 'disabled');
 				signUpButton.attr('aria-disabled', 'true');
-				alert('asdasd');
+			//	alert('asdasd');
 		// Enable or disable the button based on variation selection
 		$('input.variation-radio').on('change', function () {
 			const selected = $('input.variation-radio:checked').val();
