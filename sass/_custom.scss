@@ -1,5 +1,15 @@
 //DO NOT EDIT HERE
 
+  .title {
+    text-align: center;
+    font-weight: bold;
+    font-family: -system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol";
+    font-size: 20px;
+    color: #666;
+  }
+  
 // PLEASE WRITE YOUR CODE ON THE CHILD THEME FOLDER 
 
 .instagram .sublimecard 
@@ -941,22 +951,7 @@
   #tab-description > h2 {
     display: none !important;
   }
-  .comments .variable-item-contents::before {
-    font-family: "Font Awesome 5 Free";
-    content: "";
-    font-weight: 900;
-    margin-right: 5px;
-    display: flex;
-    position: absolute;
-    left: 5px;
-  }
-  .instagram .variable-item-contents
-{
-    background: linear-gradient(45deg, #8E44AD, #E1306C);
-  
-    background-size: 300% 300%;
-    animation: gradientAnimation 5s ease infinite;
-}
+ 
 
 
 .woocommerce:where(body:not(.woocommerce-uses-block-theme)) div.product p.price, .woocommerce:where(body:not(.woocommerce-uses-block-theme)) div.product span.price {
@@ -966,125 +961,11 @@
     position: relative;
     padding-top: 32px;
   }
-  .variable-items-wrapper .product-content {
-    width: 96%;
-    position: absolute;
-    top: 2px;
-  }
-  .variable-items-wrapper label {
-    display: inline-block;
-    width: 100%;
-  }
-
+ 
   .twelve h1,  .twelve h2,  .twelve h3,  .twelve h4,  .twelve h5 {
     white-space: normal !important;
   }
 
-  .variable-item-contents {
-    color: #fff !important;
-    padding: 7px;
-  }
+  
 
-  .variable-item.selected {
-    border: 2px solid #0071a1; /* Bold border for selected items */
-    background-color: #e6f7ff; /* Optional: Slightly different background color */
-}
-
-/* TikTok styles */
-.tiktok .variable-item-contents,
-.tiktok .sublimecard {
-    background: linear-gradient(45deg, #25F4EE, #FF004F);
-    background-size: 300% 300%;
-    animation: gradientAnimation 5s ease infinite;
-}
-
-/* YouTube styles */
-.youtube .variable-item-contents,
-.youtube .sublimecard {
-    background: linear-gradient(45deg, #FF0000, #282828);
-    background-size: 300% 300%;
-    animation: gradientAnimation 5s ease infinite;
-}
-
-/* Instagram Comments */
-.instagram .comments .variable-item-contents::before {
-    font-family: "Font Awesome 5 Free";
-    content: "\f086"; /* FA comment icon */
-    font-weight: 900;
-    margin-right: 5px;
-    display: flex;
-    position: absolute;
-    left: 5px;
-}
-
-/* TikTok Comments */
-.tiktok .comments .variable-item-contents::before {
-    font-family: "Font Awesome 5 Free";
-    content: "\f086"; /* FA comment icon */
-    font-weight: 900;
-    margin-right: 5px;
-    display: flex;
-    position: absolute;
-    left: 5px;
-    color: #25F4EE; /* TikTok primary color */
-}
-
-/* YouTube Comments */
-.youtube .comments .variable-item-contents::before {
-    font-family: "Font Awesome 5 Free";
-    content: "\f086"; /* FA comment icon */
-    font-weight: 900;
-    margin-right: 5px;
-    display: flex;
-    position: absolute;
-    left: 5px;
-    color: #FF0000; /* YouTube primary color */
-}
-
-/* TikTok Views */
-.tiktok .views .variable-item-contents::before {
-    font-family: "Font Awesome 5 Free";
-    content: "\f06e"; /* FA eye icon for views */
-    font-weight: 900;
-    margin-right: 5px;
-    display: flex;
-    position: absolute;
-    left: 5px;
-    color: #25F4EE; /* TikTok primary color */
-}
-
-/* YouTube Views */
-.youtube .views .variable-item-contents::before {
-    font-family: "Font Awesome 5 Free";
-    content: "\f06e"; /* FA eye icon for views */
-    font-weight: 900;
-    margin-right: 5px;
-    display: flex;
-    position: absolute;
-    left: 5px;
-    color: #FF0000; /* YouTube primary color */
-}
-
-/* TikTok Likes */
-.tiktok .likes .variable-item-contents::before {
-    font-family: "Font Awesome 5 Free";
-    content: "\f164"; /* FA thumbs-up icon */
-    font-weight: 900;
-    margin-right: 5px;
-    display: flex;
-    position: absolute;
-    left: 5px;
-    color: #25F4EE; /* TikTok primary color */
-}
-
-/* YouTube Likes */
-.youtube .likes .variable-item-contents::before {
-    font-family: "Font Awesome 5 Free";
-    content: "\f164"; /* FA thumbs-up icon */
-    font-weight: 900;
-    margin-right: 5px;
-    display: flex;
-    position: absolute;
-    left: 5px;
-    color: #FF0000; /* YouTube primary color */
-}
+  
