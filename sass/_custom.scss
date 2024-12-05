@@ -966,6 +966,16 @@
     white-space: normal !important;
   }
 
-  
+  .instagram .btn {
+    color: var(--bs-btn-active-color);
+    background: linear-gradient(45deg, #8E44AD, #E1306C);
+    border-color: white;
+    border-width: 3px;
+    margin: 5px;
+  }
 
-  
+  .instagram  .btn-check + .btn:hover {
+    color: var(--bs-btn-active-color);
+    background: linear-gradient(45deg, #8E44AD, #E1306C);
+    border-color: var(--bs-btn-border-color);
+  }

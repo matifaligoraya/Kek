@@ -386,55 +386,45 @@ function custom_add_to_cart_row() {
         // Get variation attributes and available variations
         $attributes = $product->get_variation_attributes();
         $available_variations = $product->get_available_variations();
-
-        // Render variations as radio buttons
+    
+        // Render variations as Bootstrap radio buttons
         foreach ($attributes as $attribute_name => $options) {
             $attribute_label = wc_attribute_label($attribute_name);
             $attribute_name_cleaned = sanitize_title($attribute_name);
-            $data_values = json_encode(array_values($options));
-
-            echo '<div class="custom-variations-wrapper">';
+    
+            echo '<div class="container mb-4">';
             echo '<h3>' . esc_html($attribute_label) . '</h3>';
-            echo '<ul class="variable-items-wrapper button-variable-items-wrapper wvs-style-squared" role="radiogroup" data-attribute_name="attribute_' . esc_attr($attribute_name_cleaned) . '" data-attribute_values="' . esc_attr($data_values) . '">';
-
+            echo '<div class="btn-group" role="group" aria-label="' . esc_attr($attribute_label) . '">';
+    
             foreach ($options as $option_value) {
                 // Find the matching variation for this option
                 $matching_variation = array_filter($available_variations, function ($variation) use ($attribute_name_cleaned, $option_value) {
                     return isset($variation['attributes']['attribute_' . $attribute_name_cleaned]) && $variation['attributes']['attribute_' . $attribute_name_cleaned] === $option_value;
                 });
-
+    
                 if (!empty($matching_variation)) {
                     $variation = reset($matching_variation); // Get the first matching variation
                     $price = wc_price($variation['display_price']);
                     $regular_price = wc_price($variation['display_regular_price']);
                     $is_on_sale = $variation['display_regular_price'] > $variation['display_price'];
-
-                    // Render as a radio button with price
-                    echo '<li class="variable-item button-variable-item button-variable-item-' . esc_attr(sanitize_title($option_value)) . '">';
-					echo '<label>';echo '<div class="product-content">';
-                    echo '<input type="radio" name="selected_variation" style="visibility: hidden; display: none;" value="' . esc_attr($option_value) . '" class="variation-radio">';
-                    echo '<div class="variable-item-contents">';
-                    echo '<span class="variable-item-span variable-item-span-button">' . esc_html($option_value) . '</span>';
-					echo '</div>';
-					echo '<span class="price">';
-					if ($is_on_sale) {
-						echo '<del aria-hidden="true"><span class="woocommerce-Price-amount amount">' . $regular_price . '</span> </del>' . $price;
-					} else {
-						echo $price;
-					}
-					echo '</span>';
-					echo '</div>';
-					echo '</label>';
-                    echo '</li>';
+    
+                    $price_label = $is_on_sale
+                        ? '<del class="me-1">' . $regular_price . '</del>' . $price
+                        : $price;
+    
+                    // Render the Bootstrap radio button
+                    echo '<input type="radio" class="btn-check" name="selected_variation_' . esc_attr($attribute_name_cleaned) . '" id="' . esc_attr(sanitize_title($option_value)) . '" value="' . esc_attr($option_value) . '" autocomplete="off">';
+                    echo '<label class="btn btn-outline-primary" for="' . esc_attr(sanitize_title($option_value)) . '">';
+                    echo '<span>' . esc_html($option_value) . ' - ' . $price_label . '</span>';
+                    echo '</label>';
                 }
             }
-
-            echo '</ul>';
+    
+            echo '</div>';
             echo '</div>';
         }
-
-       
     }
+    
 
     echo '</div>';
 
