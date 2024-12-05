@@ -394,7 +394,7 @@ function custom_add_to_cart_row() {
     
             echo '<div class="container mb-4">';
             echo '<h3>' . esc_html($attribute_label) . '</h3>';
-            echo '<div class="btn-group" role="group" aria-label="' . esc_attr($attribute_label) . '">';
+            echo '<div class="row">'; // Start row for responsiveness
     
             foreach ($options as $option_value) {
                 // Find the matching variation for this option
@@ -412,18 +412,21 @@ function custom_add_to_cart_row() {
                         ? '<del class="me-1">' . $regular_price . '</del>' . $price
                         : $price;
     
-                    // Render the Bootstrap radio button
+                    // Render the Bootstrap radio button inside a column
+                    echo '<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">'; // Responsive column
                     echo '<input type="radio" class="btn-check variation-radio" name="selected_variation_' . esc_attr($attribute_name_cleaned) . '" id="' . esc_attr(sanitize_title($option_value)) . '" value="' . esc_attr($option_value) . '" autocomplete="off">';
-                    echo '<label class="btn btn-outline-primary" for="' . esc_attr(sanitize_title($option_value)) . '">';
-                    echo '<span>' . esc_html($option_value) . ' </span> <span>' . $price_label . '</span>';
+                    echo '<label class="btn btn-outline-primary w-100" for="' . esc_attr(sanitize_title($option_value)) . '">';
+                    echo '<span>' . esc_html($option_value) . '</span> <span>' . $price_label . '</span>';
                     echo '</label>';
+                    echo '</div>'; // End column
                 }
             }
     
-            echo '</div>';
-            echo '</div>';
+            echo '</div>'; // End row
+            echo '</div>'; // End container
         }
     }
+    
     
 
     echo '</div>';
