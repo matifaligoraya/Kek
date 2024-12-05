@@ -409,14 +409,14 @@ function custom_add_to_cart_row() {
                     $is_on_sale = $variation['display_regular_price'] > $variation['display_price'];
     
                     $price_label = $is_on_sale
-                        ? '<del class="me-1">' . $regular_price . '</del>' . $price
+                        ? '<del class="me-1"><span class="old">' . $regular_price . '</span></del>' . $price
                         : $price;
     
                     // Render the Bootstrap radio button inside a column
                     echo '<div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-3">'; // Responsive column
                     echo '<input type="radio" class="btn-check variation-radio" name="selected_variation_' . esc_attr($attribute_name_cleaned) . '" id="' . esc_attr(sanitize_title($option_value)) . '" value="' . esc_attr($option_value) . '" autocomplete="off">';
                     echo '<label class="btn btn-outline-primary w-100" for="' . esc_attr(sanitize_title($option_value)) . '">';
-                    echo '<span>' . esc_html($option_value) . '</span> <span>' . $price_label . '</span>';
+                    echo '<span style="display: block;width: 100%;">' . esc_html($option_value) . '</span> <span>' . $price_label . '</span>';
                     echo '</label>';
                     echo '</div>'; // End column
                 }

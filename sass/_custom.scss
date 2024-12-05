@@ -973,19 +973,21 @@
     border-width: 3px;
     margin: 5px;
   }
-
+.add-to-cart-row .btn{
+  padding: 8%;
+}
   .instagram  .btn-check + .btn:hover {
     color: var(--bs-btn-active-color);
     background: linear-gradient(45deg, #8E44AD, #E1306C);
     border-color: var(--bs-btn-border-color);
   }
 
- del.me-1 .woocommerce-Price-amount {
+.old .woocommerce-Price-amount {
     font-size: 14px;
     font-weight: normal;
   }
 
    .woocommerce-Price-amount {
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 20px !important;
+    font-weight: bold !important;
   }
