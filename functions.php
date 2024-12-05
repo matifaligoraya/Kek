@@ -434,38 +434,41 @@ function custom_add_to_cart_row() {
  echo '<a href="' . esc_url($redirect_url) . '" class="button custom-redirect-button" disabled>' . __('Sign Up Now', 'woocommerce') . '</a>';
  echo '</div>';
 
-	echo "<script>jQuery(document).ready(function ($) {
-		// Get the Sign Up button
-		const signUpButton = $('.custom-redirect-button');
-	signUpButton.attr('disabled', 'disabled');
-				signUpButton.attr('aria-disabled', 'true');
-			//	alert('asdasd');
-		// Enable or disable the button based on variation selection
-		$('input.variation-radio').on('change', function () {
-			const selected = $('input.variation-radio:checked').val();
-			        $('.variable-item').removeClass('selected');
-	        $(this).closest('.variable-item').addClass('selected');
-			if (selected) {
-				signUpButton.removeAttr('disabled');
-				signUpButton.attr('aria-disabled', 'false');
-			} else {
-				signUpButton.attr('disabled', 'disabled');
-				signUpButton.attr('aria-disabled', 'true');
-			}
-		});
+ echo "<script>
+ jQuery(document).ready(function ($) {
+     // Get the Sign Up button
+     const signUpButton = $('.custom-redirect-button');
+     signUpButton.attr('disabled', 'disabled');
+     signUpButton.attr('aria-disabled', 'true');
 
-		signUpButton.on('click', function (e) {
-        const selectedVariation = $('input.variation-radio:checked').val();
+     // Add event listener to variation radio buttons
+     $('input.variation-radio').on('change', function () {
+         const selected = $('input.variation-radio:checked').val();
 
-        // If no variation is selected, show an alert and prevent default behavior
-        if (!selectedVariation) {
-            e.preventDefault(); // Prevent the redirection
-            alert('Please select a variation before proceeding.');
-        }
-    });
-	});
-	
-	</script>";
+         // Update styles and enable/disable the button based on selection
+         $('.variable-item').removeClass('selected');
+         $(this).closest('.variable-item').addClass('selected');
+
+         if (selected) {
+             signUpButton.removeAttr('disabled').attr('aria-disabled', 'false');
+         } else {
+             signUpButton.attr('disabled', 'disabled').attr('aria-disabled', 'true');
+         }
+     });
+
+     // Add click event listener to the Sign Up button
+     signUpButton.on('click', function (e) {
+         const selectedVariation = $('input.variation-radio:checked').val();
+
+         // Show an alert if no variation is selected
+         if (!selectedVariation) {
+             e.preventDefault(); // Prevent the default behavior
+             alert('Please select a variation before proceeding.');
+         }
+     });
+ });
+</script>";
+
 }
 
 
