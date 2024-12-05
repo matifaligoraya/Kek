@@ -415,7 +415,7 @@ function custom_add_to_cart_row() {
                     // Render the Bootstrap radio button
                     echo '<input type="radio" class="btn-check" name="selected_variation_' . esc_attr($attribute_name_cleaned) . '" id="' . esc_attr(sanitize_title($option_value)) . '" value="' . esc_attr($option_value) . '" autocomplete="off">';
                     echo '<label class="btn btn-outline-primary" for="' . esc_attr(sanitize_title($option_value)) . '">';
-                    echo '<span>' . esc_html($option_value) . ' - ' . $price_label . '</span>';
+                    echo '<span>' . esc_html($option_value) . ' </span> <span>' . $price_label . '</span>';
                     echo '</label>';
                 }
             }
