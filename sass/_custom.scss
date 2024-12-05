@@ -979,3 +979,13 @@
     background: linear-gradient(45deg, #8E44AD, #E1306C);
     border-color: var(--bs-btn-border-color);
   }
+
+  .me-1 .woocommerce-Price-amount {
+    font-size: 14px;
+    font-weight: normal;
+  }
+
+   .woocommerce-Price-amount {
+    font-size: 20px;
+    font-weight: bold;
+  }
