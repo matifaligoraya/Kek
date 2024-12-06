@@ -77,7 +77,7 @@ class WPBakeryKekProductDisplayElement
         $enable_overlay = $atts['enable_overlay'] === 'true'; // Checkbox returns 'true' if checked
         $product_count = (int)$atts['product_count'];
         $display_style = esc_attr($atts['display_style']);
-
+        $col_count =  (int)$atts['col_count'];
         // Query WooCommerce products
         $args = array(
             'post_type' => 'product',
