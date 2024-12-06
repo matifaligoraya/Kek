@@ -1,9 +1,9 @@
 <?php
 
 if (is_active_sidebar( 'footerfull' )): ?>
-    <div class="wrapper bg-light mt-5 py-5 footer-back" id="wrapper-footer-widgets">
+    <div class="wrapper bg-light mt-5 py-4 footer-back" id="wrapper-footer-widgets">
         
-        <div class="container mb-5">
+        <div class="container ">
             
             <div class="row">
                 <?php dynamic_sidebar( 'footerfull' ); ?>
@@ -25,7 +25,7 @@ if (is_active_sidebar( 'footerfull' )): ?>
 <?php endif ?>
 
 
-<div class="wrapper py-3" id="wrapper-footer-colophon">
+<!-- <div class="wrapper py-3" id="wrapper-footer-colophon">
     <div class="container-fluid">
 
         <div class="row">
@@ -38,14 +38,14 @@ if (is_active_sidebar( 'footerfull' )): ?>
 
                         <?php picostrap_site_info(); ?>
 
-                    </div><!-- .site-info -->
+                    </div> 
                     
-                </footer><!-- #colophon -->
+                </footer> 
 
-            </div><!--col end -->
+            </div> 
 
-        </div><!-- row end -->
+        </div> 
 
-    </div><!-- container end -->
+    </div> 
 
-</div><!-- wrapper end -->
+</div>wrapper end -->
