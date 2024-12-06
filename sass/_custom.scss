@@ -987,3 +987,21 @@
     display: flex;
 
   }
+
+  .tiktok .btn-check + .btn:hover {
+    color: var(--bs-btn-active-color);
+    background: linear-gradient(45deg, #EE1D52, #69C9D0); /* TikTok colors */
+    border-color: var(--bs-btn-border-color);
+}
+
+.x .btn-check + .btn:hover {
+    color: var(--bs-btn-active-color);
+    background: linear-gradient(45deg, #1DA1F2, #14171A); /* X (Twitter) colors */
+    border-color: var(--bs-btn-border-color);
+}
+
+.youtube .btn-check + .btn:hover {
+    color: var(--bs-btn-active-color);
+    background: linear-gradient(45deg, #FF0000, #C4302B); /* YouTube colors */
+    border-color: var(--bs-btn-border-color);
+}
