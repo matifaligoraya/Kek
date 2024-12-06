@@ -102,7 +102,7 @@ class WPBakeryKekProductDisplayElement
                     $product = wc_get_product(get_the_ID());
                     $image_url = get_the_post_thumbnail_url(get_the_ID(), 'full');
                     $title = get_the_title();
-                    $description = wp_trim_words(get_the_content(), 20, '...');
+                    $description = wp_trim_words(get_the_excerpt(), 40, '...');
                     $custom_tabs = get_post_meta(get_the_ID(), '_kek_custom_product_tabs', true);
                     $features = get_post_meta(get_the_ID(), '_product_features', true);
                     // print_r(value: $custom_tabs);
