@@ -52,6 +52,12 @@ class WPBakeryKekProductDisplayElement
                     'heading' => __('Enable Overlay on Images', 'kek'),
                     'param_name' => 'enable_overlay',
                     'description' => __('Check to enable an overlay effect on product images.', 'kek'),
+                ),   array(
+                    'type' => 'textfield',
+                    'heading' => __('Number of Columns', 'kek'),
+                    'param_name' => 'col_count',
+                    'description' => __('Enter the number of products to display.', 'kek'),
+                    'value' => '4',
                 ),
             ),
         ));
@@ -62,7 +68,7 @@ class WPBakeryKekProductDisplayElement
         $atts = shortcode_atts(array(
             'categories' => '',
             'heading' => '4',
-           
+           'col_count' => '4',
             'product_count' => '4',
             'display_style' => 'grid',
             'enable_overlay' => '',     
@@ -123,7 +129,8 @@ class WPBakeryKekProductDisplayElement
                     $price = $product->get_price_html();
                     $permalink = get_permalink();
                     ?>
-                    <div class="col-lg-3">
+                 <div class="col-lg-<?php echo isset($col_count) ? $col_count : 3; ?>">
+
                         <div class="product-container">
                             <a href="<?php echo esc_url($permalink); ?>">
                             <div class="product-image">
