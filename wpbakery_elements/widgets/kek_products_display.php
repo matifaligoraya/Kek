@@ -123,7 +123,7 @@ class WPBakeryKekProductDisplayElement
                     $price = $product->get_price_html();
                     $permalink = get_permalink();
                     ?>
-                    <div class="col-lg-4">
+                    <div class="col-lg-3">
                         <div class="product-container">
                             <a href="<?php echo esc_url($permalink); ?>">
                             <div class="product-image">
