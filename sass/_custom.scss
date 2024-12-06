@@ -25,13 +25,7 @@
     background-size: 300% 300%;
     animation: gradientAnimation 5s ease infinite;
   }
-  .tiktok .sublimecard 
-{
-    background: linear-gradient(45deg, #8E44AD, #E1306C);
-  
-    background-size: 300% 300%;
-    animation: gradientAnimation 5s ease infinite;
-}
+
   .tiktok.vc_row[data-vc-full-width] {
     background: linear-gradient(45deg, #040041, #69C9D0, #E1306C);
     background-size: 300% 300%;
@@ -1004,4 +998,59 @@
     color: var(--bs-btn-active-color);
     background: linear-gradient(45deg, #FF0000, #C4302B); /* YouTube colors */
     border-color: var(--bs-btn-border-color);
+}
+.tiktok .btn {
+  color: var(--bs-btn-active-color);
+  background: linear-gradient(45deg, #EE1D52, #69C9D0); /* TikTok colors */
+  border-color: white;
+  border-width: 3px;
+  margin: 5px;
+}
+
+.x .btn {
+  color: var(--bs-btn-active-color);
+  background: linear-gradient(45deg, #1DA1F2, #14171A); /* X (Twitter) colors */
+  border-color: white;
+  border-width: 3px;
+  margin: 5px;
+}
+
+.youtube .btn {
+  color: var(--bs-btn-active-color);
+  background: linear-gradient(45deg, #FF0000, #C4302B); /* YouTube colors */
+  border-color: white;
+  border-width: 3px;
+  margin: 5px;
+}
+
+
+.tiktok .sublimecard {
+  background: linear-gradient(45deg, #EE1D52, #69C9D0); /* TikTok colors */
+  background-size: 300% 300%;
+  animation: gradientAnimation 5s ease infinite;
+}
+
+.x .sublimecard {
+  background: linear-gradient(45deg, #1DA1F2, #14171A); /* X (Twitter) colors */
+  background-size: 300% 300%;
+  animation: gradientAnimation 5s ease infinite;
+}
+
+.youtube .sublimecard {
+  background: linear-gradient(45deg, #FF0000, #C4302B); /* YouTube colors */
+  background-size: 300% 300%;
+  animation: gradientAnimation 5s ease infinite;
+}
+
+/* Gradient animation */
+@keyframes gradientAnimation {
+  0% {
+      background-position: 0% 50%;
+  }
+  50% {
+      background-position: 100% 50%;
+  }
+  100% {
+      background-position: 0% 50%;
+  }
 }
