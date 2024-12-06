@@ -123,7 +123,7 @@ class WPBakeryKekProductDisplayElement
                     $price = $product->get_price_html();
                     $permalink = get_permalink();
                     ?>
-                    <div class="col">
+                    <div class="col-lg-4">
                         <div class="product-container">
                             <a href="<?php echo esc_url($permalink); ?>">
                             <div class="product-image">
@@ -161,7 +161,7 @@ class WPBakeryKekProductDisplayElement
                                 </div>
                                 <div class="product-option">
                                     <div class="product-size">
-                                 <p style="font-size: 14px;"> <?php echo $description; ?></p> 
+                                 <p style="font-size: 14px;"><?php echo do_shortcode($description); ?></p> 
                                     </div>
                                 </div>
                             </div>
