@@ -25,6 +25,26 @@ if (is_active_sidebar( 'footerfull' )): ?>
 <?php endif ?>
 
 
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const dropdowns = document.querySelectorAll('.dropdown');
+
+        dropdowns.forEach(dropdown => {
+            dropdown.addEventListener('mouseenter', function () {
+                const menu = this.querySelector('.dropdown-menu');
+                this.classList.add('show');
+                menu.classList.add('show');
+            });
+
+            dropdown.addEventListener('mouseleave', function () {
+                const menu = this.querySelector('.dropdown-menu');
+                this.classList.remove('show');
+                menu.classList.remove('show');
+            });
+        });
+    });
+</script>
+
 <!-- <div class="wrapper py-3" id="wrapper-footer-colophon">
     <div class="container-fluid">
 
