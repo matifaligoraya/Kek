@@ -853,17 +853,7 @@
 
 
   .sublimecard.tall .feature-text {
-    transform: rotate(-15deg); /* Rotate the text */
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%) rotate(-15deg); /* Centered and angled */
-    width: 100%;
-    text-align: center;
-    font-size: 1.2rem; /* Slightly larger font */
-    color: #444; /* Adjusted text color */
-    opacity: 0.9; /* Slight transparency */
-    letter-spacing: 1px; /* Add some letter spacing for style */
+  display: none;
 }
 
 
